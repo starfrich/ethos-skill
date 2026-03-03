@@ -7,7 +7,7 @@ A Claude Code skill for the [Ethos Network](https://ethos.network) API a blockch
 **One-liner:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/starfrich/ethos-network/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/starfrich/ethos-network/master/install.sh | sh
 ```
 
 **Or clone manually:**
