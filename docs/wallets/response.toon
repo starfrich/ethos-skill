@@ -1,3 +1,17 @@
+"auth-exchange":
+  type: object
+  properties:
+    ok:
+      type: boolean
+      enum[1]: true
+  required[1]: ok
+"auth-logout":
+  type: object
+  properties:
+    ok:
+      type: boolean
+      enum[1]: true
+  required[1]: ok
 "wallets-privy-authCheck":
   type: object
   properties:

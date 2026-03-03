@@ -1,12 +1,12 @@
 # Wallets — Authentication
 
-Base: `https://api.ethos.network/api/v2/wallets`
+Base: `https://api.ethos.network/api/v2`
 
-## POST `/wallets/privy/exchange`
+## POST `/auth/exchange`
 
 Exchange Privy session token for Ethos JWTs.
 
-## POST `/wallets/privy/logout`
+## POST `/auth/logout`
 
 Logout and clear Ethos JWT cookies.
 

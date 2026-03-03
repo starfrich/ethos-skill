@@ -1293,6 +1293,9 @@
                         type: number
                         minimum: 0
                         exclusiveMinimum: true
+                      message:
+                        type: string
+                        maxLength: 280
                     required[3]: tipId,senderProfileId,amount
                 required[2]: type,data
               - type: object

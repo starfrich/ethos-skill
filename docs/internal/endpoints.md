@@ -4,14 +4,26 @@ Base: `https://api.ethos.network/api/v2`
 
 > ⚠️ **Warning:** All endpoints in this section are internal and **not guaranteed to be stable**. They may change or break without notice. **Not recommended for production use.**
 
-## Get user by embedded wallet
+## GET `/internal/users/embedded-wallet/{address}`
 
-## Get user by userkey
+Get user by embedded wallet address.
 
-## Get internal listings
+## GET `/internal/users/{userkey}`
 
-## Get project details by username for listings page
+Get user by userkey.
 
-## Get trending users for homepage
+## GET `/internal/listings`
 
-## Get trending news like top vouchers
+Get internal listings page.
+
+## GET `/internal/listings/{username}`
+
+Get project details by username for listings page.
+
+## GET `/internal/trending-users`
+
+Get trending users for homepage.
+
+## GET `/internal/trending-news`
+
+Get trending news (e.g. top vouchers).

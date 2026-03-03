@@ -14,8 +14,17 @@ Authenticated health check endpoint.
 
 Always fails with HTTP 418 (teapot). Used for testing error handling.
 
-## POST `/system/transactions/wait` (beta)
+## GET `/transactions/{txHash}/processed` (beta)
 
 > Beta — may change without notice.
 
 Wait until a blockchain transaction has been processed by Ethos event processors or until timeout elapses.
+
+| Param       | Type    | Required   | Notes                    |
+| ----------- | ------- | ---------- | ------------------------ |
+| `txHash`    | string  | yes (path) |                          |
+| `timeoutMs` | integer | no         | max 25000, default 10000 |
+
+Response: `{ "processed": true, "status": "processed" }`
+
+`status` enum: `not_found | pending | processing | processed`

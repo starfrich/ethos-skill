@@ -86,17 +86,32 @@
       items:
         type: object
         properties:
-          id:
-            type: number
-          senderProfileId:
-            type: number
-          receiverUserId:
-            type: number
           amount:
             type: number
           createdAt:
             type: string
-        required[5]: id,senderProfileId,receiverUserId,amount,createdAt
+          id:
+            type: number
+          message:
+            type: string
+            nullable: true
+          receiverUserId:
+            type: number
+          senderProfileId:
+            type: number
+          source:
+            type: object
+            nullable: true
+            properties:
+              type:
+                type: string
+                enum[4]: profile,review,slash,vouch
+              id:
+                type: integer
+                minimum: 0
+                exclusiveMinimum: true
+            required[1]: type
+        required[7]: amount,createdAt,id,message,receiverUserId,senderProfileId,source
     total:
       type: number
   required[2]: values,total
@@ -108,17 +123,32 @@
       items:
         type: object
         properties:
-          id:
-            type: number
-          senderProfileId:
-            type: number
-          receiverUserId:
-            type: number
           amount:
             type: number
           createdAt:
             type: string
-        required[5]: id,senderProfileId,receiverUserId,amount,createdAt
+          id:
+            type: number
+          message:
+            type: string
+            nullable: true
+          receiverUserId:
+            type: number
+          senderProfileId:
+            type: number
+          source:
+            type: object
+            nullable: true
+            properties:
+              type:
+                type: string
+                enum[4]: profile,review,slash,vouch
+              id:
+                type: integer
+                minimum: 0
+                exclusiveMinimum: true
+            required[1]: type
+        required[7]: amount,createdAt,id,message,receiverUserId,senderProfileId,source
     total:
       type: number
   required[2]: values,total

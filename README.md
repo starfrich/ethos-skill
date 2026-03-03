@@ -54,45 +54,45 @@ ethos-skill/
 ### Domains covered
 
 <details>
-    
-| Domain               | Endpoints                                         |
-| -------------------- | ------------------------------------------------- |
-| `activities`         | feed, profile, lookup by id/tx/userkey            |
-| `ai-images`          | job management (admin)                            |
-| `announcements`      | active announcements                              |
-| `apps`               | apps CRUD                                         |
-| `auctions`           | active, by id, list                               |
-| `benefits`           | limited-time, score-based, admin CRUD             |
-| `broker`             | posts CRUD, report, AI image preview              |
-| `categories`         | categories CRUD, users, requests                  |
-| `chains`             | chains CRUD (admin), gas price                    |
-| `contributions`      | history, dailies, forgive                         |
-| `endorsements`       | endorsers by target/viewer                        |
-| `ens`                | lookup by address or name                         |
-| `exchange-rates`     | ETH price in USD                                  |
-| `feature-views`      | check and mark feature views                      |
-| `human-verification` | verifications, bonds, signature                   |
-| `internal`           | internal endpoints (unstable)                     |
-| `invitations`        | list, check, pending, tree                        |
-| `llm`                | translate, quality check                          |
-| `markets`            | list, simulate, holders, price history            |
-| `notifications`      | feed, stats, settings                             |
-| `nfts`               | ownership, user NFTs, validator listings          |
-| `profiles`           | list, recent, stats                               |
-| `project-votes`      | cast, balance, voters, chart                      |
-| `projects`           | list, details, team, chains                       |
-| `replies`            | fetch, pin                                        |
-| `reviews`            | count/latest between users                        |
-| `score`              | by address/userId/userkey (single & bulk), status |
-| `signatures`         | register address                                  |
-| `slash`              | admin list, supporter penalties                   |
-| `stats`              | score distribution                                |
-| `system`             | healthcheck, wait for transaction                 |
-| `users`              | bulk & single lookup, search, refresh             |
-| `votes`              | get votes, stats (single & bulk)                  |
-| `vouches`            | query, mutual, fees                               |
-| `wallets`            | auth, Ethos Everywhere Wallet actions             |
-| `xp`                 | user XP, seasons, tips, dashboard, validators     |
+
+| Domain               | Endpoints                                                                                                                               |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `activities`         | feed, profile (given/received/all/project), lookup by id/tx/userkey, slash impacted supporters                                          |
+| `ai-images`          | list, get, by-entity, selected, regenerate, activate, retry (admin)                                                                     |
+| `announcements`      | active announcements, mark as viewed                                                                                                    |
+| `apps`               | list, get, get by type, create, update, delete                                                                                          |
+| `auctions`           | active, by id, list with filters                                                                                                        |
+| `benefits`           | limited-time, score-based, all (admin), categories CRUD, benefit CRUD, code management                                                  |
+| `broker`             | list, get, by tx hash, by author, update status, archive, report, AI image preview                                                      |
+| `categories`         | categories CRUD, users, bulk import, requests                                                                                           |
+| `chains`             | list, add, edit, delete (admin), gas price                                                                                              |
+| `contributions`      | history, dailies, latest missed day, forgive self, forgive any user (admin)                                                             |
+| `endorsements`       | endorsers by target and viewer                                                                                                          |
+| `ens`                | lookup by address or ENS name                                                                                                           |
+| `exchange-rates`     | ETH price in USD                                                                                                                        |
+| `feature-views`      | check viewed, mark as viewed                                                                                                            |
+| `human-verification` | search, my verifications, all verifications, balance, by profile, verifiers, request                                                    |
+| `internal`           | users, listings, trending (unstable)                                                                                                    |
+| `invitations`        | list, check, pending, tree                                                                                                              |
+| `llm`                | translate, quality check                                                                                                                |
+| `markets`            | list, featured, info, holders, price history, change, bulk info, simulate buy, user lookups, configs                                    |
+| `notifications`      | pending feed, stats, mark as read, settings                                                                                             |
+| `nfts`               | owns validator, user NFTs, track collection (admin), validator listings                                                                 |
+| `profiles`           | list, recent, stats                                                                                                                     |
+| `project-votes`      | cast vote, balance, voters, reallocate (admin), bulk totals, chart                                                                      |
+| `projects`           | list, suggested, get, details, details by username, team, chains, confirm creation                                                      |
+| `replies`            | by id, by parent, pin                                                                                                                   |
+| `reviews`            | count between users, latest between users                                                                                               |
+| `score`              | by address/userId/userkey (single and bulk), updates, status                                                                            |
+| `signatures`         | register address, humanity bond                                                                                                         |
+| `slash`              | supporter penalties, admin list                                                                                                         |
+| `stats`              | score distribution                                                                                                                      |
+| `system`             | healthcheck (public/auth/always-fail), wait for transaction                                                                             |
+| `users`              | bulk lookup (ids/address/profile/twitter/discord/farcaster/telegram), single lookup, search, categories, refresh                        |
+| `votes`              | get votes, stats (single and bulk)                                                                                                      |
+| `vouches`            | query, mutual vouchers, fees                                                                                                            |
+| `wallets`            | auth exchange/logout, auth check, funds check, review actions, vote, reply, invitations, bonds                                          |
+| `xp`                 | user XP (total/season/weekly/timeline), leaderboard rank, seasons, weeks, tips, send details, decision, metadata, validators, dashboard |
 
 </details>
 
@@ -123,3 +123,39 @@ Each domain includes a `response.toon` file with response schemas in [TOON](http
 - Docs: https://developers.ethos.network
 - OpenAPI spec: https://api.ethos.network/docs/openapi.json
 - Base URL: `https://api.ethos.network/api/v2`
+
+## Changelog
+
+<details>
+
+### 2026-03-04
+
+Full validation pass comparing `dev/<domain>.md` against `docs/` for all 36 domains.
+
+**Fixes**
+
+- `auctions`: added filter/sort parameter table to `GET /auctions`
+- `benefits`: corrected path `GET /benefits` to `GET /benefits/limited-time`
+- `human-verification`: corrected 3 wrong paths in `query.md` (`/verifications/me`, `/profile/{userkey}`, missing `getAllVerifications`); rewrote `bonds.md` which referenced non-existent endpoints
+- `internal`: added missing URL paths to all 6 endpoints in `endpoints.md`
+- `markets`: corrected path `GET /markets/{profileId}` to `GET /markets/{profileId}/info`
+- `signatures`: added missing `POST /signatures/humanity-bond` to `query.md`
+- `slash`: added missing `GET /slash/supporter-penalties/{profileId}` to `admin.md`
+- `system`: corrected path `POST /system/transactions/wait` to `GET /transactions/{txHash}/processed`; added `tx-waitForProcessing` to `response.toon`
+- `wallets`: corrected paths `POST /wallets/privy/exchange` and `POST /wallets/privy/logout` to `POST /auth/exchange` and `POST /auth/logout`; added missing `auth-exchange` and `auth-logout` to `response.toon`
+- `xp`: added missing `GET /xp/user/{userkey}/season/{seasonId}/weekly` to `user.md`
+
+---
+
+### 2026-03-03
+
+**Initial release**
+
+- Published all 36 domain docs under `docs/` with endpoint references and `response.toon` schema files
+- Added `SKILL.md` entry point with on-demand loading instructions per domain
+- Added `README.md` with installation guide, structure overview, and benchmark results
+- Added one-liner installation via hosted `install.sh`
+- Added `settings.json` snippet for allowing Claude to read skill docs without prompting
+- Benchmark: ~75% average token savings vs loading full API reference (~330k tokens)
+
+</details>

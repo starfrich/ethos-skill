@@ -20,10 +20,10 @@ HUMAN_VERIFICATION_RECEIVED | HUMAN_VERIFICATION_NUDGE | CHITS_GRANTED
 
 Pending notifications for the authenticated user.
 
-| Param | Type | Required |
-|-------|------|----------|
-| `limit` | integer | no |
-| `offset` | number | no |
+| Param    | Type    | Required |
+| -------- | ------- | -------- |
+| `limit`  | integer | no       |
+| `offset` | number  | no       |
 
 ## GET `/notifications/stats/me` 🔒
 

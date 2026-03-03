@@ -53,7 +53,7 @@ Read the relevant file(s) from `docs/` based on the question context:
 - `docs/notifications/settings.md` — notification settings get/update
 - `docs/replies/query.md` — reply schema, fetch by id, fetch by parent
 - `docs/replies/pin.md` — pin/unpin reply
-- `docs/slash/admin.md` — slash concepts, admin list
+- `docs/slash/admin.md` — slash concepts, supporter penalties, admin list
 
 ### Platform
 
@@ -61,7 +61,7 @@ Read the relevant file(s) from `docs/` based on the question context:
 - `docs/wallets/auth.md` — exchange token, logout, auth-check, funds-check
 - `docs/wallets/actions.md` — reviews, vote, reply, invitations, bonds via Ethos Everywhere Wallet
 - `docs/human-verification/query.md` — search verifications, balance, profile info, verifiers
-- `docs/human-verification/bonds.md` — bonds, request verification, signature
+- `docs/human-verification/bonds.md` — request verification
 - `docs/contributions/manage.md` — contribution history, dailies, forgive endpoints
 - `docs/chains/manage.md` — chains list/CRUD (admin), Base gas price
 - `docs/endorsements/query.md` — get endorsers of a target user known by viewer
@@ -75,7 +75,7 @@ Read the relevant file(s) from `docs/` based on the question context:
 - `docs/projects/query.md` — list, suggested, by id, by username, team members
 - `docs/projects/manage.md` — update project, team/chains CRUD (admin or owner)
 - `docs/project-votes/votes.md` — cast votes, balance, voters, bulk-totals, chart (with time scope system)
-- `docs/signatures/query.md` — signature for registering an address
+- `docs/signatures/query.md` — signature for registering an address, humanity bond signature
 - `docs/stats/query.md` — score distribution by level
 - `docs/system/healthcheck.md` — healthcheck endpoints, wait for transaction
 - `docs/votes/query.md` — get votes, single/bulk vote stats for activities

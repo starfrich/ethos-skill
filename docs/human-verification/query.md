@@ -11,22 +11,26 @@ Field on user object: `humanVerificationStatus`
 
 ---
 
-## GET `/human-verification/verifications` (search)
+## GET `/human-verification/search`
 
 Search human verifications with filters.
 
-## GET `/human-verification/verifications/me` 🔒
+## GET `/human-verification/my-verifications` 🔒
 
 Verifications created by the current user.
+
+## GET `/human-verification/verifications`
+
+Get all human verifications.
 
 ## GET `/human-verification/verifications/balance`
 
 Balance info for human verification bonds.
 
-## GET `/human-verification/profile/{userkey}`
+## GET `/human-verification/{profileId}`
 
 Human verification info for a specific profile.
 
-## GET `/human-verification/verifiers` (search)
+## GET `/human-verification/verifiers`
 
 Search eligible human verifiers.

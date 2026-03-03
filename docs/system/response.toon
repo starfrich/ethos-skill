@@ -13,3 +13,12 @@
       type: number
   required[1]: ok
 "healthcheck-alwaysFail":
+"tx-waitForProcessing":
+  type: object
+  properties:
+    processed:
+      type: boolean
+    status:
+      type: string
+      enum[4]: not_found,pending,processing,processed
+  required[2]: processed,status

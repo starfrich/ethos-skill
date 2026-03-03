@@ -11,24 +11,24 @@ Statuses: `ACTIVE | INACTIVE`
 
 List apps.
 
-| Param | Type | Required |
-|-------|------|----------|
-| `appType` | enum | no |
-| `status` | enum | no |
-| `limit` | integer | no |
-| `offset` | number | no |
+| Param     | Type    | Required |
+| --------- | ------- | -------- |
+| `appType` | enum    | no       |
+| `status`  | enum    | no       |
+| `limit`   | integer | no       |
+| `offset`  | number  | no       |
 
 ## POST `/apps` 🔒
 
 Create an app.
 
-| Field | Type | Required |
-|-------|------|----------|
-| `name` | string | yes (max 100) |
-| `appType` | enum | yes |
-| `authorUserId` | integer | yes |
-| `link` | URI | yes |
-| `description` | string | yes (max 1000) |
+| Field          | Type    | Required       |
+| -------------- | ------- | -------------- |
+| `name`         | string  | yes (max 100)  |
+| `appType`      | enum    | yes            |
+| `authorUserId` | integer | yes            |
+| `link`         | URI     | yes            |
+| `description`  | string  | yes (max 1000) |
 
 ## GET `/apps/{id}`
 

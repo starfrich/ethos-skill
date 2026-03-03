@@ -24,7 +24,12 @@ Public. Returns selected job for entity (nullable).
 ## POST `/ai-images/regenerate`
 
 ```json
-{ "jobId": 1, "markAsSelected": false, "promptOverride": "optional", "imageUrlOverrides": [] }
+{
+  "jobId": 1,
+  "markAsSelected": false,
+  "promptOverride": "optional",
+  "imageUrlOverrides": []
+}
 ```
 
 ## POST `/ai-images/activate`

@@ -10,10 +10,10 @@ Cast a vote for a project.
 
 Get current user's vote balance, optionally for a specific project and season.
 
-| Param | Type | Required |
-|-------|------|----------|
-| `projectId` | integer | no |
-| `seasonId` | integer | no |
+| Param       | Type    | Required |
+| ----------- | ------- | -------- |
+| `projectId` | integer | no       |
+| `seasonId`  | integer | no       |
 
 ## GET `/projects/{projectId}/voters`
 
@@ -21,14 +21,15 @@ Paginated list of project voters with vote statistics.
 
 ### Time Scope (`scope` param)
 
-| scope | Additional params required |
-|-------|---------------------------|
-| `global` | none — all-time data |
-| `global-dates` | `startDate` + `endDate` (ISO date) |
-| `current-period` | none — default |
-| `period` | `year` + `period` (numbers) |
+| scope            | Additional params required         |
+| ---------------- | ---------------------------------- |
+| `global`         | none — all-time data               |
+| `global-dates`   | `startDate` + `endDate` (ISO date) |
+| `current-period` | none — default                     |
+| `period`         | `year` + `period` (numbers)        |
 
 Examples:
+
 ```
 GET /projects/123/voters?scope=global
 GET /projects/123/voters?scope=global-dates&startDate=2024-01-01&endDate=2024-12-31
@@ -53,7 +54,7 @@ If omitted, API auto-selects optimal bucket. Max 2000 data points.
 
 Reallocate votes for all users.
 
-| `type` | Description |
-|--------|-------------|
+| `type`            | Description                                     |
+| ----------------- | ----------------------------------------------- |
 | `reset` (default) | Advance to next period and allocate fresh votes |
-| `reallocate` | Allocate additional votes for current period |
+| `reallocate`      | Allocate additional votes for current period    |

@@ -4,156 +4,300 @@
     values:
       type: array
       items:
-        type: object
-        properties:
-          id:
-            type: number
-          type:
-            type: string
-            enum[1]: LIMITED_TIME_PERK
-          shortDescription:
-            type: string
-            maxLength: 256
-          longDescription:
-            type: string
-          logoImageUrl:
-            type: string
-            format: uri
-          carouselImageUrl:
-            type: string
-            format: uri
-          primaryLinkLabel:
-            type: string
-          primaryLinkUrl:
-            type: string
-            format: uri
-          secondaryLinkLabel:
-            type: string
-          secondaryLinkUrl:
-            type: string
-            format: uri
-          status:
-            type: string
-            enum[2]: ACTIVE,INACTIVE
-          issuer:
-            type: object
+        oneOf[2]:
+          - type: object
             properties:
               id:
                 type: number
-              profileId:
-                type: number
-                nullable: true
-              displayName:
+              type:
                 type: string
-              username:
+                enum[1]: LIMITED_TIME_CODE
+              shortDescription:
                 type: string
-                nullable: true
-              avatarUrl:
+                maxLength: 256
+              longDescription:
+                type: string
+              logoImageUrl:
                 type: string
                 format: uri
-              description:
+              carouselImageUrl:
                 type: string
-                nullable: true
-              score:
-                type: number
+                format: uri
+              secondaryLinkLabel:
+                type: string
+              secondaryLinkUrl:
+                type: string
+                format: uri
               status:
                 type: string
-                enum[3]: ACTIVE,INACTIVE,MERGED
-              userkeys:
-                type: array
-                items:
-                  type: string
-              xpTotal:
-                type: number
-              xpStreakDays:
-                type: number
-              xpRemovedDueToAbuse:
+                enum[2]: ACTIVE,INACTIVE
+              issuer:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  profileId:
+                    type: number
+                    nullable: true
+                  displayName:
+                    type: string
+                  username:
+                    type: string
+                    nullable: true
+                  avatarUrl:
+                    type: string
+                    format: uri
+                  description:
+                    type: string
+                    nullable: true
+                  score:
+                    type: number
+                  status:
+                    type: string
+                    enum[3]: ACTIVE,INACTIVE,MERGED
+                  userkeys:
+                    type: array
+                    items:
+                      type: string
+                  xpTotal:
+                    type: number
+                  xpStreakDays:
+                    type: number
+                  xpRemovedDueToAbuse:
+                    type: boolean
+                  influenceFactor:
+                    type: number
+                  influenceFactorPercentile:
+                    type: number
+                  humanVerificationStatus:
+                    type: string
+                    nullable: true
+                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                  mommyPawnshopBingo:
+                    type: string
+                    nullable: true
+                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                  validatorNftCount:
+                    type: number
+                  links:
+                    type: object
+                    properties:
+                      profile:
+                        type: string
+                        format: uri
+                      scoreBreakdown:
+                        type: string
+                        format: uri
+                    required[2]: profile,scoreBreakdown
+                  stats:
+                    type: object
+                    properties:
+                      review:
+                        type: object
+                        properties:
+                          received:
+                            type: object
+                            properties:
+                              negative:
+                                type: number
+                              neutral:
+                                type: number
+                              positive:
+                                type: number
+                            required[3]: negative,neutral,positive
+                        required[1]: received
+                      vouch:
+                        type: object
+                        properties:
+                          given:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                          received:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                        required[2]: given,received
+                    required[2]: review,vouch
+                required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+              isLocked:
                 type: boolean
-              influenceFactor:
-                type: number
-              influenceFactorPercentile:
-                type: number
-              humanVerificationStatus:
+              createdAt:
                 type: string
-                nullable: true
-                enum[4]: REQUESTED,VERIFIED,REVOKED,null
-              mommyPawnshopBingo:
+              updatedAt:
                 type: string
-                nullable: true
-                enum[4]: REQUESTED,VERIFIED,REVOKED,null
-              validatorNftCount:
-                type: number
-              links:
+              qualifications:
                 type: object
                 properties:
-                  profile:
-                    type: string
-                    format: uri
-                  scoreBreakdown:
-                    type: string
-                    format: uri
-                required[2]: profile,scoreBreakdown
-              stats:
-                type: object
-                properties:
-                  review:
-                    type: object
-                    properties:
-                      received:
-                        type: object
-                        properties:
-                          negative:
-                            type: number
-                          neutral:
-                            type: number
-                          positive:
-                            type: number
-                        required[3]: negative,neutral,positive
-                    required[1]: received
-                  vouch:
-                    type: object
-                    properties:
-                      given:
-                        type: object
-                        properties:
-                          amountWeiTotal:
-                            type: integer
-                            format: int64
-                          count:
-                            type: number
-                        required[2]: amountWeiTotal,count
-                      received:
-                        type: object
-                        properties:
-                          amountWeiTotal:
-                            type: integer
-                            format: int64
-                          count:
-                            type: number
-                        required[2]: amountWeiTotal,count
-                    required[2]: given,received
-                required[2]: review,vouch
-            required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
-          isLocked:
-            type: boolean
-          createdAt:
-            type: string
-          updatedAt:
-            type: string
-          qualifications:
-            type: object
+                  scoreThreshold:
+                    type: integer
+                    minimum: 0
+                    exclusiveMinimum: true
+                required[1]: scoreThreshold
+              startDate:
+                type: string
+              expirationDate:
+                type: string
+            required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+          - type: object
             properties:
-              scoreThreshold:
-                type: integer
-                minimum: 0
-                exclusiveMinimum: true
-              isValidatorEligible:
+              id:
+                type: number
+              type:
+                type: string
+                enum[1]: LIMITED_TIME_PERK
+              shortDescription:
+                type: string
+                maxLength: 256
+              longDescription:
+                type: string
+              logoImageUrl:
+                type: string
+                format: uri
+              carouselImageUrl:
+                type: string
+                format: uri
+              secondaryLinkLabel:
+                type: string
+              secondaryLinkUrl:
+                type: string
+                format: uri
+              status:
+                type: string
+                enum[2]: ACTIVE,INACTIVE
+              issuer:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  profileId:
+                    type: number
+                    nullable: true
+                  displayName:
+                    type: string
+                  username:
+                    type: string
+                    nullable: true
+                  avatarUrl:
+                    type: string
+                    format: uri
+                  description:
+                    type: string
+                    nullable: true
+                  score:
+                    type: number
+                  status:
+                    type: string
+                    enum[3]: ACTIVE,INACTIVE,MERGED
+                  userkeys:
+                    type: array
+                    items:
+                      type: string
+                  xpTotal:
+                    type: number
+                  xpStreakDays:
+                    type: number
+                  xpRemovedDueToAbuse:
+                    type: boolean
+                  influenceFactor:
+                    type: number
+                  influenceFactorPercentile:
+                    type: number
+                  humanVerificationStatus:
+                    type: string
+                    nullable: true
+                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                  mommyPawnshopBingo:
+                    type: string
+                    nullable: true
+                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                  validatorNftCount:
+                    type: number
+                  links:
+                    type: object
+                    properties:
+                      profile:
+                        type: string
+                        format: uri
+                      scoreBreakdown:
+                        type: string
+                        format: uri
+                    required[2]: profile,scoreBreakdown
+                  stats:
+                    type: object
+                    properties:
+                      review:
+                        type: object
+                        properties:
+                          received:
+                            type: object
+                            properties:
+                              negative:
+                                type: number
+                              neutral:
+                                type: number
+                              positive:
+                                type: number
+                            required[3]: negative,neutral,positive
+                        required[1]: received
+                      vouch:
+                        type: object
+                        properties:
+                          given:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                          received:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                        required[2]: given,received
+                    required[2]: review,vouch
+                required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+              isLocked:
                 type: boolean
-          startDate:
-            type: string
-          expirationDate:
-            type: string
-        required[13]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+              qualifications:
+                type: object
+                properties:
+                  scoreThreshold:
+                    type: integer
+                    minimum: 0
+                    exclusiveMinimum: true
+                  isValidatorEligible:
+                    type: boolean
+              primaryLinkLabel:
+                type: string
+              primaryLinkUrl:
+                type: string
+              startDate:
+                type: string
+              expirationDate:
+                type: string
+            required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
     total:
       type: number
     limit:
@@ -183,11 +327,6 @@
             type: string
             format: uri
           carouselImageUrl:
-            type: string
-            format: uri
-          primaryLinkLabel:
-            type: string
-          primaryLinkUrl:
             type: string
             format: uri
           secondaryLinkLabel:
@@ -317,6 +456,10 @@
                   minLength: 1
                   maxLength: 100
               required[2]: scoreThreshold,label
+          primaryLinkLabel:
+            type: string
+          primaryLinkUrl:
+            type: string
           categoryId:
             type: number
           category:
@@ -337,7 +480,7 @@
               updatedAt:
                 type: string
             required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
-        required[12]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,categoryId
+        required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
     total:
       type: number
     limit:
@@ -351,7 +494,151 @@
     values:
       type: array
       items:
-        oneOf[2]:
+        oneOf[3]:
+          - type: object
+            properties:
+              id:
+                type: number
+              type:
+                type: string
+                enum[1]: LIMITED_TIME_CODE
+              shortDescription:
+                type: string
+                maxLength: 256
+              longDescription:
+                type: string
+              logoImageUrl:
+                type: string
+                format: uri
+              carouselImageUrl:
+                type: string
+                format: uri
+              secondaryLinkLabel:
+                type: string
+              secondaryLinkUrl:
+                type: string
+                format: uri
+              status:
+                type: string
+                enum[2]: ACTIVE,INACTIVE
+              issuer:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  profileId:
+                    type: number
+                    nullable: true
+                  displayName:
+                    type: string
+                  username:
+                    type: string
+                    nullable: true
+                  avatarUrl:
+                    type: string
+                    format: uri
+                  description:
+                    type: string
+                    nullable: true
+                  score:
+                    type: number
+                  status:
+                    type: string
+                    enum[3]: ACTIVE,INACTIVE,MERGED
+                  userkeys:
+                    type: array
+                    items:
+                      type: string
+                  xpTotal:
+                    type: number
+                  xpStreakDays:
+                    type: number
+                  xpRemovedDueToAbuse:
+                    type: boolean
+                  influenceFactor:
+                    type: number
+                  influenceFactorPercentile:
+                    type: number
+                  humanVerificationStatus:
+                    type: string
+                    nullable: true
+                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                  mommyPawnshopBingo:
+                    type: string
+                    nullable: true
+                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                  validatorNftCount:
+                    type: number
+                  links:
+                    type: object
+                    properties:
+                      profile:
+                        type: string
+                        format: uri
+                      scoreBreakdown:
+                        type: string
+                        format: uri
+                    required[2]: profile,scoreBreakdown
+                  stats:
+                    type: object
+                    properties:
+                      review:
+                        type: object
+                        properties:
+                          received:
+                            type: object
+                            properties:
+                              negative:
+                                type: number
+                              neutral:
+                                type: number
+                              positive:
+                                type: number
+                            required[3]: negative,neutral,positive
+                        required[1]: received
+                      vouch:
+                        type: object
+                        properties:
+                          given:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                          received:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                        required[2]: given,received
+                    required[2]: review,vouch
+                required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+              isLocked:
+                type: boolean
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+              qualifications:
+                type: object
+                properties:
+                  scoreThreshold:
+                    type: integer
+                    minimum: 0
+                    exclusiveMinimum: true
+                required[1]: scoreThreshold
+              startDate:
+                type: string
+              expirationDate:
+                type: string
+            required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
           - type: object
             properties:
               id:
@@ -368,11 +655,6 @@
                 type: string
                 format: uri
               carouselImageUrl:
-                type: string
-                format: uri
-              primaryLinkLabel:
-                type: string
-              primaryLinkUrl:
                 type: string
                 format: uri
               secondaryLinkLabel:
@@ -497,11 +779,15 @@
                     exclusiveMinimum: true
                   isValidatorEligible:
                     type: boolean
+              primaryLinkLabel:
+                type: string
+              primaryLinkUrl:
+                type: string
               startDate:
                 type: string
               expirationDate:
                 type: string
-            required[13]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+            required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
           - type: object
             properties:
               id:
@@ -518,11 +804,6 @@
                 type: string
                 format: uri
               carouselImageUrl:
-                type: string
-                format: uri
-              primaryLinkLabel:
-                type: string
-              primaryLinkUrl:
                 type: string
                 format: uri
               secondaryLinkLabel:
@@ -652,6 +933,10 @@
                       minLength: 1
                       maxLength: 100
                   required[2]: scoreThreshold,label
+              primaryLinkLabel:
+                type: string
+              primaryLinkUrl:
+                type: string
               categoryId:
                 type: number
               category:
@@ -672,7 +957,7 @@
                   updatedAt:
                     type: string
                 required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
-            required[12]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,categoryId
+            required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
     total:
       type: number
     limit:
@@ -755,7 +1040,151 @@
       type: string
   required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
 "benefits-createBenefit":
-  oneOf[2]:
+  oneOf[3]:
+    - type: object
+      properties:
+        id:
+          type: number
+        type:
+          type: string
+          enum[1]: LIMITED_TIME_CODE
+        shortDescription:
+          type: string
+          maxLength: 256
+        longDescription:
+          type: string
+        logoImageUrl:
+          type: string
+          format: uri
+        carouselImageUrl:
+          type: string
+          format: uri
+        secondaryLinkLabel:
+          type: string
+        secondaryLinkUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum[2]: ACTIVE,INACTIVE
+        issuer:
+          type: object
+          properties:
+            id:
+              type: number
+            profileId:
+              type: number
+              nullable: true
+            displayName:
+              type: string
+            username:
+              type: string
+              nullable: true
+            avatarUrl:
+              type: string
+              format: uri
+            description:
+              type: string
+              nullable: true
+            score:
+              type: number
+            status:
+              type: string
+              enum[3]: ACTIVE,INACTIVE,MERGED
+            userkeys:
+              type: array
+              items:
+                type: string
+            xpTotal:
+              type: number
+            xpStreakDays:
+              type: number
+            xpRemovedDueToAbuse:
+              type: boolean
+            influenceFactor:
+              type: number
+            influenceFactorPercentile:
+              type: number
+            humanVerificationStatus:
+              type: string
+              nullable: true
+              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+            mommyPawnshopBingo:
+              type: string
+              nullable: true
+              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+            validatorNftCount:
+              type: number
+            links:
+              type: object
+              properties:
+                profile:
+                  type: string
+                  format: uri
+                scoreBreakdown:
+                  type: string
+                  format: uri
+              required[2]: profile,scoreBreakdown
+            stats:
+              type: object
+              properties:
+                review:
+                  type: object
+                  properties:
+                    received:
+                      type: object
+                      properties:
+                        negative:
+                          type: number
+                        neutral:
+                          type: number
+                        positive:
+                          type: number
+                      required[3]: negative,neutral,positive
+                  required[1]: received
+                vouch:
+                  type: object
+                  properties:
+                    given:
+                      type: object
+                      properties:
+                        amountWeiTotal:
+                          type: integer
+                          format: int64
+                        count:
+                          type: number
+                      required[2]: amountWeiTotal,count
+                    received:
+                      type: object
+                      properties:
+                        amountWeiTotal:
+                          type: integer
+                          format: int64
+                        count:
+                          type: number
+                      required[2]: amountWeiTotal,count
+                  required[2]: given,received
+              required[2]: review,vouch
+          required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+        isLocked:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        qualifications:
+          type: object
+          properties:
+            scoreThreshold:
+              type: integer
+              minimum: 0
+              exclusiveMinimum: true
+          required[1]: scoreThreshold
+        startDate:
+          type: string
+        expirationDate:
+          type: string
+      required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
     - type: object
       properties:
         id:
@@ -772,11 +1201,6 @@
           type: string
           format: uri
         carouselImageUrl:
-          type: string
-          format: uri
-        primaryLinkLabel:
-          type: string
-        primaryLinkUrl:
           type: string
           format: uri
         secondaryLinkLabel:
@@ -901,11 +1325,15 @@
               exclusiveMinimum: true
             isValidatorEligible:
               type: boolean
+        primaryLinkLabel:
+          type: string
+        primaryLinkUrl:
+          type: string
         startDate:
           type: string
         expirationDate:
           type: string
-      required[13]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+      required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
     - type: object
       properties:
         id:
@@ -922,11 +1350,6 @@
           type: string
           format: uri
         carouselImageUrl:
-          type: string
-          format: uri
-        primaryLinkLabel:
-          type: string
-        primaryLinkUrl:
           type: string
           format: uri
         secondaryLinkLabel:
@@ -1056,6 +1479,10 @@
                 minLength: 1
                 maxLength: 100
             required[2]: scoreThreshold,label
+        primaryLinkLabel:
+          type: string
+        primaryLinkUrl:
+          type: string
         categoryId:
           type: number
         category:
@@ -1076,9 +1503,153 @@
             updatedAt:
               type: string
           required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
-      required[12]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,categoryId
+      required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
 "benefits-updateBenefit":
-  oneOf[2]:
+  oneOf[3]:
+    - type: object
+      properties:
+        id:
+          type: number
+        type:
+          type: string
+          enum[1]: LIMITED_TIME_CODE
+        shortDescription:
+          type: string
+          maxLength: 256
+        longDescription:
+          type: string
+        logoImageUrl:
+          type: string
+          format: uri
+        carouselImageUrl:
+          type: string
+          format: uri
+        secondaryLinkLabel:
+          type: string
+        secondaryLinkUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum[2]: ACTIVE,INACTIVE
+        issuer:
+          type: object
+          properties:
+            id:
+              type: number
+            profileId:
+              type: number
+              nullable: true
+            displayName:
+              type: string
+            username:
+              type: string
+              nullable: true
+            avatarUrl:
+              type: string
+              format: uri
+            description:
+              type: string
+              nullable: true
+            score:
+              type: number
+            status:
+              type: string
+              enum[3]: ACTIVE,INACTIVE,MERGED
+            userkeys:
+              type: array
+              items:
+                type: string
+            xpTotal:
+              type: number
+            xpStreakDays:
+              type: number
+            xpRemovedDueToAbuse:
+              type: boolean
+            influenceFactor:
+              type: number
+            influenceFactorPercentile:
+              type: number
+            humanVerificationStatus:
+              type: string
+              nullable: true
+              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+            mommyPawnshopBingo:
+              type: string
+              nullable: true
+              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+            validatorNftCount:
+              type: number
+            links:
+              type: object
+              properties:
+                profile:
+                  type: string
+                  format: uri
+                scoreBreakdown:
+                  type: string
+                  format: uri
+              required[2]: profile,scoreBreakdown
+            stats:
+              type: object
+              properties:
+                review:
+                  type: object
+                  properties:
+                    received:
+                      type: object
+                      properties:
+                        negative:
+                          type: number
+                        neutral:
+                          type: number
+                        positive:
+                          type: number
+                      required[3]: negative,neutral,positive
+                  required[1]: received
+                vouch:
+                  type: object
+                  properties:
+                    given:
+                      type: object
+                      properties:
+                        amountWeiTotal:
+                          type: integer
+                          format: int64
+                        count:
+                          type: number
+                      required[2]: amountWeiTotal,count
+                    received:
+                      type: object
+                      properties:
+                        amountWeiTotal:
+                          type: integer
+                          format: int64
+                        count:
+                          type: number
+                      required[2]: amountWeiTotal,count
+                  required[2]: given,received
+              required[2]: review,vouch
+          required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+        isLocked:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        qualifications:
+          type: object
+          properties:
+            scoreThreshold:
+              type: integer
+              minimum: 0
+              exclusiveMinimum: true
+          required[1]: scoreThreshold
+        startDate:
+          type: string
+        expirationDate:
+          type: string
+      required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
     - type: object
       properties:
         id:
@@ -1095,11 +1666,6 @@
           type: string
           format: uri
         carouselImageUrl:
-          type: string
-          format: uri
-        primaryLinkLabel:
-          type: string
-        primaryLinkUrl:
           type: string
           format: uri
         secondaryLinkLabel:
@@ -1224,11 +1790,15 @@
               exclusiveMinimum: true
             isValidatorEligible:
               type: boolean
+        primaryLinkLabel:
+          type: string
+        primaryLinkUrl:
+          type: string
         startDate:
           type: string
         expirationDate:
           type: string
-      required[13]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+      required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
     - type: object
       properties:
         id:
@@ -1245,11 +1815,6 @@
           type: string
           format: uri
         carouselImageUrl:
-          type: string
-          format: uri
-        primaryLinkLabel:
-          type: string
-        primaryLinkUrl:
           type: string
           format: uri
         secondaryLinkLabel:
@@ -1379,6 +1944,10 @@
                 minLength: 1
                 maxLength: 100
             required[2]: scoreThreshold,label
+        primaryLinkLabel:
+          type: string
+        primaryLinkUrl:
+          type: string
         categoryId:
           type: number
         category:
@@ -1399,9 +1968,153 @@
             updatedAt:
               type: string
           required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
-      required[12]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,categoryId
+      required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
 "benefits-deleteBenefit":
-  oneOf[2]:
+  oneOf[3]:
+    - type: object
+      properties:
+        id:
+          type: number
+        type:
+          type: string
+          enum[1]: LIMITED_TIME_CODE
+        shortDescription:
+          type: string
+          maxLength: 256
+        longDescription:
+          type: string
+        logoImageUrl:
+          type: string
+          format: uri
+        carouselImageUrl:
+          type: string
+          format: uri
+        secondaryLinkLabel:
+          type: string
+        secondaryLinkUrl:
+          type: string
+          format: uri
+        status:
+          type: string
+          enum[2]: ACTIVE,INACTIVE
+        issuer:
+          type: object
+          properties:
+            id:
+              type: number
+            profileId:
+              type: number
+              nullable: true
+            displayName:
+              type: string
+            username:
+              type: string
+              nullable: true
+            avatarUrl:
+              type: string
+              format: uri
+            description:
+              type: string
+              nullable: true
+            score:
+              type: number
+            status:
+              type: string
+              enum[3]: ACTIVE,INACTIVE,MERGED
+            userkeys:
+              type: array
+              items:
+                type: string
+            xpTotal:
+              type: number
+            xpStreakDays:
+              type: number
+            xpRemovedDueToAbuse:
+              type: boolean
+            influenceFactor:
+              type: number
+            influenceFactorPercentile:
+              type: number
+            humanVerificationStatus:
+              type: string
+              nullable: true
+              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+            mommyPawnshopBingo:
+              type: string
+              nullable: true
+              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+            validatorNftCount:
+              type: number
+            links:
+              type: object
+              properties:
+                profile:
+                  type: string
+                  format: uri
+                scoreBreakdown:
+                  type: string
+                  format: uri
+              required[2]: profile,scoreBreakdown
+            stats:
+              type: object
+              properties:
+                review:
+                  type: object
+                  properties:
+                    received:
+                      type: object
+                      properties:
+                        negative:
+                          type: number
+                        neutral:
+                          type: number
+                        positive:
+                          type: number
+                      required[3]: negative,neutral,positive
+                  required[1]: received
+                vouch:
+                  type: object
+                  properties:
+                    given:
+                      type: object
+                      properties:
+                        amountWeiTotal:
+                          type: integer
+                          format: int64
+                        count:
+                          type: number
+                      required[2]: amountWeiTotal,count
+                    received:
+                      type: object
+                      properties:
+                        amountWeiTotal:
+                          type: integer
+                          format: int64
+                        count:
+                          type: number
+                      required[2]: amountWeiTotal,count
+                  required[2]: given,received
+              required[2]: review,vouch
+          required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+        isLocked:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        qualifications:
+          type: object
+          properties:
+            scoreThreshold:
+              type: integer
+              minimum: 0
+              exclusiveMinimum: true
+          required[1]: scoreThreshold
+        startDate:
+          type: string
+        expirationDate:
+          type: string
+      required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
     - type: object
       properties:
         id:
@@ -1418,11 +2131,6 @@
           type: string
           format: uri
         carouselImageUrl:
-          type: string
-          format: uri
-        primaryLinkLabel:
-          type: string
-        primaryLinkUrl:
           type: string
           format: uri
         secondaryLinkLabel:
@@ -1547,11 +2255,15 @@
               exclusiveMinimum: true
             isValidatorEligible:
               type: boolean
+        primaryLinkLabel:
+          type: string
+        primaryLinkUrl:
+          type: string
         startDate:
           type: string
         expirationDate:
           type: string
-      required[13]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+      required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
     - type: object
       properties:
         id:
@@ -1568,11 +2280,6 @@
           type: string
           format: uri
         carouselImageUrl:
-          type: string
-          format: uri
-        primaryLinkLabel:
-          type: string
-        primaryLinkUrl:
           type: string
           format: uri
         secondaryLinkLabel:
@@ -1702,6 +2409,10 @@
                 minLength: 1
                 maxLength: 100
             required[2]: scoreThreshold,label
+        primaryLinkLabel:
+          type: string
+        primaryLinkUrl:
+          type: string
         categoryId:
           type: number
         category:
@@ -1722,4 +2433,73 @@
             updatedAt:
               type: string
           required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
-      required[12]: id,type,shortDescription,longDescription,primaryLinkLabel,primaryLinkUrl,status,isLocked,createdAt,updatedAt,qualifications,categoryId
+      required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
+"benefits-getCodeInfo":
+  type: object
+  properties:
+    hasAccessCodes:
+      type: boolean
+    totalCodes:
+      type: number
+    claimedCodes:
+      type: number
+    availableCodes:
+      type: number
+    userClaimedCode:
+      type: string
+      nullable: true
+  required[5]: hasAccessCodes,totalCodes,claimedCodes,availableCodes,userClaimedCode
+"benefits-claimCode":
+  type: object
+  properties:
+    code:
+      type: string
+      nullable: true
+    alreadyClaimed:
+      type: boolean
+  required[2]: code,alreadyClaimed
+"benefits-addBenefitCodes":
+  type: object
+  properties:
+    added:
+      type: number
+    duplicatesSkipped:
+      type: number
+  required[2]: added,duplicatesSkipped
+"benefits-listBenefitCodes":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          code:
+            type: string
+          claimedByProfileId:
+            type: number
+            nullable: true
+          claimedByUsername:
+            type: string
+            nullable: true
+          claimedAt:
+            type: string
+            nullable: true
+          createdAt:
+            type: string
+        required[6]: id,code,claimedByProfileId,claimedByUsername,claimedAt,createdAt
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset
+"benefits-deleteUnclaimedBenefitCodes":
+  type: object
+  properties:
+    deleted:
+      type: number
+  required[1]: deleted

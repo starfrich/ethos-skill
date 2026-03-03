@@ -10,6 +10,10 @@ Total XP across all seasons.
 
 XP for a user in a specific season.
 
+## GET `/xp/user/{userkey}/season/{seasonId}/weekly`
+
+Weekly XP breakdown for a user in a specific season.
+
 ## GET `/xp/user/{userkey}/season/{seasonId}/timeline`
 
 Time-bucketed XP timeline.

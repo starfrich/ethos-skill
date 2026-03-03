@@ -14,6 +14,7 @@ Pin or unpin a reply.
 ```
 
 Response:
+
 ```json
 { "ok": true, "unpinnedReplies": [1, 2] }
 ```

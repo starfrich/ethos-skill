@@ -39,7 +39,7 @@ List markets with pagination.
 
 Featured markets. Returns array of Market objects.
 
-## GET `/markets/{profileId}`
+## GET `/markets/{profileId}/info`
 
 Enhanced market info for a profile. Optionally includes top holders and market change data.
 

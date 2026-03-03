@@ -11,6 +11,12 @@ Base: `https://api.ethos.network/api/v2/slash`
 
 ---
 
+## GET `/slash/supporter-penalties/{profileId}`
+
+Get supporter penalties for a specific profile impacted by a slash.
+
+Path: `profileId` (integer)
+
 ## GET `/slash/admin/list` 🔒 (admin)
 
 List all slashes with admin-level details.
