@@ -1,4 +1,4 @@
-# ethos-network
+# Ethos Skill
 
 A Claude Code skill for the [Ethos Network](https://ethos.network) API a blockchain-based reputation platform.
 
@@ -7,13 +7,13 @@ A Claude Code skill for the [Ethos Network](https://ethos.network) API a blockch
 **One-liner:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/starfrich/ethos-network/master/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/starfrich/ethos-skill/master/install.sh | sh
 ```
 
 **Or clone manually:**
 
 ```bash
-git clone https://github.com/starfrich/ethos-network ~/.claude/skills/ethos-network
+git clone https://github.com/starfrich/ethos-skill ~/.claude/skills/ethos-network
 ```
 
 ## What it does
