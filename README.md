@@ -82,6 +82,24 @@ ethos-skill/
 | `wallets`            | auth, Ethos Everywhere Wallet actions             |
 | `xp`                 | user XP, seasons, tips, dashboard, validators     |
 
+## Benchmark
+
+Comparing token usage between loading `llms-full.txt` directly (~330k tokens) vs this skill (on-demand per domain).
+
+| #       | Question                                                      | llms-full.txt tokens | ethos-skill tokens | Tokens saved |
+| ------- | ------------------------------------------------------------- | -------------------- | ------------------ | ------------ |
+| 1       | How do I get a credibility score by wallet address?           | +11k                 | +3k                | 73%          |
+| 2       | What endpoints are available for XP tips?                     | +9k                  | +2k                | 78%          |
+| 3       | Show me the response schema for vouch queries                 | +8k                  | +6k                | 25%          |
+| 4       | How do I post a review via Ethos Everywhere Wallet?           | +24k                 | +3k                | 88%          |
+| 5       | How do I look up a user by their Twitter username?            | +11k                 | +3k                | 73%          |
+| 6       | What notification types exist and how do I mark them as read? | +16k                 | +2k                | 88%          |
+| 7       | How does the slash mechanism affect vouchers?                 | +12k                 | +3k                | 75%          |
+| 8       | What is the time scope system for project votes?              | +7k                  | +2k                | 71%          |
+| **avg** |                                                               | **+12.25k**          | **+3k**            | **~75%**     |
+
+> Tokens counted from Claude Code `/context` after each query.
+
 ## Response schemas
 
 Each domain includes a `response.toon` file with response schemas in [TOON](https://toonformat.dev) format (~40% fewer tokens than JSON). Claude loads these only when you ask about response shapes, TypeScript types, or need to debug a response.
