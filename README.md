@@ -16,6 +16,16 @@ curl -fsSL https://raw.githubusercontent.com/starfrich/ethos-skill/master/instal
 git clone https://github.com/starfrich/ethos-skill ~/.claude/skills/ethos-skill
 ```
 
+Then allow Claude to read the skill docs without prompting, add this to your `~/.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "allow": ["Read(~/.claude/skills/ethos-skill/**)"]
+  }
+}
+```
+
 ## What it does
 
 Gives Claude deep, on-demand knowledge of the Ethos API without loading everything at once. Docs are split by domain and loaded only when relevant, keeping token usage low.
@@ -43,6 +53,8 @@ ethos-skill/
 
 ### Domains covered
 
+<details>
+    
 | Domain               | Endpoints                                         |
 | -------------------- | ------------------------------------------------- |
 | `activities`         | feed, profile, lookup by id/tx/userkey            |
@@ -81,6 +93,8 @@ ethos-skill/
 | `vouches`            | query, mutual, fees                               |
 | `wallets`            | auth, Ethos Everywhere Wallet actions             |
 | `xp`                 | user XP, seasons, tips, dashboard, validators     |
+
+</details>
 
 ## Benchmark
 
