@@ -18,16 +18,17 @@ Ask Claude anything about the Ethos API:
 ## Structure
 
 ```
-SKILL.md                    # Skill entry point — Claude reads this first
-docs/
-  getting-started/
-    overview.md             # Auth, userkeys, base URL, shared schemas
-    integration.md          # Ethos Everywhere Wallet, Login with Ethos, Quickstart
-  <domain>/
-    *.md                    # Endpoint reference (always available)
-    response.toon           # Response schemas in TOON format (on-demand)
-generate-responses.mjs      # Script to regenerate response.toon files
-openapi-full.json           # Cached OpenAPI spec (source for response schemas)
+ethos-network/
+├── SKILL.md                    # Skill entry point — Claude reads this first
+├── generate-responses.mjs      # Script to regenerate response.toon files
+├── openapi-full.json           # Cached OpenAPI spec (source for response schemas)
+└── docs/
+    ├── getting-started/
+    │   ├── overview.md         # Auth, userkeys, base URL, shared schemas
+    │   └── integration.md      # Ethos Everywhere Wallet, Login with Ethos, Quickstart
+    └── <domain>/
+        ├── *.md                # Endpoint reference (always available)
+        └── response.toon       # Response schemas in TOON format (on-demand)
 ```
 
 ### Domains covered
@@ -73,7 +74,7 @@ openapi-full.json           # Cached OpenAPI spec (source for response schemas)
 
 ## Response schemas
 
-Each domain includes a `response.toon` file — response schemas in [TOON](https://toonformat.dev) format (~40% fewer tokens than JSON). Claude loads these only when you ask about response shapes, TypeScript types, or need to debug a response.
+Each domain includes a `response.toon` file with response schemas in [TOON](https://toonformat.dev) format (~40% fewer tokens than JSON). Claude loads these only when you ask about response shapes, TypeScript types, or need to debug a response.
 
 ## Regenerating response schemas
 
