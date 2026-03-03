@@ -2,6 +2,20 @@
 
 A Claude Code skill for the [Ethos Network](https://ethos.network) API a blockchain-based reputation platform.
 
+## Installation
+
+**One-liner:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/starfrich/ethos-network/main/install.sh | sh
+```
+
+**Or clone manually:**
+
+```bash
+git clone https://github.com/starfrich/ethos-network ~/.claude/skills/ethos-network
+```
+
 ## What it does
 
 Gives Claude deep, on-demand knowledge of the Ethos API without loading everything at once. Docs are split by domain and loaded only when relevant, keeping token usage low.
