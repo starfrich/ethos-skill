@@ -1,0 +1,15 @@
+"healthcheck-unauthenticated":
+  type: object
+  properties:
+    ok:
+      type: boolean
+  required[1]: ok
+"healthcheck-authenticated":
+  type: object
+  properties:
+    ok:
+      type: boolean
+    profileId:
+      type: number
+  required[1]: ok
+"healthcheck-alwaysFail":

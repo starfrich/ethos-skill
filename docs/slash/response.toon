@@ -1,0 +1,87 @@
+"slash-getSupporterPenalties":
+  type: array
+  items:
+    type: object
+    properties:
+      id:
+        type: number
+      slashId:
+        type: number
+      penaltyAmount:
+        type: number
+      createdAt:
+        type: string
+      reason:
+        type: string
+        enum[2]: vouch,review
+      slash:
+    required[5]: id,slashId,penaltyAmount,createdAt,reason
+"slash-adminList":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          account:
+            type: string
+            nullable: true
+          amount:
+            type: string
+          authorAvatar:
+            type: string
+            nullable: true
+          authorName:
+            type: string
+            nullable: true
+          authorProfileId:
+            type: number
+          cancelledAt:
+            type: string
+            nullable: true
+          comment:
+            type: string
+          createdAt:
+            type: string
+          defendVotes:
+            type: number
+            nullable: true
+          duration:
+            type: number
+          id:
+            type: number
+          outcome:
+            type: string
+            nullable: true
+          processedAt:
+            type: string
+            nullable: true
+          selectedImageUrl:
+            type: string
+            nullable: true
+          service:
+            type: string
+            nullable: true
+          slashType:
+            type: string
+          slashVotes:
+            type: number
+            nullable: true
+          subjectAddress:
+            type: string
+            nullable: true
+          subjectAvatar:
+            type: string
+            nullable: true
+          subjectName:
+            type: string
+            nullable: true
+        required[20]: account,amount,authorAvatar,authorName,authorProfileId,cancelledAt,comment,createdAt,defendVotes,duration,id,outcome,processedAt,selectedImageUrl,service,slashType,slashVotes,subjectAddress,subjectAvatar,subjectName
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset

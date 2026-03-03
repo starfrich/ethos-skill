@@ -1,0 +1,1748 @@
+"xp-userTotalXp":
+  type: number
+"xp-userSeasonXp":
+  type: number
+"xp-userWeeklySeasonXp":
+  type: array
+  items:
+    type: object
+    properties:
+      week:
+        type: number
+      weeklyXp:
+        type: number
+      cumulativeXp:
+        type: number
+    required[3]: week,weeklyXp,cumulativeXp
+"xp-userXpTimeline":
+  type: array
+  items:
+    type: object
+    properties:
+      time:
+        type: string
+      xp:
+        type: number
+      cumulativeXp:
+        type: number
+    required[3]: time,xp,cumulativeXp
+"xp-seasons":
+  type: object
+  properties:
+    seasons:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          name:
+            type: string
+          startDate:
+            type: string
+        required[3]: id,name,startDate
+    currentSeason:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        startDate:
+          type: string
+        week:
+          type: number
+      required[4]: id,name,startDate,week
+  required[2]: seasons,currentSeason
+"xp-weeksBySeason":
+  type: array
+  items:
+    type: object
+    properties:
+      week:
+        type: number
+      startDate:
+        type: string
+      endDate:
+        type: string
+    required[3]: week,startDate,endDate
+"xp-userLeaderboardRank":
+  type: number
+"xp-tipXp":
+  type: object
+  properties:
+    tipId:
+      type: number
+    senderNewBalance:
+      type: number
+    receiverNewBalance:
+      type: number
+  required[3]: tipId,senderNewBalance,receiverNewBalance
+"xp-getTipsSent":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          senderProfileId:
+            type: number
+          receiverUserId:
+            type: number
+          amount:
+            type: number
+          createdAt:
+            type: string
+        required[5]: id,senderProfileId,receiverUserId,amount,createdAt
+    total:
+      type: number
+  required[2]: values,total
+"xp-getTipsReceived":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          senderProfileId:
+            type: number
+          receiverUserId:
+            type: number
+          amount:
+            type: number
+          createdAt:
+            type: string
+        required[5]: id,senderProfileId,receiverUserId,amount,createdAt
+    total:
+      type: number
+  required[2]: values,total
+"xp-getTipStats":
+  type: object
+  properties:
+    totalSent:
+      type: number
+    totalReceived:
+      type: number
+  required[2]: totalSent,totalReceived
+"xp-userXpHistory":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          type:
+            type: string
+            enum[42]: REVIEW,CONTRIBUTION,INVITE_ACCEPTED,VOUCH_DAY,CLAIM,EXTENSION_CHECK_IN,CLAIM_REFERRAL,MARKET_HOLDINGS,ADMIN_XP_RESET,XP_TIP_SENT,XP_TIP_RECEIVED,VOTE_COST,COMMENT_COST,REVIEW_COST,STREAK_FORGIVENESS_COST,INVITE_SENT_COST,SLASH_VOTE_COST,VOTE_POOL_REWARD,COMMENT_POOL_REWARD,VOUCH_POOL_REWARD,MARKET_HOLD_POOL_REWARD,MARKET_TRADE_POOL_REWARD,DAILY_TASK_POOL_REWARD,XP_SLASH_ESCROW_AUTHOR,XP_SLASH_ESCROW_SUBJECT,XP_SLASH_FEE,XP_SLASH_STAKE_RETURNED,XP_SLASH_STAKE_WON,XP_SLASH_VOTER_REWARD,SLASH_VOTE_REWARD,SLASH_VOTE_REFUND,DELEGATION_REWARD,WEEKLY_DELEGATOR_AWARD_VALIDATOR,WEEKLY_DELEGATOR_AWARD_DELEGATOR,DECISION_SPEND_DEDUCTION,DECISION_NOTHING_DEDUCTION,DECISION_DELEGATED,HV_ESCROW_DEDUCTION,HV_BURN,HV_VERIFIER_PAYOUT,HV_COMPLETION_BONUS,HV_CLAWBACK
+          points:
+            type: number
+          metadata:
+          createdAt:
+            type: string
+          week:
+            type: number
+          xpSeasonId:
+            type: number
+        required[6]: id,type,points,createdAt,week,xpSeasonId
+    total:
+      type: number
+  required[2]: values,total
+"xp-xpSendDetails":
+  type: array
+  items:
+    type: object
+    properties:
+      id:
+        type: number
+      sender:
+        type: object
+        properties:
+          id:
+            type: number
+          profileId:
+            type: number
+            nullable: true
+          displayName:
+            type: string
+          username:
+            type: string
+            nullable: true
+          avatarUrl:
+            type: string
+            format: uri
+          description:
+            type: string
+            nullable: true
+          score:
+            type: number
+          status:
+            type: string
+            enum[3]: ACTIVE,INACTIVE,MERGED
+          userkeys:
+            type: array
+            items:
+              type: string
+          xpTotal:
+            type: number
+          xpStreakDays:
+            type: number
+          xpRemovedDueToAbuse:
+            type: boolean
+          influenceFactor:
+            type: number
+          influenceFactorPercentile:
+            type: number
+          humanVerificationStatus:
+            type: string
+            nullable: true
+            enum[4]: REQUESTED,VERIFIED,REVOKED,null
+          mommyPawnshopBingo:
+            type: string
+            nullable: true
+            enum[4]: REQUESTED,VERIFIED,REVOKED,null
+          validatorNftCount:
+            type: number
+          links:
+            type: object
+            properties:
+              profile:
+                type: string
+                format: uri
+              scoreBreakdown:
+                type: string
+                format: uri
+            required[2]: profile,scoreBreakdown
+          stats:
+            type: object
+            properties:
+              review:
+                type: object
+                properties:
+                  received:
+                    type: object
+                    properties:
+                      negative:
+                        type: number
+                      neutral:
+                        type: number
+                      positive:
+                        type: number
+                    required[3]: negative,neutral,positive
+                required[1]: received
+              vouch:
+                type: object
+                properties:
+                  given:
+                    type: object
+                    properties:
+                      amountWeiTotal:
+                        type: integer
+                        format: int64
+                      count:
+                        type: number
+                    required[2]: amountWeiTotal,count
+                  received:
+                    type: object
+                    properties:
+                      amountWeiTotal:
+                        type: integer
+                        format: int64
+                      count:
+                        type: number
+                    required[2]: amountWeiTotal,count
+                required[2]: given,received
+            required[2]: review,vouch
+        required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+      receiver:
+        type: object
+        properties:
+          id:
+            type: number
+          profileId:
+            type: number
+            nullable: true
+          displayName:
+            type: string
+          username:
+            type: string
+            nullable: true
+          avatarUrl:
+            type: string
+            format: uri
+          description:
+            type: string
+            nullable: true
+          score:
+            type: number
+          status:
+            type: string
+            enum[3]: ACTIVE,INACTIVE,MERGED
+          userkeys:
+            type: array
+            items:
+              type: string
+          xpTotal:
+            type: number
+          xpStreakDays:
+            type: number
+          xpRemovedDueToAbuse:
+            type: boolean
+          influenceFactor:
+            type: number
+          influenceFactorPercentile:
+            type: number
+          humanVerificationStatus:
+            type: string
+            nullable: true
+            enum[4]: REQUESTED,VERIFIED,REVOKED,null
+          mommyPawnshopBingo:
+            type: string
+            nullable: true
+            enum[4]: REQUESTED,VERIFIED,REVOKED,null
+          validatorNftCount:
+            type: number
+          links:
+            type: object
+            properties:
+              profile:
+                type: string
+                format: uri
+              scoreBreakdown:
+                type: string
+                format: uri
+            required[2]: profile,scoreBreakdown
+          stats:
+            type: object
+            properties:
+              review:
+                type: object
+                properties:
+                  received:
+                    type: object
+                    properties:
+                      negative:
+                        type: number
+                      neutral:
+                        type: number
+                      positive:
+                        type: number
+                    required[3]: negative,neutral,positive
+                required[1]: received
+              vouch:
+                type: object
+                properties:
+                  given:
+                    type: object
+                    properties:
+                      amountWeiTotal:
+                        type: integer
+                        format: int64
+                      count:
+                        type: number
+                    required[2]: amountWeiTotal,count
+                  received:
+                    type: object
+                    properties:
+                      amountWeiTotal:
+                        type: integer
+                        format: int64
+                      count:
+                        type: number
+                    required[2]: amountWeiTotal,count
+                required[2]: given,received
+            required[2]: review,vouch
+        required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+      amount:
+        type: number
+      createdAt:
+        type: string
+      senderXpHistoryId:
+        type: number
+      receiverXpHistoryId:
+        type: number
+    required[7]: id,sender,receiver,amount,createdAt,senderXpHistoryId,receiverXpHistoryId
+"xp-tips":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          sender:
+            type: object
+            properties:
+              id:
+                type: number
+              profileId:
+                type: number
+                nullable: true
+              displayName:
+                type: string
+              username:
+                type: string
+                nullable: true
+              avatarUrl:
+                type: string
+                format: uri
+              description:
+                type: string
+                nullable: true
+              score:
+                type: number
+              status:
+                type: string
+                enum[3]: ACTIVE,INACTIVE,MERGED
+              userkeys:
+                type: array
+                items:
+                  type: string
+              xpTotal:
+                type: number
+              xpStreakDays:
+                type: number
+              xpRemovedDueToAbuse:
+                type: boolean
+              influenceFactor:
+                type: number
+              influenceFactorPercentile:
+                type: number
+              humanVerificationStatus:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              mommyPawnshopBingo:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              validatorNftCount:
+                type: number
+              links:
+                type: object
+                properties:
+                  profile:
+                    type: string
+                    format: uri
+                  scoreBreakdown:
+                    type: string
+                    format: uri
+                required[2]: profile,scoreBreakdown
+              stats:
+                type: object
+                properties:
+                  review:
+                    type: object
+                    properties:
+                      received:
+                        type: object
+                        properties:
+                          negative:
+                            type: number
+                          neutral:
+                            type: number
+                          positive:
+                            type: number
+                        required[3]: negative,neutral,positive
+                    required[1]: received
+                  vouch:
+                    type: object
+                    properties:
+                      given:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                      received:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                    required[2]: given,received
+                required[2]: review,vouch
+            required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          receiver:
+            type: object
+            properties:
+              id:
+                type: number
+              profileId:
+                type: number
+                nullable: true
+              displayName:
+                type: string
+              username:
+                type: string
+                nullable: true
+              avatarUrl:
+                type: string
+                format: uri
+              description:
+                type: string
+                nullable: true
+              score:
+                type: number
+              status:
+                type: string
+                enum[3]: ACTIVE,INACTIVE,MERGED
+              userkeys:
+                type: array
+                items:
+                  type: string
+              xpTotal:
+                type: number
+              xpStreakDays:
+                type: number
+              xpRemovedDueToAbuse:
+                type: boolean
+              influenceFactor:
+                type: number
+              influenceFactorPercentile:
+                type: number
+              humanVerificationStatus:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              mommyPawnshopBingo:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              validatorNftCount:
+                type: number
+              links:
+                type: object
+                properties:
+                  profile:
+                    type: string
+                    format: uri
+                  scoreBreakdown:
+                    type: string
+                    format: uri
+                required[2]: profile,scoreBreakdown
+              stats:
+                type: object
+                properties:
+                  review:
+                    type: object
+                    properties:
+                      received:
+                        type: object
+                        properties:
+                          negative:
+                            type: number
+                          neutral:
+                            type: number
+                          positive:
+                            type: number
+                        required[3]: negative,neutral,positive
+                    required[1]: received
+                  vouch:
+                    type: object
+                    properties:
+                      given:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                      received:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                    required[2]: given,received
+                required[2]: review,vouch
+            required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          amount:
+            type: number
+          createdAt:
+            type: string
+        required[5]: id,sender,receiver,amount,createdAt
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset
+"xp-getDecision":
+  type: object
+  nullable: true
+  properties:
+    profileId:
+      type: integer
+      minimum: 0
+      exclusiveMinimum: true
+      maximum: 2147483647
+    seasonId:
+      type: number
+    decisionType:
+      type: string
+      enum[3]: SPEND,DELEGATE,NOTHING
+    delegations:
+      type: array
+      items:
+        type: object
+        properties:
+          validatorTokenId:
+            type: string
+          xpAmount:
+            type: integer
+            minimum: 0
+        required[2]: validatorTokenId,xpAmount
+    createdAt:
+      type: string
+    updatedAt:
+      type: string
+  required[6]: profileId,seasonId,decisionType,delegations,createdAt,updatedAt
+"xp-submitDecision":
+  type: object
+  properties:
+    profileId:
+      type: integer
+      minimum: 0
+      exclusiveMinimum: true
+      maximum: 2147483647
+    seasonId:
+      type: number
+    decisionType:
+      type: string
+      enum[3]: SPEND,DELEGATE,NOTHING
+    delegations:
+      type: array
+      items:
+        type: object
+        properties:
+          validatorTokenId:
+            type: string
+          xpAmount:
+            type: integer
+            minimum: 0
+        required[2]: validatorTokenId,xpAmount
+    createdAt:
+      type: string
+    updatedAt:
+      type: string
+  required[6]: profileId,seasonId,decisionType,delegations,createdAt,updatedAt
+"xp-getMetadata":
+  type: object
+  properties:
+    deadline:
+      type: string
+    delegatePercentage:
+      type: number
+    isBeforeDeadline:
+      type: boolean
+    maxValidators:
+      type: number
+    minValidators:
+      type: number
+    nothingPenalty:
+      type: number
+    spendPercentage:
+      type: number
+    validatorXpCap:
+      type: number
+  required[8]: deadline,delegatePercentage,isBeforeDeadline,maxValidators,minValidators,nothingPenalty,spendPercentage,validatorXpCap
+"xp-getValidators":
+  type: array
+  items:
+    type: object
+    properties:
+      tokenId:
+        type: string
+      name:
+        type: string
+      imageUrl:
+        type: string
+        nullable: true
+      ownerAddress:
+        type: string
+      ownerProfileId:
+        type: integer
+        nullable: true
+        minimum: 0
+        exclusiveMinimum: true
+        maximum: 2147483647
+      ownerDisplayName:
+        type: string
+        nullable: true
+      ownerUsername:
+        type: string
+        nullable: true
+      ownerAvatarUrl:
+        type: string
+        nullable: true
+      currentXp:
+        type: number
+      remainingCapacity:
+        type: number
+      xpCap:
+        type: number
+      isFull:
+        type: boolean
+    required[12]: tokenId,name,imageUrl,ownerAddress,ownerProfileId,ownerDisplayName,ownerUsername,ownerAvatarUrl,currentXp,remainingCapacity,xpCap,isFull
+"xp-getProfileValidators":
+  type: array
+  items:
+    type: object
+    properties:
+      tokenId:
+        type: string
+      name:
+        type: string
+      imageUrl:
+        type: string
+        nullable: true
+      currentXp:
+        type: number
+      xpCap:
+        type: number
+      delegators:
+        type: array
+        items:
+          type: object
+          properties:
+            user:
+              type: object
+              properties:
+                id:
+                  type: number
+                profileId:
+                  type: number
+                  nullable: true
+                displayName:
+                  type: string
+                username:
+                  type: string
+                  nullable: true
+                avatarUrl:
+                  type: string
+                  format: uri
+                description:
+                  type: string
+                  nullable: true
+                score:
+                  type: number
+                status:
+                  type: string
+                  enum[3]: ACTIVE,INACTIVE,MERGED
+                userkeys:
+                  type: array
+                  items:
+                    type: string
+                xpTotal:
+                  type: number
+                xpStreakDays:
+                  type: number
+                xpRemovedDueToAbuse:
+                  type: boolean
+                influenceFactor:
+                  type: number
+                influenceFactorPercentile:
+                  type: number
+                humanVerificationStatus:
+                  type: string
+                  nullable: true
+                  enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                mommyPawnshopBingo:
+                  type: string
+                  nullable: true
+                  enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                validatorNftCount:
+                  type: number
+                links:
+                  type: object
+                  properties:
+                    profile:
+                      type: string
+                      format: uri
+                    scoreBreakdown:
+                      type: string
+                      format: uri
+                  required[2]: profile,scoreBreakdown
+                stats:
+                  type: object
+                  properties:
+                    review:
+                      type: object
+                      properties:
+                        received:
+                          type: object
+                          properties:
+                            negative:
+                              type: number
+                            neutral:
+                              type: number
+                            positive:
+                              type: number
+                          required[3]: negative,neutral,positive
+                      required[1]: received
+                    vouch:
+                      type: object
+                      properties:
+                        given:
+                          type: object
+                          properties:
+                            amountWeiTotal:
+                              type: integer
+                              format: int64
+                            count:
+                              type: number
+                          required[2]: amountWeiTotal,count
+                        received:
+                          type: object
+                          properties:
+                            amountWeiTotal:
+                              type: integer
+                              format: int64
+                            count:
+                              type: number
+                          required[2]: amountWeiTotal,count
+                      required[2]: given,received
+                  required[2]: review,vouch
+              required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+            xpAmount:
+              type: number
+          required[2]: user,xpAmount
+    required[6]: tokenId,name,imageUrl,currentXp,xpCap,delegators
+"xp-yieldStats":
+  type: object
+  properties:
+    userDailyYield:
+      type: number
+    yieldBreakdown:
+      type: object
+      properties:
+        vouchYield:
+          type: number
+        marketHoldYield:
+          type: number
+        marketTradeYield:
+          type: number
+      required[3]: vouchYield,marketHoldYield,marketTradeYield
+    platformAvgYield:
+      type: number
+    totalDailyEmissions:
+      type: number
+    userPercentOfEmissions:
+      type: number
+    emissionsGauge:
+      type: object
+      properties:
+        current:
+          type: number
+        seasonMin:
+          type: number
+        seasonMax:
+          type: number
+        level:
+          type: string
+          enum[3]: normal,high,incredible
+      required[4]: current,seasonMin,seasonMax,level
+  required[6]: userDailyYield,yieldBreakdown,platformAvgYield,totalDailyEmissions,userPercentOfEmissions,emissionsGauge
+"xp-periodicRewardStats":
+  type: object
+  properties:
+    today:
+      type: object
+      properties:
+        totalPool:
+          type: number
+        userEarnings:
+          type: number
+        topEarners:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+              profileId:
+                type: number
+                nullable: true
+              displayName:
+                type: string
+              username:
+                type: string
+                nullable: true
+              avatarUrl:
+                type: string
+                format: uri
+              description:
+                type: string
+                nullable: true
+              score:
+                type: number
+              status:
+                type: string
+                enum[3]: ACTIVE,INACTIVE,MERGED
+              userkeys:
+                type: array
+                items:
+                  type: string
+              xpTotal:
+                type: number
+              xpStreakDays:
+                type: number
+              xpRemovedDueToAbuse:
+                type: boolean
+              influenceFactor:
+                type: number
+              influenceFactorPercentile:
+                type: number
+              humanVerificationStatus:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              mommyPawnshopBingo:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              validatorNftCount:
+                type: number
+              links:
+                type: object
+                properties:
+                  profile:
+                    type: string
+                    format: uri
+                  scoreBreakdown:
+                    type: string
+                    format: uri
+                required[2]: profile,scoreBreakdown
+              stats:
+                type: object
+                properties:
+                  review:
+                    type: object
+                    properties:
+                      received:
+                        type: object
+                        properties:
+                          negative:
+                            type: number
+                          neutral:
+                            type: number
+                          positive:
+                            type: number
+                        required[3]: negative,neutral,positive
+                    required[1]: received
+                  vouch:
+                    type: object
+                    properties:
+                      given:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                      received:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                    required[2]: given,received
+                required[2]: review,vouch
+              points:
+                type: number
+            required[18]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats,points
+      required[3]: totalPool,userEarnings,topEarners
+    yesterday:
+      type: object
+      properties:
+        totalPool:
+          type: number
+        userEarnings:
+          type: number
+        topEarners:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+              profileId:
+                type: number
+                nullable: true
+              displayName:
+                type: string
+              username:
+                type: string
+                nullable: true
+              avatarUrl:
+                type: string
+                format: uri
+              description:
+                type: string
+                nullable: true
+              score:
+                type: number
+              status:
+                type: string
+                enum[3]: ACTIVE,INACTIVE,MERGED
+              userkeys:
+                type: array
+                items:
+                  type: string
+              xpTotal:
+                type: number
+              xpStreakDays:
+                type: number
+              xpRemovedDueToAbuse:
+                type: boolean
+              influenceFactor:
+                type: number
+              influenceFactorPercentile:
+                type: number
+              humanVerificationStatus:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              mommyPawnshopBingo:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              validatorNftCount:
+                type: number
+              links:
+                type: object
+                properties:
+                  profile:
+                    type: string
+                    format: uri
+                  scoreBreakdown:
+                    type: string
+                    format: uri
+                required[2]: profile,scoreBreakdown
+              stats:
+                type: object
+                properties:
+                  review:
+                    type: object
+                    properties:
+                      received:
+                        type: object
+                        properties:
+                          negative:
+                            type: number
+                          neutral:
+                            type: number
+                          positive:
+                            type: number
+                        required[3]: negative,neutral,positive
+                    required[1]: received
+                  vouch:
+                    type: object
+                    properties:
+                      given:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                      received:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                    required[2]: given,received
+                required[2]: review,vouch
+              points:
+                type: number
+            required[18]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats,points
+      required[3]: totalPool,userEarnings,topEarners
+    userPercentOfRewards:
+      type: number
+    validatorStaking:
+      type: object
+      properties:
+        totalDelegated:
+          type: number
+        validators:
+          type: array
+          items:
+            type: object
+            properties:
+              tokenId:
+                type: string
+              name:
+                type: string
+              imageUrl:
+                type: string
+                nullable: true
+              xpAmount:
+                type: number
+            required[4]: tokenId,name,imageUrl,xpAmount
+      required[2]: totalDelegated,validators
+    nextDistributionDate:
+      type: string
+    weeklyTotals:
+      type: object
+      properties:
+        votePoolReward:
+          type: number
+        commentPoolReward:
+          type: number
+        vouchPoolReward:
+          type: number
+        marketHoldPoolReward:
+          type: number
+        marketTradePoolReward:
+          type: number
+        delegationReward:
+          type: number
+        slashStakeReturned:
+          type: number
+        slashStakeWon:
+          type: number
+        slashVoterReward:
+          type: number
+        slashVoteReward:
+          type: number
+        slashVoteRefund:
+          type: number
+        total:
+          type: number
+      required[12]: votePoolReward,commentPoolReward,vouchPoolReward,marketHoldPoolReward,marketTradePoolReward,delegationReward,slashStakeReturned,slashStakeWon,slashVoterReward,slashVoteReward,slashVoteRefund,total
+    validatorRewards:
+      type: object
+      properties:
+        today:
+          type: number
+        yesterday:
+          type: number
+        weekly:
+          type: number
+      required[3]: today,yesterday,weekly
+  required[7]: today,yesterday,userPercentOfRewards,validatorStaking,nextDistributionDate,weeklyTotals,validatorRewards
+"xp-multipliers":
+  type: object
+  properties:
+    scoreMultiplier:
+      type: object
+      properties:
+        value:
+          type: number
+        score:
+          type: number
+        tier:
+          type: string
+        nextTier:
+          type: object
+          nullable: true
+          properties:
+            threshold:
+              type: number
+            multiplier:
+              type: number
+          required[2]: threshold,multiplier
+      required[4]: value,score,tier,nextTier
+    streakMultiplier:
+      type: object
+      properties:
+        value:
+          type: number
+        streakDays:
+          type: number
+        tier:
+          type: string
+        nextTier:
+          type: object
+          nullable: true
+          properties:
+            threshold:
+              type: number
+            multiplier:
+              type: number
+          required[2]: threshold,multiplier
+      required[4]: value,streakDays,tier,nextTier
+    validatorCount:
+      type: number
+    marketHoldingsEth:
+      type: number
+    combinedMultiplier:
+      type: number
+  required[5]: scoreMultiplier,streakMultiplier,validatorCount,marketHoldingsEth,combinedMultiplier
+"xp-userDailyEarnings":
+  type: object
+  properties:
+    items:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          type:
+            type: string
+            enum[42]: REVIEW,CONTRIBUTION,INVITE_ACCEPTED,VOUCH_DAY,CLAIM,EXTENSION_CHECK_IN,CLAIM_REFERRAL,MARKET_HOLDINGS,ADMIN_XP_RESET,XP_TIP_SENT,XP_TIP_RECEIVED,VOTE_COST,COMMENT_COST,REVIEW_COST,STREAK_FORGIVENESS_COST,INVITE_SENT_COST,SLASH_VOTE_COST,VOTE_POOL_REWARD,COMMENT_POOL_REWARD,VOUCH_POOL_REWARD,MARKET_HOLD_POOL_REWARD,MARKET_TRADE_POOL_REWARD,DAILY_TASK_POOL_REWARD,XP_SLASH_ESCROW_AUTHOR,XP_SLASH_ESCROW_SUBJECT,XP_SLASH_FEE,XP_SLASH_STAKE_RETURNED,XP_SLASH_STAKE_WON,XP_SLASH_VOTER_REWARD,SLASH_VOTE_REWARD,SLASH_VOTE_REFUND,DELEGATION_REWARD,WEEKLY_DELEGATOR_AWARD_VALIDATOR,WEEKLY_DELEGATOR_AWARD_DELEGATOR,DECISION_SPEND_DEDUCTION,DECISION_NOTHING_DEDUCTION,DECISION_DELEGATED,HV_ESCROW_DEDUCTION,HV_BURN,HV_VERIFIER_PAYOUT,HV_COMPLETION_BONUS,HV_CLAWBACK
+          points:
+            type: number
+          metadata:
+            type: object
+            nullable: true
+            properties:
+              distributionDate:
+                type: string
+              reviewId:
+                type: number
+              slashId:
+                type: number
+              role:
+                type: string
+              stakeAmount:
+                type: number
+              feeAmount:
+                type: number
+              reason:
+                type: string
+              stakeReturned:
+                type: number
+              resolution:
+                type: string
+              wonAmount:
+                type: number
+              voteWeight:
+                type: number
+              totalWeight:
+                type: number
+              validatorTokenId:
+                type: string
+              inviterProfileId:
+                type: number
+              inviteeProfileId:
+                type: number
+          createdAt:
+            type: string
+        required[5]: id,type,points,metadata,createdAt
+  required[1]: items
+"xp-dailyAwards":
+  type: object
+  properties:
+    topEarners:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          profileId:
+            type: number
+            nullable: true
+          displayName:
+            type: string
+          username:
+            type: string
+            nullable: true
+          avatarUrl:
+            type: string
+            format: uri
+          description:
+            type: string
+            nullable: true
+          score:
+            type: number
+          status:
+            type: string
+            enum[3]: ACTIVE,INACTIVE,MERGED
+          userkeys:
+            type: array
+            items:
+              type: string
+          xpTotal:
+            type: number
+          xpStreakDays:
+            type: number
+          xpRemovedDueToAbuse:
+            type: boolean
+          influenceFactor:
+            type: number
+          influenceFactorPercentile:
+            type: number
+          humanVerificationStatus:
+            type: string
+            nullable: true
+            enum[4]: REQUESTED,VERIFIED,REVOKED,null
+          mommyPawnshopBingo:
+            type: string
+            nullable: true
+            enum[4]: REQUESTED,VERIFIED,REVOKED,null
+          validatorNftCount:
+            type: number
+          links:
+            type: object
+            properties:
+              profile:
+                type: string
+                format: uri
+              scoreBreakdown:
+                type: string
+                format: uri
+            required[2]: profile,scoreBreakdown
+          stats:
+            type: object
+            properties:
+              review:
+                type: object
+                properties:
+                  received:
+                    type: object
+                    properties:
+                      negative:
+                        type: number
+                      neutral:
+                        type: number
+                      positive:
+                        type: number
+                    required[3]: negative,neutral,positive
+                required[1]: received
+              vouch:
+                type: object
+                properties:
+                  given:
+                    type: object
+                    properties:
+                      amountWeiTotal:
+                        type: integer
+                        format: int64
+                      count:
+                        type: number
+                    required[2]: amountWeiTotal,count
+                  received:
+                    type: object
+                    properties:
+                      amountWeiTotal:
+                        type: integer
+                        format: int64
+                      count:
+                        type: number
+                    required[2]: amountWeiTotal,count
+                required[2]: given,received
+            required[2]: review,vouch
+          points:
+            type: number
+        required[18]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats,points
+    topActivities:
+      type: array
+      items:
+        type: object
+        properties:
+          activity:
+          dayOfVotes:
+            type: number
+        required[1]: dayOfVotes
+    resolvedSlashes:
+      type: array
+      items:
+        type: object
+        properties:
+          slashId:
+            type: number
+          outcome:
+            type: string
+          slashVotes:
+            type: number
+          defendVotes:
+            type: number
+          subject:
+            type: object
+            nullable: true
+            properties:
+              id:
+                type: number
+              profileId:
+                type: number
+                nullable: true
+              displayName:
+                type: string
+              username:
+                type: string
+                nullable: true
+              avatarUrl:
+                type: string
+                format: uri
+              description:
+                type: string
+                nullable: true
+              score:
+                type: number
+              status:
+                type: string
+                enum[3]: ACTIVE,INACTIVE,MERGED
+              userkeys:
+                type: array
+                items:
+                  type: string
+              xpTotal:
+                type: number
+              xpStreakDays:
+                type: number
+              xpRemovedDueToAbuse:
+                type: boolean
+              influenceFactor:
+                type: number
+              influenceFactorPercentile:
+                type: number
+              humanVerificationStatus:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              mommyPawnshopBingo:
+                type: string
+                nullable: true
+                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              validatorNftCount:
+                type: number
+              links:
+                type: object
+                properties:
+                  profile:
+                    type: string
+                    format: uri
+                  scoreBreakdown:
+                    type: string
+                    format: uri
+                required[2]: profile,scoreBreakdown
+              stats:
+                type: object
+                properties:
+                  review:
+                    type: object
+                    properties:
+                      received:
+                        type: object
+                        properties:
+                          negative:
+                            type: number
+                          neutral:
+                            type: number
+                          positive:
+                            type: number
+                        required[3]: negative,neutral,positive
+                    required[1]: received
+                  vouch:
+                    type: object
+                    properties:
+                      given:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                      received:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                    required[2]: given,received
+                required[2]: review,vouch
+            required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+        required[5]: slashId,outcome,slashVotes,defendVotes,subject
+  required[3]: topEarners,topActivities,resolvedSlashes
+"xp-weeklyDelegatorAwardStats":
+  type: object
+  properties:
+    lastAward:
+      type: object
+      nullable: true
+      properties:
+        delegatorCount:
+          type: number
+        delegatorsXpAward:
+          type: number
+        distributedAt:
+          type: string
+        topDelegators:
+          type: array
+          items:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  profileId:
+                    type: number
+                    nullable: true
+                  displayName:
+                    type: string
+                  username:
+                    type: string
+                    nullable: true
+                  avatarUrl:
+                    type: string
+                    format: uri
+                  description:
+                    type: string
+                    nullable: true
+                  score:
+                    type: number
+                  status:
+                    type: string
+                    enum[3]: ACTIVE,INACTIVE,MERGED
+                  userkeys:
+                    type: array
+                    items:
+                      type: string
+                  xpTotal:
+                    type: number
+                  xpStreakDays:
+                    type: number
+                  xpRemovedDueToAbuse:
+                    type: boolean
+                  influenceFactor:
+                    type: number
+                  influenceFactorPercentile:
+                    type: number
+                  humanVerificationStatus:
+                    type: string
+                    nullable: true
+                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                  mommyPawnshopBingo:
+                    type: string
+                    nullable: true
+                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                  validatorNftCount:
+                    type: number
+                  links:
+                    type: object
+                    properties:
+                      profile:
+                        type: string
+                        format: uri
+                      scoreBreakdown:
+                        type: string
+                        format: uri
+                    required[2]: profile,scoreBreakdown
+                  stats:
+                    type: object
+                    properties:
+                      review:
+                        type: object
+                        properties:
+                          received:
+                            type: object
+                            properties:
+                              negative:
+                                type: number
+                              neutral:
+                                type: number
+                              positive:
+                                type: number
+                            required[3]: negative,neutral,positive
+                        required[1]: received
+                      vouch:
+                        type: object
+                        properties:
+                          given:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                          received:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                        required[2]: given,received
+                    required[2]: review,vouch
+                required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+              xpEarned:
+                type: number
+            required[2]: user,xpEarned
+          default[0]:
+        ownerXpAward:
+          type: number
+        week:
+          type: number
+        winner:
+          type: object
+          properties:
+            owner:
+              type: object
+              nullable: true
+              properties:
+                id:
+                  type: number
+                profileId:
+                  type: number
+                  nullable: true
+                displayName:
+                  type: string
+                username:
+                  type: string
+                  nullable: true
+                avatarUrl:
+                  type: string
+                  format: uri
+                description:
+                  type: string
+                  nullable: true
+                score:
+                  type: number
+                status:
+                  type: string
+                  enum[3]: ACTIVE,INACTIVE,MERGED
+                userkeys:
+                  type: array
+                  items:
+                    type: string
+                xpTotal:
+                  type: number
+                xpStreakDays:
+                  type: number
+                xpRemovedDueToAbuse:
+                  type: boolean
+                influenceFactor:
+                  type: number
+                influenceFactorPercentile:
+                  type: number
+                humanVerificationStatus:
+                  type: string
+                  nullable: true
+                  enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                mommyPawnshopBingo:
+                  type: string
+                  nullable: true
+                  enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                validatorNftCount:
+                  type: number
+                links:
+                  type: object
+                  properties:
+                    profile:
+                      type: string
+                      format: uri
+                    scoreBreakdown:
+                      type: string
+                      format: uri
+                  required[2]: profile,scoreBreakdown
+                stats:
+                  type: object
+                  properties:
+                    review:
+                      type: object
+                      properties:
+                        received:
+                          type: object
+                          properties:
+                            negative:
+                              type: number
+                            neutral:
+                              type: number
+                            positive:
+                              type: number
+                          required[3]: negative,neutral,positive
+                      required[1]: received
+                    vouch:
+                      type: object
+                      properties:
+                        given:
+                          type: object
+                          properties:
+                            amountWeiTotal:
+                              type: integer
+                              format: int64
+                            count:
+                              type: number
+                          required[2]: amountWeiTotal,count
+                        received:
+                          type: object
+                          properties:
+                            amountWeiTotal:
+                              type: integer
+                              format: int64
+                            count:
+                              type: number
+                          required[2]: amountWeiTotal,count
+                      required[2]: given,received
+                  required[2]: review,vouch
+              required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+            validator:
+              type: object
+              properties:
+                imageUrl:
+                  type: string
+                  nullable: true
+                name:
+                  type: string
+                tokenId:
+                  type: string
+              required[3]: imageUrl,name,tokenId
+          required[2]: owner,validator
+      required[7]: delegatorCount,delegatorsXpAward,distributedAt,topDelegators,ownerXpAward,week,winner
+    lifetime:
+      type: object
+      properties:
+        totalEarned:
+          type: number
+        timesSelected:
+          type: number
+      required[2]: totalEarned,timesSelected
+    nextAwardDate:
+      type: string
+    userParticipation:
+      type: object
+      properties:
+        delegatedToWinner:
+          type: boolean
+        xpEarned:
+          type: number
+      required[2]: delegatedToWinner,xpEarned
+  required[4]: lastAward,lifetime,nextAwardDate,userParticipation

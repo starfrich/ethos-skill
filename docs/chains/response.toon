@@ -1,0 +1,75 @@
+"chains-list":
+  type: object
+  properties:
+    chains:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          name:
+            type: string
+          url:
+            type: string
+            nullable: true
+            format: uri
+          iconUrl:
+            type: string
+            nullable: true
+            format: uri
+        required[4]: id,name,url,iconUrl
+  required[1]: chains
+"chains-add":
+  type: object
+  properties:
+    chain:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        url:
+          type: string
+          nullable: true
+          format: uri
+        iconUrl:
+          type: string
+          nullable: true
+          format: uri
+      required[4]: id,name,url,iconUrl
+  required[1]: chain
+"chains-edit":
+  type: object
+  properties:
+    chain:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        url:
+          type: string
+          nullable: true
+          format: uri
+        iconUrl:
+          type: string
+          nullable: true
+          format: uri
+      required[4]: id,name,url,iconUrl
+  required[1]: chain
+"chains-delete":
+"chains-baseGasPrice":
+  type: object
+  properties:
+    wei:
+      type: integer
+      format: int64
+    level:
+      type: string
+      enum[3]: low,medium,high
+    updatedAt:
+      type: string
+  required[3]: wei,level,updatedAt

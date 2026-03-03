@@ -1,0 +1,26 @@
+"external-ens-getByAddress":
+  type: object
+  properties:
+    address:
+      type: string
+      nullable: true
+    avatar:
+      type: string
+      nullable: true
+    name:
+      type: string
+      nullable: true
+  required[3]: address,avatar,name
+"external-ens-getByName":
+  type: object
+  properties:
+    address:
+      type: string
+      nullable: true
+    avatar:
+      type: string
+      nullable: true
+    name:
+      type: string
+      nullable: true
+  required[3]: address,avatar,name

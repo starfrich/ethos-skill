@@ -1,0 +1,27 @@
+"stats-scoreDistribution":
+  type: object
+  properties:
+    distribution:
+      type: array
+      items:
+        type: object
+        properties:
+          level:
+            type: string
+            enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
+          profileCount:
+            type: number
+          nonProfileCount:
+            type: number
+        required[3]: level,profileCount,nonProfileCount
+    totals:
+      type: object
+      properties:
+        totalUsers:
+          type: number
+        totalProfiles:
+          type: number
+        totalNonProfiles:
+          type: number
+      required[3]: totalUsers,totalProfiles,totalNonProfiles
+  required[2]: distribution,totals

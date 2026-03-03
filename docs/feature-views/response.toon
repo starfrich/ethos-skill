@@ -1,0 +1,13 @@
+"featureViews-hasViewed":
+  type: object
+  properties:
+    viewed:
+      type: boolean
+  required[1]: viewed
+"featureViews-markAsViewed":
+  type: object
+  properties:
+    ok:
+      type: boolean
+      enum[1]: true
+  required[1]: ok

@@ -1,0 +1,6 @@
+"exchangeRates-getEthPriceInUSD":
+  type: object
+  properties:
+    price:
+      type: number
+  required[1]: price

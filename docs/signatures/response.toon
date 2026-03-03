@@ -1,0 +1,28 @@
+"signatures-registerAddress":
+  type: object
+  properties:
+    randValue:
+      type: number
+    signature:
+      type: string
+  required[2]: randValue,signature
+"signatures-createHumanityBond":
+  type: object
+  properties:
+    statement:
+      type: string
+    bondType:
+      type: string
+      enum[1]: HUMAN
+    expiration:
+      type: string
+    amount:
+      type: string
+    amountType:
+      type: string
+    metadata:
+      type: string
+    randValue:
+      type: number
+    signature:
+  required[8]: statement,bondType,expiration,amount,amountType,metadata,randValue,signature

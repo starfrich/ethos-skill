@@ -1,0 +1,35 @@
+"llm-translate":
+  type: object
+  properties:
+    translatedContent:
+      type: string
+    translatedDescription:
+      type: string
+    translatedLanguage:
+      anyOf[2]:
+        - type: string
+          enum[1]: unknown
+        - type: string
+          pattern: "^[a-z]{2}$"
+      description: ISO 639-1 two-letter lowercase code or 'unknown'
+    detectedLanguage:
+      anyOf[2]:
+        - type: string
+          enum[1]: unknown
+        - type: string
+          pattern: "^[a-z]{2}$"
+      description: ISO 639-1 two-letter lowercase code or 'unknown'
+    error:
+      type: string
+      nullable: true
+  required[3]: translatedContent,translatedDescription,translatedLanguage
+"llm-qualityCheck":
+  type: object
+  properties:
+    score:
+      type: number
+      minimum: 0
+      maximum: 100
+    error:
+      type: string
+  required[1]: score

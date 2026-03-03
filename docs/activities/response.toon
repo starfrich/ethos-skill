@@ -1,0 +1,259 @@
+"activity-byId":
+"activity-bulk":
+  type: array
+  items:
+"activity-byTxHash":
+"activity-byUserkey":
+  type: array
+  items:
+"activity-feed":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset
+"activity-notifications":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+    offsets:
+      type: object
+      properties:
+        attestation:
+          type: number
+        "broker-post":
+          type: number
+        "human-verification":
+          type: number
+        "invitation-accepted":
+          type: number
+        market:
+          type: number
+        "market-vote":
+          type: number
+        reply:
+          type: number
+        review:
+          type: number
+        slash:
+          type: number
+        unvouch:
+          type: number
+        vote:
+          type: number
+        vouch:
+          type: number
+        "xp-tip":
+          type: number
+      additionalProperties: false
+    counts:
+      type: object
+      properties:
+        attestation:
+          type: number
+        "broker-post":
+          type: number
+        "human-verification":
+          type: number
+        "invitation-accepted":
+          type: number
+        market:
+          type: number
+        "market-vote":
+          type: number
+        reply:
+          type: number
+        review:
+          type: number
+        slash:
+          type: number
+        unvouch:
+          type: number
+        vote:
+          type: number
+        vouch:
+          type: number
+        "xp-tip":
+          type: number
+      additionalProperties: false
+  required[4]: values,total,limit,offset
+"activity-profileGiven":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset
+"activity-profileReceived":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset
+"activity-profileAll":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset
+"activity-project":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset
+"activity-impactedSlashSupporters":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          profileId:
+            type: number
+            nullable: true
+          displayName:
+            type: string
+          username:
+            type: string
+            nullable: true
+          avatarUrl:
+            type: string
+            format: uri
+          description:
+            type: string
+            nullable: true
+          score:
+            type: number
+          status:
+            type: string
+            enum[3]: ACTIVE,INACTIVE,MERGED
+          userkeys:
+            type: array
+            items:
+              type: string
+          xpTotal:
+            type: number
+          xpStreakDays:
+            type: number
+          xpRemovedDueToAbuse:
+            type: boolean
+          influenceFactor:
+            type: number
+          influenceFactorPercentile:
+            type: number
+          humanVerificationStatus:
+            type: string
+            nullable: true
+            enum[4]: REQUESTED,VERIFIED,REVOKED,null
+          mommyPawnshopBingo:
+            type: string
+            nullable: true
+            enum[4]: REQUESTED,VERIFIED,REVOKED,null
+          validatorNftCount:
+            type: number
+          links:
+            type: object
+            properties:
+              profile:
+                type: string
+                format: uri
+              scoreBreakdown:
+                type: string
+                format: uri
+            required[2]: profile,scoreBreakdown
+          stats:
+            type: object
+            properties:
+              review:
+                type: object
+                properties:
+                  received:
+                    type: object
+                    properties:
+                      negative:
+                        type: number
+                      neutral:
+                        type: number
+                      positive:
+                        type: number
+                    required[3]: negative,neutral,positive
+                required[1]: received
+              vouch:
+                type: object
+                properties:
+                  given:
+                    type: object
+                    properties:
+                      amountWeiTotal:
+                        type: integer
+                        format: int64
+                      count:
+                        type: number
+                    required[2]: amountWeiTotal,count
+                  received:
+                    type: object
+                    properties:
+                      amountWeiTotal:
+                        type: integer
+                        format: int64
+                      count:
+                        type: number
+                    required[2]: amountWeiTotal,count
+                required[2]: given,received
+            required[2]: review,vouch
+          penaltyAmount:
+            type: number
+        required[18]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats,penaltyAmount
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset

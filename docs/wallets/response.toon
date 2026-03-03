@@ -1,0 +1,216 @@
+"wallets-privy-authCheck":
+  type: object
+  properties:
+    ok:
+      type: boolean
+    profileId:
+      type: number
+  required[2]: ok,profileId
+"wallets-privy-checkFunds":
+  type: object
+  properties:
+    balance:
+      type: integer
+      format: int64
+    sponsorshipEligible:
+      type: boolean
+  required[2]: balance,sponsorshipEligible
+"wallets-privy-addReview":
+  type: object
+  properties:
+    hash:
+    review:
+      type: object
+      properties:
+        id:
+          type: number
+        authorProfileId:
+          type: number
+        author:
+          type: string
+        subject:
+          type: string
+        score:
+          type: string
+          enum[3]: negative,neutral,positive
+        comment:
+          type: string
+        metadata:
+          type: string
+        createdAt:
+          type: number
+        archived:
+          type: boolean
+        attestationDetails:
+          type: object
+          properties:
+            account:
+              type: string
+            service:
+              type: string
+          required[2]: account,service
+      required[9]: id,authorProfileId,author,subject,score,comment,metadata,createdAt,archived
+    reviewSlug:
+      type: string
+  required[1]: hash
+"wallets-privy-addReviewByAddress":
+  type: object
+  properties:
+    hash:
+    review:
+      type: object
+      properties:
+        id:
+          type: number
+        authorProfileId:
+          type: number
+        author:
+          type: string
+        subject:
+          type: string
+        score:
+          type: string
+          enum[3]: negative,neutral,positive
+        comment:
+          type: string
+        metadata:
+          type: string
+        createdAt:
+          type: number
+        archived:
+          type: boolean
+        attestationDetails:
+          type: object
+          properties:
+            account:
+              type: string
+            service:
+              type: string
+          required[2]: account,service
+      required[9]: id,authorProfileId,author,subject,score,comment,metadata,createdAt,archived
+    reviewSlug:
+      type: string
+  required[1]: hash
+"wallets-privy-addReviewByX":
+  type: object
+  properties:
+    hash:
+    review:
+      type: object
+      properties:
+        id:
+          type: number
+        authorProfileId:
+          type: number
+        author:
+          type: string
+        subject:
+          type: string
+        score:
+          type: string
+          enum[3]: negative,neutral,positive
+        comment:
+          type: string
+        metadata:
+          type: string
+        createdAt:
+          type: number
+        archived:
+          type: boolean
+        attestationDetails:
+          type: object
+          properties:
+            account:
+              type: string
+            service:
+              type: string
+          required[2]: account,service
+      required[9]: id,authorProfileId,author,subject,score,comment,metadata,createdAt,archived
+    reviewSlug:
+      type: string
+  required[1]: hash
+"wallets-privy-editReview":
+  type: object
+  properties:
+    hash:
+    review:
+      type: object
+      properties:
+        id:
+          type: number
+        authorProfileId:
+          type: number
+        author:
+          type: string
+        subject:
+          type: string
+        score:
+          type: string
+          enum[3]: negative,neutral,positive
+        comment:
+          type: string
+        metadata:
+          type: string
+        createdAt:
+          type: number
+        archived:
+          type: boolean
+        attestationDetails:
+          type: object
+          properties:
+            account:
+              type: string
+            service:
+              type: string
+          required[2]: account,service
+      required[9]: id,authorProfileId,author,subject,score,comment,metadata,createdAt,archived
+    reviewSlug:
+      type: string
+  required[1]: hash
+"wallets-privy-vote":
+  type: object
+  properties:
+    hash:
+    vote:
+  required[1]: hash
+"wallets-privy-reply":
+  type: object
+  properties:
+    hash:
+    reply:
+  required[1]: hash
+"wallets-privy-archiveReview":
+  type: object
+  properties:
+    hash:
+    review:
+  required[1]: hash
+"wallets-privy-inviteAddress":
+  type: object
+  properties:
+    hash:
+    processed:
+      type: boolean
+      description: Whether the invitation transaction has been received & processed by Ethos.
+  required[2]: hash,processed
+"wallets-privy-cancelInvite":
+  type: object
+  properties:
+    hash:
+    processed:
+      type: boolean
+      description: Whether the uninvite transaction has been received & processed by Ethos.
+  required[2]: hash,processed
+"wallets-privy-archiveBond":
+  type: object
+  properties:
+    hash:
+  required[1]: hash
+"wallets-privy-createBond":
+  type: object
+  properties:
+    hash:
+    processed:
+      type: boolean
+      description: Whether the bond transaction has been received & processed by Ethos.
+  required[2]: hash,processed

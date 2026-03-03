@@ -1,0 +1,213 @@
+"aiImages-list":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          jobType:
+            type: string
+            enum[2]: SLASH,BROKER
+          entityId:
+            type: number
+          status:
+            type: string
+            enum[4]: PENDING,PROCESSING,COMPLETED,FAILED
+          isSelected:
+            type: boolean
+          error:
+            type: string
+            nullable: true
+          metadata:
+            nullable: true
+          createdAt:
+            type: string
+          updatedAt:
+            type: string
+          completedAt:
+            type: string
+            nullable: true
+          AiImages:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: number
+                jobId:
+                  type: number
+                fileName:
+                  type: string
+                imageUrl:
+                  type: string
+                metadata:
+                createdAt:
+                  type: string
+              required[5]: id,jobId,fileName,imageUrl,createdAt
+        required[10]: id,jobType,entityId,status,isSelected,error,createdAt,updatedAt,completedAt,AiImages
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset
+"aiImages-get":
+  type: object
+  properties:
+    id:
+      type: number
+    jobType:
+      type: string
+      enum[2]: SLASH,BROKER
+    entityId:
+      type: number
+    status:
+      type: string
+      enum[4]: PENDING,PROCESSING,COMPLETED,FAILED
+    isSelected:
+      type: boolean
+    error:
+      type: string
+      nullable: true
+    metadata:
+      nullable: true
+    createdAt:
+      type: string
+    updatedAt:
+      type: string
+    completedAt:
+      type: string
+      nullable: true
+    AiImages:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          jobId:
+            type: number
+          fileName:
+            type: string
+          imageUrl:
+            type: string
+          metadata:
+          createdAt:
+            type: string
+        required[5]: id,jobId,fileName,imageUrl,createdAt
+  required[10]: id,jobType,entityId,status,isSelected,error,createdAt,updatedAt,completedAt,AiImages
+"aiImages-listByEntity":
+  type: array
+  items:
+    type: object
+    properties:
+      id:
+        type: number
+      jobType:
+        type: string
+        enum[2]: SLASH,BROKER
+      entityId:
+        type: number
+      status:
+        type: string
+        enum[4]: PENDING,PROCESSING,COMPLETED,FAILED
+      isSelected:
+        type: boolean
+      error:
+        type: string
+        nullable: true
+      metadata:
+        nullable: true
+      createdAt:
+        type: string
+      updatedAt:
+        type: string
+      completedAt:
+        type: string
+        nullable: true
+      AiImages:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: number
+            jobId:
+              type: number
+            fileName:
+              type: string
+            imageUrl:
+              type: string
+            metadata:
+            createdAt:
+              type: string
+          required[5]: id,jobId,fileName,imageUrl,createdAt
+    required[10]: id,jobType,entityId,status,isSelected,error,createdAt,updatedAt,completedAt,AiImages
+"aiImages-getSelected":
+  type: object
+  nullable: true
+  properties:
+    id:
+      type: number
+    jobType:
+      type: string
+      enum[2]: SLASH,BROKER
+    entityId:
+      type: number
+    status:
+      type: string
+      enum[4]: PENDING,PROCESSING,COMPLETED,FAILED
+    isSelected:
+      type: boolean
+    error:
+      type: string
+      nullable: true
+    metadata:
+      nullable: true
+    createdAt:
+      type: string
+    updatedAt:
+      type: string
+    completedAt:
+      type: string
+      nullable: true
+    AiImages:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          jobId:
+            type: number
+          fileName:
+            type: string
+          imageUrl:
+            type: string
+          metadata:
+          createdAt:
+            type: string
+        required[5]: id,jobId,fileName,imageUrl,createdAt
+  required[10]: id,jobType,entityId,status,isSelected,error,createdAt,updatedAt,completedAt,AiImages
+"aiImages-regenerate":
+  type: object
+  properties:
+    jobId:
+      type: number
+  required[1]: jobId
+"aiImages-activate":
+  type: object
+  properties:
+    success:
+      type: boolean
+  required[1]: success
+"aiImages-retry":
+  type: object
+  properties:
+    success:
+      type: boolean
+  required[1]: success

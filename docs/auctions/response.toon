@@ -1,0 +1,169 @@
+"auctions-getActiveAuction":
+  type: object
+  nullable: true
+  properties:
+    id:
+      type: number
+    creatorAddress:
+      type: string
+    nftContract:
+      type: string
+    nftTokenId:
+      type: number
+    tokenURI:
+      type: string
+      nullable: true
+    startPrice:
+      type: integer
+      format: int64
+    reservePrice:
+      type: integer
+      format: int64
+    duration:
+      type: number
+    paymentRecipient:
+      type: string
+    paymentToken:
+      type: string
+    startTime:
+      type: string
+    status:
+      type: string
+      enum[3]: DISABLED,ENABLED,SOLD
+    buyerAddress:
+      type: string
+      nullable: true
+    pricePaid:
+      type: integer
+      nullable: true
+      format: int64
+    soldTime:
+      type: string
+      nullable: true
+    createdAt:
+      type: string
+    updatedAt:
+      type: string
+    prevId:
+      type: number
+      nullable: true
+    nextId:
+      type: number
+      nullable: true
+  required[17]: id,creatorAddress,nftContract,nftTokenId,tokenURI,startPrice,reservePrice,duration,paymentRecipient,paymentToken,startTime,status,buyerAddress,pricePaid,soldTime,createdAt,updatedAt
+"auctions-getAuction":
+  type: object
+  properties:
+    id:
+      type: number
+    creatorAddress:
+      type: string
+    nftContract:
+      type: string
+    nftTokenId:
+      type: number
+    tokenURI:
+      type: string
+      nullable: true
+    startPrice:
+      type: integer
+      format: int64
+    reservePrice:
+      type: integer
+      format: int64
+    duration:
+      type: number
+    paymentRecipient:
+      type: string
+    paymentToken:
+      type: string
+    startTime:
+      type: string
+    status:
+      type: string
+      enum[3]: DISABLED,ENABLED,SOLD
+    buyerAddress:
+      type: string
+      nullable: true
+    pricePaid:
+      type: integer
+      nullable: true
+      format: int64
+    soldTime:
+      type: string
+      nullable: true
+    createdAt:
+      type: string
+    updatedAt:
+      type: string
+    prevId:
+      type: number
+      nullable: true
+    nextId:
+      type: number
+      nullable: true
+  required[17]: id,creatorAddress,nftContract,nftTokenId,tokenURI,startPrice,reservePrice,duration,paymentRecipient,paymentToken,startTime,status,buyerAddress,pricePaid,soldTime,createdAt,updatedAt
+"auctions-listAuctions":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: number
+          creatorAddress:
+            type: string
+          nftContract:
+            type: string
+          nftTokenId:
+            type: number
+          tokenURI:
+            type: string
+            nullable: true
+          startPrice:
+            type: integer
+            format: int64
+          reservePrice:
+            type: integer
+            format: int64
+          duration:
+            type: number
+          paymentRecipient:
+            type: string
+          paymentToken:
+            type: string
+          startTime:
+            type: string
+          status:
+            type: string
+            enum[3]: DISABLED,ENABLED,SOLD
+          buyerAddress:
+            type: string
+            nullable: true
+          pricePaid:
+            type: integer
+            nullable: true
+            format: int64
+          soldTime:
+            type: string
+            nullable: true
+          createdAt:
+            type: string
+          updatedAt:
+            type: string
+          prevId:
+            type: number
+            nullable: true
+          nextId:
+            type: number
+            nullable: true
+        required[17]: id,creatorAddress,nftContract,nftTokenId,tokenURI,startPrice,reservePrice,duration,paymentRecipient,paymentToken,startTime,status,buyerAddress,pricePaid,soldTime,createdAt,updatedAt
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset

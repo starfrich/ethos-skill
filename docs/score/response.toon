@@ -1,0 +1,105 @@
+"score-updates":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          userkey:
+            type: string
+          lastUpdatedAt:
+            type: string
+        required[2]: userkey,lastUpdatedAt
+    total:
+      type: number
+    limit:
+      type: number
+    offset:
+      type: number
+  required[4]: values,total,limit,offset
+"score-byAddress":
+  type: object
+  properties:
+    score:
+      type: number
+      minimum: 0
+      maximum: 2800
+    level:
+      type: string
+      enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
+  required[1]: level
+"score-bulkByAddresses":
+  type: object
+  additionalProperties:
+    type: object
+    properties:
+      score:
+        type: number
+        minimum: 0
+        maximum: 2800
+      level:
+        type: string
+        enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
+    required[1]: level
+"score-byUserId":
+  type: object
+  properties:
+    score:
+      type: number
+      minimum: 0
+      maximum: 2800
+    level:
+      type: string
+      enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
+  required[1]: level
+"score-bulkByUserIds":
+  type: object
+  additionalProperties:
+    type: object
+    properties:
+      score:
+        type: number
+        minimum: 0
+        maximum: 2800
+      level:
+        type: string
+        enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
+    required[1]: level
+"score-byUserKey":
+  type: object
+  properties:
+    score:
+      type: number
+      minimum: 0
+      maximum: 2800
+    level:
+      type: string
+      enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
+  required[1]: level
+"score-bulkByUserKeys":
+  type: object
+  additionalProperties:
+    type: object
+    properties:
+      score:
+        type: number
+        minimum: 0
+        maximum: 2800
+      level:
+        type: string
+        enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
+    required[1]: level
+"score-status":
+  type: object
+  properties:
+    status:
+      type: string
+      enum[3]: idle,queued,calculating
+    isQueued:
+      type: boolean
+    isCalculating:
+      type: boolean
+    isPending:
+      type: boolean
+  required[4]: status,isQueued,isCalculating,isPending

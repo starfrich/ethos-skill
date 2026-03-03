@@ -1,0 +1,42 @@
+"announcements-getActive":
+  type: array
+  items:
+    type: object
+    properties:
+      id:
+        type: number
+      title:
+        type: string
+      description:
+        type: string
+      imageUrl:
+        type: string
+        nullable: true
+      actionButtonLabel:
+        type: string
+        nullable: true
+      actionButtonUrl:
+        type: string
+        nullable: true
+      startDateTime:
+        type: string
+      endDateTime:
+        type: string
+      status:
+        type: string
+        enum[2]: ACTIVE,INACTIVE
+      createdAt:
+        type: string
+      updatedAt:
+        type: string
+      authorAvatarUrl:
+        type: string
+        nullable: true
+    required[12]: id,title,description,imageUrl,actionButtonLabel,actionButtonUrl,startDateTime,endDateTime,status,createdAt,updatedAt,authorAvatarUrl
+"announcements-markAsViewed":
+  type: object
+  properties:
+    ok:
+      type: boolean
+      enum[1]: true
+  required[1]: ok
