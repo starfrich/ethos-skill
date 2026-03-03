@@ -1,5 +1,5 @@
 ---
-name: ethos-network
+name: ethos-skill
 description: Deep knowledge of Ethos Network — a blockchain-based reputation platform. Use when the user asks about Ethos Network API, SDK integration, vouch/review/score mechanics, userkeys, or building apps on Ethos. Trigger phrases include "ethos network", "ethos API", "ethos score", "vouch", "ethos review", "ethos market", "ethos XP", or any question about the Ethos reputation system.
 ---
 

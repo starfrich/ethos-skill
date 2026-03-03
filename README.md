@@ -13,7 +13,7 @@ curl -fsSL https://raw.githubusercontent.com/starfrich/ethos-skill/master/instal
 **Or clone manually:**
 
 ```bash
-git clone https://github.com/starfrich/ethos-skill ~/.claude/skills/ethos-network
+git clone https://github.com/starfrich/ethos-skill ~/.claude/skills/ethos-skill
 ```
 
 ## What it does
