@@ -6,22 +6,18 @@ A Claude Code skill for the [Ethos Network](https://ethos.network) API a blockch
 
 Gives Claude deep, on-demand knowledge of the Ethos API without loading everything at once. Docs are split by domain and loaded only when relevant, keeping token usage low.
 
-## Usage
+Use `/ethos-network` anywhere in your message to trigger the skill:
 
-Ask Claude anything about the Ethos API:
-
-- _"How do I get the credibility score for a wallet address?"_
-- _"What endpoints are available for XP tips?"_
-- _"Show me the response schema for vouch queries"_
-- _"How do I post a review via the Ethos Everywhere Wallet?"_
+- _"Can you check how score lookup works for a wallet address in /ethos-network?"_
+- _"For the next step, let's rely on /ethos-network to validate the wallet before creating the review."_
+- _"Instead of hardcoding this, pull the score directly from /ethos-network."_
+- _"Compare vouch and review objects in /ethos-network."_
 
 ## Structure
 
 ```
 ethos-network/
 ├── SKILL.md                    # Skill entry point — Claude reads this first
-├── generate-responses.mjs      # Script to regenerate response.toon files
-├── openapi-full.json           # Cached OpenAPI spec (source for response schemas)
 └── docs/
     ├── getting-started/
     │   ├── overview.md         # Auth, userkeys, base URL, shared schemas
@@ -75,20 +71,6 @@ ethos-network/
 ## Response schemas
 
 Each domain includes a `response.toon` file with response schemas in [TOON](https://toonformat.dev) format (~40% fewer tokens than JSON). Claude loads these only when you ask about response shapes, TypeScript types, or need to debug a response.
-
-## Regenerating response schemas
-
-When the Ethos API is updated, refresh the response schemas:
-
-```bash
-# 1. Fetch the latest OpenAPI spec
-curl -s "https://api.ethos.network/docs/openapi.json" -o openapi-full.json
-
-# 2. Regenerate all response.toon files
-node generate-responses.mjs
-```
-
-Requires Node.js 18+.
 
 ## API reference
 
