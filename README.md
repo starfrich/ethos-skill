@@ -20,17 +20,17 @@ git clone https://github.com/starfrich/ethos-skill ~/.claude/skills/ethos-networ
 
 Gives Claude deep, on-demand knowledge of the Ethos API without loading everything at once. Docs are split by domain and loaded only when relevant, keeping token usage low.
 
-Use `/ethos-network` anywhere in your message to trigger the skill:
+Use `/ethos-skill` anywhere in your message to trigger the skill:
 
-- _"Can you check how score lookup works for a wallet address in /ethos-network?"_
-- _"For the next step, let's rely on /ethos-network to validate the wallet before creating the review."_
-- _"Instead of hardcoding this, pull the score directly from /ethos-network."_
-- _"Compare vouch and review objects in /ethos-network."_
+- _"Can you check how score lookup works for a wallet address in /ethos-skill?"_
+- _"For the next step, let's rely on /ethos-skill to validate the wallet before creating the review."_
+- _"Instead of hardcoding this, pull the score directly from /ethos-skill."_
+- _"Compare vouch and review objects in /ethos-skill."_
 
 ## Structure
 
 ```
-ethos-network/
+ethos-skill/
 ├── SKILL.md                    # Skill entry point — Claude reads this first
 └── docs/
     ├── getting-started/

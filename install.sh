@@ -11,16 +11,16 @@ else
   SKILLS_DIR="$USERPROFILE/.claude/skills"
 fi
 
-SKILL_DIR="$SKILLS_DIR/ethos-network"
+SKILL_DIR="$SKILLS_DIR/ethos-skill"
 
-echo "Installing ethos-network skill to $SKILL_DIR..."
+echo "Installing ethos-skill to $SKILL_DIR..."
 
 if [ -d "$SKILL_DIR" ]; then
   echo "Updating existing installation..."
   git -C "$SKILL_DIR" pull
 else
   mkdir -p "$SKILLS_DIR"
-  git clone https://github.com/starfrich/ethos-network "$SKILL_DIR"
+  git clone https://github.com/starfrich/ethos-skill "$SKILL_DIR"
 fi
 
-echo "Done. Use /ethos-network in Claude Code to activate the skill."
+echo "Done. Use /ethos-skill in Claude Code to activate the skill."
