@@ -2,25 +2,35 @@
   type: object
   properties:
     address:
-      type: string
-      nullable: true
+      anyOf[2]:
+        - type: string
+          description: "Ethereum address (0x-prefixed, 20 bytes)"
+        - type: "null"
     avatar:
-      type: string
-      nullable: true
+      anyOf[2]{type}:
+        string
+        "null"
     name:
-      type: string
-      nullable: true
+      anyOf[2]{type}:
+        string
+        "null"
   required[3]: address,avatar,name
+  additionalProperties: false
 "external-ens-getByName":
   type: object
   properties:
     address:
-      type: string
-      nullable: true
+      anyOf[2]:
+        - type: string
+          description: "Ethereum address (0x-prefixed, 20 bytes)"
+        - type: "null"
     avatar:
-      type: string
-      nullable: true
+      anyOf[2]{type}:
+        string
+        "null"
     name:
-      type: string
-      nullable: true
+      anyOf[2]{type}:
+        string
+        "null"
   required[3]: address,avatar,name
+  additionalProperties: false

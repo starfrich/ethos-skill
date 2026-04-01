@@ -4,6 +4,7 @@
     ok:
       type: boolean
   required[1]: ok
+  additionalProperties: false
 "healthcheck-authenticated":
   type: object
   properties:
@@ -12,6 +13,7 @@
     profileId:
       type: number
   required[1]: ok
+  additionalProperties: false
 "healthcheck-alwaysFail":
 "tx-waitForProcessing":
   type: object
@@ -22,3 +24,4 @@
       type: string
       enum[4]: not_found,pending,processing,processed
   required[2]: processed,status
+  additionalProperties: false

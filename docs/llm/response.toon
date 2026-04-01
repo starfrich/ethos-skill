@@ -8,21 +8,23 @@
     translatedLanguage:
       anyOf[2]:
         - type: string
-          enum[1]: unknown
+          const: unknown
         - type: string
           pattern: "^[a-z]{2}$"
       description: ISO 639-1 two-letter lowercase code or 'unknown'
     detectedLanguage:
       anyOf[2]:
         - type: string
-          enum[1]: unknown
+          const: unknown
         - type: string
           pattern: "^[a-z]{2}$"
       description: ISO 639-1 two-letter lowercase code or 'unknown'
     error:
-      type: string
-      nullable: true
+      anyOf[2]{type}:
+        string
+        "null"
   required[3]: translatedContent,translatedDescription,translatedLanguage
+  additionalProperties: false
 "llm-qualityCheck":
   type: object
   properties:
@@ -33,3 +35,45 @@
     error:
       type: string
   required[1]: score
+  additionalProperties: false
+"llm-getActivitySummary":
+  type: object
+  properties:
+    activityCount:
+      type: number
+    generatedAt:
+      anyOf[2]{type}:
+        string
+        "null"
+    summary:
+      anyOf[2]{type}:
+        string
+        "null"
+  required[3]: activityCount,generatedAt,summary
+  additionalProperties: false
+"llm-generateActivitySummary":
+  type: object
+  properties:
+    activityCount:
+      type: number
+    generatedAt:
+      anyOf[2]{type}:
+        string
+        "null"
+    summary:
+      anyOf[2]{type}:
+        string
+        "null"
+  required[3]: activityCount,generatedAt,summary
+  additionalProperties: false
+"llm-generateTags":
+  type: object
+  properties:
+    tags:
+      minItems: 0
+      maxItems: 5
+      type: array
+      items:
+        type: string
+  required[1]: tags
+  additionalProperties: false

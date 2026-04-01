@@ -3,15 +3,17 @@
   properties:
     ok:
       type: boolean
-      enum[1]: true
+      const: true
   required[1]: ok
+  additionalProperties: false
 "auth-logout":
   type: object
   properties:
     ok:
       type: boolean
-      enum[1]: true
+      const: true
   required[1]: ok
+  additionalProperties: false
 "wallets-privy-authCheck":
   type: object
   properties:
@@ -20,6 +22,7 @@
     profileId:
       type: number
   required[2]: ok,profileId
+  additionalProperties: false
 "wallets-privy-checkFunds":
   type: object
   properties:
@@ -29,10 +32,13 @@
     sponsorshipEligible:
       type: boolean
   required[2]: balance,sponsorshipEligible
+  additionalProperties: false
 "wallets-privy-addReview":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     review:
       type: object
       properties:
@@ -63,14 +69,19 @@
             service:
               type: string
           required[2]: account,service
+          additionalProperties: false
       required[9]: id,authorProfileId,author,subject,score,comment,metadata,createdAt,archived
+      additionalProperties: false
     reviewSlug:
       type: string
   required[1]: hash
+  additionalProperties: false
 "wallets-privy-addReviewByAddress":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     review:
       type: object
       properties:
@@ -101,14 +112,19 @@
             service:
               type: string
           required[2]: account,service
+          additionalProperties: false
       required[9]: id,authorProfileId,author,subject,score,comment,metadata,createdAt,archived
+      additionalProperties: false
     reviewSlug:
       type: string
   required[1]: hash
+  additionalProperties: false
 "wallets-privy-addReviewByX":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     review:
       type: object
       properties:
@@ -139,14 +155,19 @@
             service:
               type: string
           required[2]: account,service
+          additionalProperties: false
       required[9]: id,authorProfileId,author,subject,score,comment,metadata,createdAt,archived
+      additionalProperties: false
     reviewSlug:
       type: string
   required[1]: hash
+  additionalProperties: false
 "wallets-privy-editReview":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     review:
       type: object
       properties:
@@ -177,54 +198,81 @@
             service:
               type: string
           required[2]: account,service
+          additionalProperties: false
       required[9]: id,authorProfileId,author,subject,score,comment,metadata,createdAt,archived
+      additionalProperties: false
     reviewSlug:
       type: string
   required[1]: hash
+  additionalProperties: false
 "wallets-privy-vote":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     vote:
+      type: object
   required[1]: hash
+  additionalProperties: false
 "wallets-privy-reply":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     reply:
+      type: object
   required[1]: hash
+  additionalProperties: false
 "wallets-privy-archiveReview":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     review:
+      type: object
   required[1]: hash
+  additionalProperties: false
 "wallets-privy-inviteAddress":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     processed:
       type: boolean
       description: Whether the invitation transaction has been received & processed by Ethos.
   required[2]: hash,processed
+  additionalProperties: false
 "wallets-privy-cancelInvite":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     processed:
       type: boolean
       description: Whether the uninvite transaction has been received & processed by Ethos.
   required[2]: hash,processed
+  additionalProperties: false
 "wallets-privy-archiveBond":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
   required[1]: hash
+  additionalProperties: false
 "wallets-privy-createBond":
   type: object
   properties:
     hash:
+      type: string
+      description: 0x-prefixed 32-byte transaction hash (keccak256)
     processed:
       type: boolean
       description: Whether the bond transaction has been received & processed by Ethos.
   required[2]: hash,processed
+  additionalProperties: false

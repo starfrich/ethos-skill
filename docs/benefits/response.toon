@@ -11,7 +11,7 @@
                 type: number
               type:
                 type: string
-                enum[1]: LIMITED_TIME_CODE
+                const: LIMITED_TIME_CODE
               shortDescription:
                 type: string
                 maxLength: 256
@@ -37,19 +37,22 @@
                   id:
                     type: number
                   profileId:
-                    type: number
-                    nullable: true
+                    anyOf[2]{type}:
+                      number
+                      "null"
                   displayName:
                     type: string
                   username:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   avatarUrl:
                     type: string
                     format: uri
                   description:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   score:
                     type: number
                   status:
@@ -70,13 +73,10 @@
                   influenceFactorPercentile:
                     type: number
                   humanVerificationStatus:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
-                  mommyPawnshopBingo:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                    anyOf[2]:
+                      - type: string
+                        enum[3]: REQUESTED,VERIFIED,REVOKED
+                      - type: "null"
                   validatorNftCount:
                     type: number
                   links:
@@ -89,6 +89,7 @@
                         type: string
                         format: uri
                     required[2]: profile,scoreBreakdown
+                    additionalProperties: false
                   stats:
                     type: object
                     properties:
@@ -105,7 +106,9 @@
                               positive:
                                 type: number
                             required[3]: negative,neutral,positive
+                            additionalProperties: false
                         required[1]: received
+                        additionalProperties: false
                       vouch:
                         type: object
                         properties:
@@ -118,6 +121,7 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                           received:
                             type: object
                             properties:
@@ -127,9 +131,13 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                         required[2]: given,received
+                        additionalProperties: false
                     required[2]: review,vouch
+                    additionalProperties: false
                 required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+                additionalProperties: false
               isLocked:
                 type: boolean
               createdAt:
@@ -141,21 +149,23 @@
                 properties:
                   scoreThreshold:
                     type: integer
-                    minimum: 0
-                    exclusiveMinimum: true
+                    exclusiveMinimum: 0
+                    maximum: 9007199254740991
                 required[1]: scoreThreshold
+                additionalProperties: false
               startDate:
                 type: string
               expirationDate:
                 type: string
             required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+            additionalProperties: false
           - type: object
             properties:
               id:
                 type: number
               type:
                 type: string
-                enum[1]: LIMITED_TIME_PERK
+                const: LIMITED_TIME_PERK
               shortDescription:
                 type: string
                 maxLength: 256
@@ -181,19 +191,22 @@
                   id:
                     type: number
                   profileId:
-                    type: number
-                    nullable: true
+                    anyOf[2]{type}:
+                      number
+                      "null"
                   displayName:
                     type: string
                   username:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   avatarUrl:
                     type: string
                     format: uri
                   description:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   score:
                     type: number
                   status:
@@ -214,13 +227,10 @@
                   influenceFactorPercentile:
                     type: number
                   humanVerificationStatus:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
-                  mommyPawnshopBingo:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                    anyOf[2]:
+                      - type: string
+                        enum[3]: REQUESTED,VERIFIED,REVOKED
+                      - type: "null"
                   validatorNftCount:
                     type: number
                   links:
@@ -233,6 +243,7 @@
                         type: string
                         format: uri
                     required[2]: profile,scoreBreakdown
+                    additionalProperties: false
                   stats:
                     type: object
                     properties:
@@ -249,7 +260,9 @@
                               positive:
                                 type: number
                             required[3]: negative,neutral,positive
+                            additionalProperties: false
                         required[1]: received
+                        additionalProperties: false
                       vouch:
                         type: object
                         properties:
@@ -262,6 +275,7 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                           received:
                             type: object
                             properties:
@@ -271,9 +285,13 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                         required[2]: given,received
+                        additionalProperties: false
                     required[2]: review,vouch
+                    additionalProperties: false
                 required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+                additionalProperties: false
               isLocked:
                 type: boolean
               createdAt:
@@ -283,12 +301,21 @@
               qualifications:
                 type: object
                 properties:
-                  scoreThreshold:
-                    type: integer
-                    minimum: 0
-                    exclusiveMinimum: true
+                  isHumanVerifiedEligible:
+                    anyOf[2]{type}:
+                      boolean
+                      "null"
                   isValidatorEligible:
-                    type: boolean
+                    anyOf[2]{type}:
+                      boolean
+                      "null"
+                  scoreThreshold:
+                    anyOf[2]:
+                      - type: integer
+                        exclusiveMinimum: 0
+                        maximum: 9007199254740991
+                      - type: "null"
+                additionalProperties: false
               primaryLinkLabel:
                 type: string
               primaryLinkUrl:
@@ -298,6 +325,8 @@
               expirationDate:
                 type: string
             required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
+            additionalProperties: false
+        type: object
     total:
       type: number
     limit:
@@ -305,6 +334,7 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false
 "benefits-listScoreBasedBenefits":
   type: object
   properties:
@@ -317,7 +347,7 @@
             type: number
           type:
             type: string
-            enum[1]: SCORE_BASED
+            const: SCORE_BASED
           shortDescription:
             type: string
             maxLength: 256
@@ -343,19 +373,22 @@
               id:
                 type: number
               profileId:
-                type: number
-                nullable: true
+                anyOf[2]{type}:
+                  number
+                  "null"
               displayName:
                 type: string
               username:
-                type: string
-                nullable: true
+                anyOf[2]{type}:
+                  string
+                  "null"
               avatarUrl:
                 type: string
                 format: uri
               description:
-                type: string
-                nullable: true
+                anyOf[2]{type}:
+                  string
+                  "null"
               score:
                 type: number
               status:
@@ -376,13 +409,10 @@
               influenceFactorPercentile:
                 type: number
               humanVerificationStatus:
-                type: string
-                nullable: true
-                enum[4]: REQUESTED,VERIFIED,REVOKED,null
-              mommyPawnshopBingo:
-                type: string
-                nullable: true
-                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                anyOf[2]:
+                  - type: string
+                    enum[3]: REQUESTED,VERIFIED,REVOKED
+                  - type: "null"
               validatorNftCount:
                 type: number
               links:
@@ -395,6 +425,7 @@
                     type: string
                     format: uri
                 required[2]: profile,scoreBreakdown
+                additionalProperties: false
               stats:
                 type: object
                 properties:
@@ -411,7 +442,9 @@
                           positive:
                             type: number
                         required[3]: negative,neutral,positive
+                        additionalProperties: false
                     required[1]: received
+                    additionalProperties: false
                   vouch:
                     type: object
                     properties:
@@ -424,6 +457,7 @@
                           count:
                             type: number
                         required[2]: amountWeiTotal,count
+                        additionalProperties: false
                       received:
                         type: object
                         properties:
@@ -433,9 +467,13 @@
                           count:
                             type: number
                         required[2]: amountWeiTotal,count
+                        additionalProperties: false
                     required[2]: given,received
+                    additionalProperties: false
                 required[2]: review,vouch
+                additionalProperties: false
             required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+            additionalProperties: false
           isLocked:
             type: boolean
           createdAt:
@@ -449,13 +487,14 @@
               properties:
                 scoreThreshold:
                   type: integer
-                  minimum: 0
-                  exclusiveMinimum: true
+                  exclusiveMinimum: 0
+                  maximum: 9007199254740991
                 label:
                   type: string
                   minLength: 1
                   maxLength: 100
               required[2]: scoreThreshold,label
+              additionalProperties: false
           primaryLinkLabel:
             type: string
           primaryLinkUrl:
@@ -480,7 +519,9 @@
               updatedAt:
                 type: string
             required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
+            additionalProperties: false
         required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
+        additionalProperties: false
     total:
       type: number
     limit:
@@ -488,6 +529,7 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false
 "benefits-listAllBenefits":
   type: object
   properties:
@@ -501,7 +543,7 @@
                 type: number
               type:
                 type: string
-                enum[1]: LIMITED_TIME_CODE
+                const: LIMITED_TIME_CODE
               shortDescription:
                 type: string
                 maxLength: 256
@@ -527,19 +569,22 @@
                   id:
                     type: number
                   profileId:
-                    type: number
-                    nullable: true
+                    anyOf[2]{type}:
+                      number
+                      "null"
                   displayName:
                     type: string
                   username:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   avatarUrl:
                     type: string
                     format: uri
                   description:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   score:
                     type: number
                   status:
@@ -560,13 +605,10 @@
                   influenceFactorPercentile:
                     type: number
                   humanVerificationStatus:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
-                  mommyPawnshopBingo:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                    anyOf[2]:
+                      - type: string
+                        enum[3]: REQUESTED,VERIFIED,REVOKED
+                      - type: "null"
                   validatorNftCount:
                     type: number
                   links:
@@ -579,6 +621,7 @@
                         type: string
                         format: uri
                     required[2]: profile,scoreBreakdown
+                    additionalProperties: false
                   stats:
                     type: object
                     properties:
@@ -595,7 +638,9 @@
                               positive:
                                 type: number
                             required[3]: negative,neutral,positive
+                            additionalProperties: false
                         required[1]: received
+                        additionalProperties: false
                       vouch:
                         type: object
                         properties:
@@ -608,6 +653,7 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                           received:
                             type: object
                             properties:
@@ -617,9 +663,13 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                         required[2]: given,received
+                        additionalProperties: false
                     required[2]: review,vouch
+                    additionalProperties: false
                 required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+                additionalProperties: false
               isLocked:
                 type: boolean
               createdAt:
@@ -631,21 +681,23 @@
                 properties:
                   scoreThreshold:
                     type: integer
-                    minimum: 0
-                    exclusiveMinimum: true
+                    exclusiveMinimum: 0
+                    maximum: 9007199254740991
                 required[1]: scoreThreshold
+                additionalProperties: false
               startDate:
                 type: string
               expirationDate:
                 type: string
             required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+            additionalProperties: false
           - type: object
             properties:
               id:
                 type: number
               type:
                 type: string
-                enum[1]: LIMITED_TIME_PERK
+                const: LIMITED_TIME_PERK
               shortDescription:
                 type: string
                 maxLength: 256
@@ -671,19 +723,22 @@
                   id:
                     type: number
                   profileId:
-                    type: number
-                    nullable: true
+                    anyOf[2]{type}:
+                      number
+                      "null"
                   displayName:
                     type: string
                   username:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   avatarUrl:
                     type: string
                     format: uri
                   description:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   score:
                     type: number
                   status:
@@ -704,13 +759,10 @@
                   influenceFactorPercentile:
                     type: number
                   humanVerificationStatus:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
-                  mommyPawnshopBingo:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                    anyOf[2]:
+                      - type: string
+                        enum[3]: REQUESTED,VERIFIED,REVOKED
+                      - type: "null"
                   validatorNftCount:
                     type: number
                   links:
@@ -723,6 +775,7 @@
                         type: string
                         format: uri
                     required[2]: profile,scoreBreakdown
+                    additionalProperties: false
                   stats:
                     type: object
                     properties:
@@ -739,7 +792,9 @@
                               positive:
                                 type: number
                             required[3]: negative,neutral,positive
+                            additionalProperties: false
                         required[1]: received
+                        additionalProperties: false
                       vouch:
                         type: object
                         properties:
@@ -752,6 +807,7 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                           received:
                             type: object
                             properties:
@@ -761,9 +817,13 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                         required[2]: given,received
+                        additionalProperties: false
                     required[2]: review,vouch
+                    additionalProperties: false
                 required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+                additionalProperties: false
               isLocked:
                 type: boolean
               createdAt:
@@ -773,12 +833,21 @@
               qualifications:
                 type: object
                 properties:
-                  scoreThreshold:
-                    type: integer
-                    minimum: 0
-                    exclusiveMinimum: true
+                  isHumanVerifiedEligible:
+                    anyOf[2]{type}:
+                      boolean
+                      "null"
                   isValidatorEligible:
-                    type: boolean
+                    anyOf[2]{type}:
+                      boolean
+                      "null"
+                  scoreThreshold:
+                    anyOf[2]:
+                      - type: integer
+                        exclusiveMinimum: 0
+                        maximum: 9007199254740991
+                      - type: "null"
+                additionalProperties: false
               primaryLinkLabel:
                 type: string
               primaryLinkUrl:
@@ -788,13 +857,14 @@
               expirationDate:
                 type: string
             required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
+            additionalProperties: false
           - type: object
             properties:
               id:
                 type: number
               type:
                 type: string
-                enum[1]: SCORE_BASED
+                const: SCORE_BASED
               shortDescription:
                 type: string
                 maxLength: 256
@@ -820,19 +890,22 @@
                   id:
                     type: number
                   profileId:
-                    type: number
-                    nullable: true
+                    anyOf[2]{type}:
+                      number
+                      "null"
                   displayName:
                     type: string
                   username:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   avatarUrl:
                     type: string
                     format: uri
                   description:
-                    type: string
-                    nullable: true
+                    anyOf[2]{type}:
+                      string
+                      "null"
                   score:
                     type: number
                   status:
@@ -853,13 +926,10 @@
                   influenceFactorPercentile:
                     type: number
                   humanVerificationStatus:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
-                  mommyPawnshopBingo:
-                    type: string
-                    nullable: true
-                    enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                    anyOf[2]:
+                      - type: string
+                        enum[3]: REQUESTED,VERIFIED,REVOKED
+                      - type: "null"
                   validatorNftCount:
                     type: number
                   links:
@@ -872,6 +942,7 @@
                         type: string
                         format: uri
                     required[2]: profile,scoreBreakdown
+                    additionalProperties: false
                   stats:
                     type: object
                     properties:
@@ -888,7 +959,9 @@
                               positive:
                                 type: number
                             required[3]: negative,neutral,positive
+                            additionalProperties: false
                         required[1]: received
+                        additionalProperties: false
                       vouch:
                         type: object
                         properties:
@@ -901,6 +974,7 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                           received:
                             type: object
                             properties:
@@ -910,9 +984,13 @@
                               count:
                                 type: number
                             required[2]: amountWeiTotal,count
+                            additionalProperties: false
                         required[2]: given,received
+                        additionalProperties: false
                     required[2]: review,vouch
+                    additionalProperties: false
                 required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+                additionalProperties: false
               isLocked:
                 type: boolean
               createdAt:
@@ -926,13 +1004,14 @@
                   properties:
                     scoreThreshold:
                       type: integer
-                      minimum: 0
-                      exclusiveMinimum: true
+                      exclusiveMinimum: 0
+                      maximum: 9007199254740991
                     label:
                       type: string
                       minLength: 1
                       maxLength: 100
                   required[2]: scoreThreshold,label
+                  additionalProperties: false
               primaryLinkLabel:
                 type: string
               primaryLinkUrl:
@@ -957,7 +1036,10 @@
                   updatedAt:
                     type: string
                 required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
+                additionalProperties: false
             required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
+            additionalProperties: false
+        type: object
     total:
       type: number
     limit:
@@ -965,6 +1047,7 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false
 "benefits-getCategories":
   type: array
   items:
@@ -985,6 +1068,7 @@
       updatedAt:
         type: string
     required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
+    additionalProperties: false
 "benefits-createCategory":
   type: object
   properties:
@@ -1003,6 +1087,7 @@
     updatedAt:
       type: string
   required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
+  additionalProperties: false
 "benefits-updateCategory":
   type: object
   properties:
@@ -1021,6 +1106,7 @@
     updatedAt:
       type: string
   required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
+  additionalProperties: false
 "benefits-deleteCategory":
   type: object
   properties:
@@ -1039,6 +1125,7 @@
     updatedAt:
       type: string
   required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
+  additionalProperties: false
 "benefits-createBenefit":
   oneOf[3]:
     - type: object
@@ -1047,7 +1134,7 @@
           type: number
         type:
           type: string
-          enum[1]: LIMITED_TIME_CODE
+          const: LIMITED_TIME_CODE
         shortDescription:
           type: string
           maxLength: 256
@@ -1073,19 +1160,22 @@
             id:
               type: number
             profileId:
-              type: number
-              nullable: true
+              anyOf[2]{type}:
+                number
+                "null"
             displayName:
               type: string
             username:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             avatarUrl:
               type: string
               format: uri
             description:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             score:
               type: number
             status:
@@ -1106,13 +1196,10 @@
             influenceFactorPercentile:
               type: number
             humanVerificationStatus:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
-            mommyPawnshopBingo:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              anyOf[2]:
+                - type: string
+                  enum[3]: REQUESTED,VERIFIED,REVOKED
+                - type: "null"
             validatorNftCount:
               type: number
             links:
@@ -1125,6 +1212,7 @@
                   type: string
                   format: uri
               required[2]: profile,scoreBreakdown
+              additionalProperties: false
             stats:
               type: object
               properties:
@@ -1141,7 +1229,9 @@
                         positive:
                           type: number
                       required[3]: negative,neutral,positive
+                      additionalProperties: false
                   required[1]: received
+                  additionalProperties: false
                 vouch:
                   type: object
                   properties:
@@ -1154,6 +1244,7 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                     received:
                       type: object
                       properties:
@@ -1163,9 +1254,13 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                   required[2]: given,received
+                  additionalProperties: false
               required[2]: review,vouch
+              additionalProperties: false
           required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          additionalProperties: false
         isLocked:
           type: boolean
         createdAt:
@@ -1177,21 +1272,23 @@
           properties:
             scoreThreshold:
               type: integer
-              minimum: 0
-              exclusiveMinimum: true
+              exclusiveMinimum: 0
+              maximum: 9007199254740991
           required[1]: scoreThreshold
+          additionalProperties: false
         startDate:
           type: string
         expirationDate:
           type: string
       required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+      additionalProperties: false
     - type: object
       properties:
         id:
           type: number
         type:
           type: string
-          enum[1]: LIMITED_TIME_PERK
+          const: LIMITED_TIME_PERK
         shortDescription:
           type: string
           maxLength: 256
@@ -1217,19 +1314,22 @@
             id:
               type: number
             profileId:
-              type: number
-              nullable: true
+              anyOf[2]{type}:
+                number
+                "null"
             displayName:
               type: string
             username:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             avatarUrl:
               type: string
               format: uri
             description:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             score:
               type: number
             status:
@@ -1250,13 +1350,10 @@
             influenceFactorPercentile:
               type: number
             humanVerificationStatus:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
-            mommyPawnshopBingo:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              anyOf[2]:
+                - type: string
+                  enum[3]: REQUESTED,VERIFIED,REVOKED
+                - type: "null"
             validatorNftCount:
               type: number
             links:
@@ -1269,6 +1366,7 @@
                   type: string
                   format: uri
               required[2]: profile,scoreBreakdown
+              additionalProperties: false
             stats:
               type: object
               properties:
@@ -1285,7 +1383,9 @@
                         positive:
                           type: number
                       required[3]: negative,neutral,positive
+                      additionalProperties: false
                   required[1]: received
+                  additionalProperties: false
                 vouch:
                   type: object
                   properties:
@@ -1298,6 +1398,7 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                     received:
                       type: object
                       properties:
@@ -1307,9 +1408,13 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                   required[2]: given,received
+                  additionalProperties: false
               required[2]: review,vouch
+              additionalProperties: false
           required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          additionalProperties: false
         isLocked:
           type: boolean
         createdAt:
@@ -1319,12 +1424,21 @@
         qualifications:
           type: object
           properties:
-            scoreThreshold:
-              type: integer
-              minimum: 0
-              exclusiveMinimum: true
+            isHumanVerifiedEligible:
+              anyOf[2]{type}:
+                boolean
+                "null"
             isValidatorEligible:
-              type: boolean
+              anyOf[2]{type}:
+                boolean
+                "null"
+            scoreThreshold:
+              anyOf[2]:
+                - type: integer
+                  exclusiveMinimum: 0
+                  maximum: 9007199254740991
+                - type: "null"
+          additionalProperties: false
         primaryLinkLabel:
           type: string
         primaryLinkUrl:
@@ -1334,13 +1448,14 @@
         expirationDate:
           type: string
       required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
+      additionalProperties: false
     - type: object
       properties:
         id:
           type: number
         type:
           type: string
-          enum[1]: SCORE_BASED
+          const: SCORE_BASED
         shortDescription:
           type: string
           maxLength: 256
@@ -1366,19 +1481,22 @@
             id:
               type: number
             profileId:
-              type: number
-              nullable: true
+              anyOf[2]{type}:
+                number
+                "null"
             displayName:
               type: string
             username:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             avatarUrl:
               type: string
               format: uri
             description:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             score:
               type: number
             status:
@@ -1399,13 +1517,10 @@
             influenceFactorPercentile:
               type: number
             humanVerificationStatus:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
-            mommyPawnshopBingo:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              anyOf[2]:
+                - type: string
+                  enum[3]: REQUESTED,VERIFIED,REVOKED
+                - type: "null"
             validatorNftCount:
               type: number
             links:
@@ -1418,6 +1533,7 @@
                   type: string
                   format: uri
               required[2]: profile,scoreBreakdown
+              additionalProperties: false
             stats:
               type: object
               properties:
@@ -1434,7 +1550,9 @@
                         positive:
                           type: number
                       required[3]: negative,neutral,positive
+                      additionalProperties: false
                   required[1]: received
+                  additionalProperties: false
                 vouch:
                   type: object
                   properties:
@@ -1447,6 +1565,7 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                     received:
                       type: object
                       properties:
@@ -1456,9 +1575,13 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                   required[2]: given,received
+                  additionalProperties: false
               required[2]: review,vouch
+              additionalProperties: false
           required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          additionalProperties: false
         isLocked:
           type: boolean
         createdAt:
@@ -1472,13 +1595,14 @@
             properties:
               scoreThreshold:
                 type: integer
-                minimum: 0
-                exclusiveMinimum: true
+                exclusiveMinimum: 0
+                maximum: 9007199254740991
               label:
                 type: string
                 minLength: 1
                 maxLength: 100
             required[2]: scoreThreshold,label
+            additionalProperties: false
         primaryLinkLabel:
           type: string
         primaryLinkUrl:
@@ -1503,7 +1627,10 @@
             updatedAt:
               type: string
           required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
+          additionalProperties: false
       required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
+      additionalProperties: false
+  type: object
 "benefits-updateBenefit":
   oneOf[3]:
     - type: object
@@ -1512,7 +1639,7 @@
           type: number
         type:
           type: string
-          enum[1]: LIMITED_TIME_CODE
+          const: LIMITED_TIME_CODE
         shortDescription:
           type: string
           maxLength: 256
@@ -1538,19 +1665,22 @@
             id:
               type: number
             profileId:
-              type: number
-              nullable: true
+              anyOf[2]{type}:
+                number
+                "null"
             displayName:
               type: string
             username:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             avatarUrl:
               type: string
               format: uri
             description:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             score:
               type: number
             status:
@@ -1571,13 +1701,10 @@
             influenceFactorPercentile:
               type: number
             humanVerificationStatus:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
-            mommyPawnshopBingo:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              anyOf[2]:
+                - type: string
+                  enum[3]: REQUESTED,VERIFIED,REVOKED
+                - type: "null"
             validatorNftCount:
               type: number
             links:
@@ -1590,6 +1717,7 @@
                   type: string
                   format: uri
               required[2]: profile,scoreBreakdown
+              additionalProperties: false
             stats:
               type: object
               properties:
@@ -1606,7 +1734,9 @@
                         positive:
                           type: number
                       required[3]: negative,neutral,positive
+                      additionalProperties: false
                   required[1]: received
+                  additionalProperties: false
                 vouch:
                   type: object
                   properties:
@@ -1619,6 +1749,7 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                     received:
                       type: object
                       properties:
@@ -1628,9 +1759,13 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                   required[2]: given,received
+                  additionalProperties: false
               required[2]: review,vouch
+              additionalProperties: false
           required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          additionalProperties: false
         isLocked:
           type: boolean
         createdAt:
@@ -1642,21 +1777,23 @@
           properties:
             scoreThreshold:
               type: integer
-              minimum: 0
-              exclusiveMinimum: true
+              exclusiveMinimum: 0
+              maximum: 9007199254740991
           required[1]: scoreThreshold
+          additionalProperties: false
         startDate:
           type: string
         expirationDate:
           type: string
       required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+      additionalProperties: false
     - type: object
       properties:
         id:
           type: number
         type:
           type: string
-          enum[1]: LIMITED_TIME_PERK
+          const: LIMITED_TIME_PERK
         shortDescription:
           type: string
           maxLength: 256
@@ -1682,19 +1819,22 @@
             id:
               type: number
             profileId:
-              type: number
-              nullable: true
+              anyOf[2]{type}:
+                number
+                "null"
             displayName:
               type: string
             username:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             avatarUrl:
               type: string
               format: uri
             description:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             score:
               type: number
             status:
@@ -1715,13 +1855,10 @@
             influenceFactorPercentile:
               type: number
             humanVerificationStatus:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
-            mommyPawnshopBingo:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              anyOf[2]:
+                - type: string
+                  enum[3]: REQUESTED,VERIFIED,REVOKED
+                - type: "null"
             validatorNftCount:
               type: number
             links:
@@ -1734,6 +1871,7 @@
                   type: string
                   format: uri
               required[2]: profile,scoreBreakdown
+              additionalProperties: false
             stats:
               type: object
               properties:
@@ -1750,7 +1888,9 @@
                         positive:
                           type: number
                       required[3]: negative,neutral,positive
+                      additionalProperties: false
                   required[1]: received
+                  additionalProperties: false
                 vouch:
                   type: object
                   properties:
@@ -1763,6 +1903,7 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                     received:
                       type: object
                       properties:
@@ -1772,9 +1913,13 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                   required[2]: given,received
+                  additionalProperties: false
               required[2]: review,vouch
+              additionalProperties: false
           required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          additionalProperties: false
         isLocked:
           type: boolean
         createdAt:
@@ -1784,12 +1929,21 @@
         qualifications:
           type: object
           properties:
-            scoreThreshold:
-              type: integer
-              minimum: 0
-              exclusiveMinimum: true
+            isHumanVerifiedEligible:
+              anyOf[2]{type}:
+                boolean
+                "null"
             isValidatorEligible:
-              type: boolean
+              anyOf[2]{type}:
+                boolean
+                "null"
+            scoreThreshold:
+              anyOf[2]:
+                - type: integer
+                  exclusiveMinimum: 0
+                  maximum: 9007199254740991
+                - type: "null"
+          additionalProperties: false
         primaryLinkLabel:
           type: string
         primaryLinkUrl:
@@ -1799,13 +1953,14 @@
         expirationDate:
           type: string
       required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
+      additionalProperties: false
     - type: object
       properties:
         id:
           type: number
         type:
           type: string
-          enum[1]: SCORE_BASED
+          const: SCORE_BASED
         shortDescription:
           type: string
           maxLength: 256
@@ -1831,19 +1986,22 @@
             id:
               type: number
             profileId:
-              type: number
-              nullable: true
+              anyOf[2]{type}:
+                number
+                "null"
             displayName:
               type: string
             username:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             avatarUrl:
               type: string
               format: uri
             description:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             score:
               type: number
             status:
@@ -1864,13 +2022,10 @@
             influenceFactorPercentile:
               type: number
             humanVerificationStatus:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
-            mommyPawnshopBingo:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              anyOf[2]:
+                - type: string
+                  enum[3]: REQUESTED,VERIFIED,REVOKED
+                - type: "null"
             validatorNftCount:
               type: number
             links:
@@ -1883,6 +2038,7 @@
                   type: string
                   format: uri
               required[2]: profile,scoreBreakdown
+              additionalProperties: false
             stats:
               type: object
               properties:
@@ -1899,7 +2055,9 @@
                         positive:
                           type: number
                       required[3]: negative,neutral,positive
+                      additionalProperties: false
                   required[1]: received
+                  additionalProperties: false
                 vouch:
                   type: object
                   properties:
@@ -1912,6 +2070,7 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                     received:
                       type: object
                       properties:
@@ -1921,9 +2080,13 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                   required[2]: given,received
+                  additionalProperties: false
               required[2]: review,vouch
+              additionalProperties: false
           required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          additionalProperties: false
         isLocked:
           type: boolean
         createdAt:
@@ -1937,13 +2100,14 @@
             properties:
               scoreThreshold:
                 type: integer
-                minimum: 0
-                exclusiveMinimum: true
+                exclusiveMinimum: 0
+                maximum: 9007199254740991
               label:
                 type: string
                 minLength: 1
                 maxLength: 100
             required[2]: scoreThreshold,label
+            additionalProperties: false
         primaryLinkLabel:
           type: string
         primaryLinkUrl:
@@ -1968,7 +2132,10 @@
             updatedAt:
               type: string
           required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
+          additionalProperties: false
       required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
+      additionalProperties: false
+  type: object
 "benefits-deleteBenefit":
   oneOf[3]:
     - type: object
@@ -1977,7 +2144,7 @@
           type: number
         type:
           type: string
-          enum[1]: LIMITED_TIME_CODE
+          const: LIMITED_TIME_CODE
         shortDescription:
           type: string
           maxLength: 256
@@ -2003,19 +2170,22 @@
             id:
               type: number
             profileId:
-              type: number
-              nullable: true
+              anyOf[2]{type}:
+                number
+                "null"
             displayName:
               type: string
             username:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             avatarUrl:
               type: string
               format: uri
             description:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             score:
               type: number
             status:
@@ -2036,13 +2206,10 @@
             influenceFactorPercentile:
               type: number
             humanVerificationStatus:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
-            mommyPawnshopBingo:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              anyOf[2]:
+                - type: string
+                  enum[3]: REQUESTED,VERIFIED,REVOKED
+                - type: "null"
             validatorNftCount:
               type: number
             links:
@@ -2055,6 +2222,7 @@
                   type: string
                   format: uri
               required[2]: profile,scoreBreakdown
+              additionalProperties: false
             stats:
               type: object
               properties:
@@ -2071,7 +2239,9 @@
                         positive:
                           type: number
                       required[3]: negative,neutral,positive
+                      additionalProperties: false
                   required[1]: received
+                  additionalProperties: false
                 vouch:
                   type: object
                   properties:
@@ -2084,6 +2254,7 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                     received:
                       type: object
                       properties:
@@ -2093,9 +2264,13 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                   required[2]: given,received
+                  additionalProperties: false
               required[2]: review,vouch
+              additionalProperties: false
           required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          additionalProperties: false
         isLocked:
           type: boolean
         createdAt:
@@ -2107,21 +2282,23 @@
           properties:
             scoreThreshold:
               type: integer
-              minimum: 0
-              exclusiveMinimum: true
+              exclusiveMinimum: 0
+              maximum: 9007199254740991
           required[1]: scoreThreshold
+          additionalProperties: false
         startDate:
           type: string
         expirationDate:
           type: string
       required[11]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,startDate,expirationDate
+      additionalProperties: false
     - type: object
       properties:
         id:
           type: number
         type:
           type: string
-          enum[1]: LIMITED_TIME_PERK
+          const: LIMITED_TIME_PERK
         shortDescription:
           type: string
           maxLength: 256
@@ -2147,19 +2324,22 @@
             id:
               type: number
             profileId:
-              type: number
-              nullable: true
+              anyOf[2]{type}:
+                number
+                "null"
             displayName:
               type: string
             username:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             avatarUrl:
               type: string
               format: uri
             description:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             score:
               type: number
             status:
@@ -2180,13 +2360,10 @@
             influenceFactorPercentile:
               type: number
             humanVerificationStatus:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
-            mommyPawnshopBingo:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              anyOf[2]:
+                - type: string
+                  enum[3]: REQUESTED,VERIFIED,REVOKED
+                - type: "null"
             validatorNftCount:
               type: number
             links:
@@ -2199,6 +2376,7 @@
                   type: string
                   format: uri
               required[2]: profile,scoreBreakdown
+              additionalProperties: false
             stats:
               type: object
               properties:
@@ -2215,7 +2393,9 @@
                         positive:
                           type: number
                       required[3]: negative,neutral,positive
+                      additionalProperties: false
                   required[1]: received
+                  additionalProperties: false
                 vouch:
                   type: object
                   properties:
@@ -2228,6 +2408,7 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                     received:
                       type: object
                       properties:
@@ -2237,9 +2418,13 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                   required[2]: given,received
+                  additionalProperties: false
               required[2]: review,vouch
+              additionalProperties: false
           required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          additionalProperties: false
         isLocked:
           type: boolean
         createdAt:
@@ -2249,12 +2434,21 @@
         qualifications:
           type: object
           properties:
-            scoreThreshold:
-              type: integer
-              minimum: 0
-              exclusiveMinimum: true
+            isHumanVerifiedEligible:
+              anyOf[2]{type}:
+                boolean
+                "null"
             isValidatorEligible:
-              type: boolean
+              anyOf[2]{type}:
+                boolean
+                "null"
+            scoreThreshold:
+              anyOf[2]:
+                - type: integer
+                  exclusiveMinimum: 0
+                  maximum: 9007199254740991
+                - type: "null"
+          additionalProperties: false
         primaryLinkLabel:
           type: string
         primaryLinkUrl:
@@ -2264,13 +2458,14 @@
         expirationDate:
           type: string
       required[13]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,startDate,expirationDate
+      additionalProperties: false
     - type: object
       properties:
         id:
           type: number
         type:
           type: string
-          enum[1]: SCORE_BASED
+          const: SCORE_BASED
         shortDescription:
           type: string
           maxLength: 256
@@ -2296,19 +2491,22 @@
             id:
               type: number
             profileId:
-              type: number
-              nullable: true
+              anyOf[2]{type}:
+                number
+                "null"
             displayName:
               type: string
             username:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             avatarUrl:
               type: string
               format: uri
             description:
-              type: string
-              nullable: true
+              anyOf[2]{type}:
+                string
+                "null"
             score:
               type: number
             status:
@@ -2329,13 +2527,10 @@
             influenceFactorPercentile:
               type: number
             humanVerificationStatus:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
-            mommyPawnshopBingo:
-              type: string
-              nullable: true
-              enum[4]: REQUESTED,VERIFIED,REVOKED,null
+              anyOf[2]:
+                - type: string
+                  enum[3]: REQUESTED,VERIFIED,REVOKED
+                - type: "null"
             validatorNftCount:
               type: number
             links:
@@ -2348,6 +2543,7 @@
                   type: string
                   format: uri
               required[2]: profile,scoreBreakdown
+              additionalProperties: false
             stats:
               type: object
               properties:
@@ -2364,7 +2560,9 @@
                         positive:
                           type: number
                       required[3]: negative,neutral,positive
+                      additionalProperties: false
                   required[1]: received
+                  additionalProperties: false
                 vouch:
                   type: object
                   properties:
@@ -2377,6 +2575,7 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                     received:
                       type: object
                       properties:
@@ -2386,9 +2585,13 @@
                         count:
                           type: number
                       required[2]: amountWeiTotal,count
+                      additionalProperties: false
                   required[2]: given,received
+                  additionalProperties: false
               required[2]: review,vouch
+              additionalProperties: false
           required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+          additionalProperties: false
         isLocked:
           type: boolean
         createdAt:
@@ -2402,13 +2605,14 @@
             properties:
               scoreThreshold:
                 type: integer
-                minimum: 0
-                exclusiveMinimum: true
+                exclusiveMinimum: 0
+                maximum: 9007199254740991
               label:
                 type: string
                 minLength: 1
                 maxLength: 100
             required[2]: scoreThreshold,label
+            additionalProperties: false
         primaryLinkLabel:
           type: string
         primaryLinkUrl:
@@ -2433,7 +2637,10 @@
             updatedAt:
               type: string
           required[7]: id,name,displayName,sortOrder,isActive,createdAt,updatedAt
+          additionalProperties: false
       required[12]: id,type,shortDescription,longDescription,status,isLocked,createdAt,updatedAt,qualifications,primaryLinkLabel,primaryLinkUrl,categoryId
+      additionalProperties: false
+  type: object
 "benefits-getCodeInfo":
   type: object
   properties:
@@ -2446,18 +2653,22 @@
     availableCodes:
       type: number
     userClaimedCode:
-      type: string
-      nullable: true
+      anyOf[2]{type}:
+        string
+        "null"
   required[5]: hasAccessCodes,totalCodes,claimedCodes,availableCodes,userClaimedCode
+  additionalProperties: false
 "benefits-claimCode":
   type: object
   properties:
     code:
-      type: string
-      nullable: true
+      anyOf[2]{type}:
+        string
+        "null"
     alreadyClaimed:
       type: boolean
   required[2]: code,alreadyClaimed
+  additionalProperties: false
 "benefits-addBenefitCodes":
   type: object
   properties:
@@ -2466,6 +2677,7 @@
     duplicatesSkipped:
       type: number
   required[2]: added,duplicatesSkipped
+  additionalProperties: false
 "benefits-listBenefitCodes":
   type: object
   properties:
@@ -2479,17 +2691,21 @@
           code:
             type: string
           claimedByProfileId:
-            type: number
-            nullable: true
+            anyOf[2]{type}:
+              number
+              "null"
           claimedByUsername:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           claimedAt:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           createdAt:
             type: string
         required[6]: id,code,claimedByProfileId,claimedByUsername,claimedAt,createdAt
+        additionalProperties: false
     total:
       type: number
     limit:
@@ -2497,9 +2713,11 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false
 "benefits-deleteUnclaimedBenefitCodes":
   type: object
   properties:
     deleted:
       type: number
   required[1]: deleted
+  additionalProperties: false

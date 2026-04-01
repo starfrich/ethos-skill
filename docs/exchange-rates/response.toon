@@ -4,3 +4,4 @@
     price:
       type: number
   required[1]: price
+  additionalProperties: false

@@ -47,3 +47,19 @@ Update benefit.
 ### DELETE `/benefits/{benefitId}`
 
 Delete benefit.
+
+### GET `/benefits/{benefitId}/codes/info`
+
+Get code availability info: `hasAccessCodes`, `totalCodes`, `claimedCodes`, `availableCodes`, `userClaimedCode`.
+
+### POST `/benefits/{benefitId}/codes/claim` 🔒
+
+Claim an exclusive access code for the current user.
+
+### POST `/benefits/{benefitId}/codes` 🔒
+
+Add exclusive access codes to a benefit.
+
+### DELETE `/benefits/{benefitId}/codes/unclaimed` 🔒
+
+Delete all unclaimed codes for a benefit.

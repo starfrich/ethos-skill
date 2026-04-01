@@ -9,3 +9,7 @@ Get signature for registering an address for an Ethos profile.
 ## POST `/signatures/humanity-bond` 🔒
 
 Get signature for creating a human verification bond.
+
+## POST `/signatures/self-declared-humanity-bond` 🔒
+
+Get signature for a self-declared human bond. No request body needed. Limited to one per profile.

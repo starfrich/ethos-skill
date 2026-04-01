@@ -11,15 +11,15 @@
             properties:
               id:
                 type: integer
-                minimum: 0
-                exclusiveMinimum: true
+                exclusiveMinimum: 0
+                maximum: 9007199254740991
               senderProfileId:
                 type: integer
-                minimum: 0
-                exclusiveMinimum: true
+                exclusiveMinimum: 0
                 maximum: 2147483647
               recipientAddress:
                 type: string
+                description: "Ethereum address (0x-prefixed, 20 bytes)"
               status:
                 type: string
                 enum[3]: ACCEPTED,INVITED,ACCEPTED_OTHER_INVITATION
@@ -32,6 +32,7 @@
                     type: string
                     enum[3]: POSITIVE,NEGATIVE,NEUTRAL
                 required[2]: value,impact
+                additionalProperties: false
               senderScoreImpact:
                 type: object
                 properties:
@@ -41,113 +42,126 @@
                     type: string
                     enum[3]: POSITIVE,NEGATIVE,NEUTRAL
                 required[2]: value,impact
+                additionalProperties: false
               dateInvited:
                 type: string
               dateAccepted:
-                type: string
-                nullable: true
+                anyOf[2]{type}:
+                  string
+                  "null"
             required[8]: id,senderProfileId,recipientAddress,status,recipientScoreImpact,senderScoreImpact,dateInvited,dateAccepted
+            additionalProperties: false
           invitedUser:
-            type: object
-            nullable: true
-            properties:
-              id:
-                type: number
-              profileId:
-                type: number
-                nullable: true
-              displayName:
-                type: string
-              username:
-                type: string
-                nullable: true
-              avatarUrl:
-                type: string
-                format: uri
-              description:
-                type: string
-                nullable: true
-              score:
-                type: number
-              status:
-                type: string
-                enum[3]: ACTIVE,INACTIVE,MERGED
-              userkeys:
-                type: array
-                items:
-                  type: string
-              xpTotal:
-                type: number
-              xpStreakDays:
-                type: number
-              xpRemovedDueToAbuse:
-                type: boolean
-              influenceFactor:
-                type: number
-              influenceFactorPercentile:
-                type: number
-              humanVerificationStatus:
-                type: string
-                nullable: true
-                enum[4]: REQUESTED,VERIFIED,REVOKED,null
-              mommyPawnshopBingo:
-                type: string
-                nullable: true
-                enum[4]: REQUESTED,VERIFIED,REVOKED,null
-              validatorNftCount:
-                type: number
-              links:
-                type: object
+            anyOf[2]:
+              - type: object
                 properties:
-                  profile:
+                  id:
+                    type: number
+                  profileId:
+                    anyOf[2]{type}:
+                      number
+                      "null"
+                  displayName:
+                    type: string
+                  username:
+                    anyOf[2]{type}:
+                      string
+                      "null"
+                  avatarUrl:
                     type: string
                     format: uri
-                  scoreBreakdown:
+                  description:
+                    anyOf[2]{type}:
+                      string
+                      "null"
+                  score:
+                    type: number
+                  status:
                     type: string
-                    format: uri
-                required[2]: profile,scoreBreakdown
-              stats:
-                type: object
-                properties:
-                  review:
+                    enum[3]: ACTIVE,INACTIVE,MERGED
+                  userkeys:
+                    type: array
+                    items:
+                      type: string
+                  xpTotal:
+                    type: number
+                  xpStreakDays:
+                    type: number
+                  xpRemovedDueToAbuse:
+                    type: boolean
+                  influenceFactor:
+                    type: number
+                  influenceFactorPercentile:
+                    type: number
+                  humanVerificationStatus:
+                    anyOf[2]:
+                      - type: string
+                        enum[3]: REQUESTED,VERIFIED,REVOKED
+                      - type: "null"
+                  validatorNftCount:
+                    type: number
+                  links:
                     type: object
                     properties:
-                      received:
-                        type: object
-                        properties:
-                          negative:
-                            type: number
-                          neutral:
-                            type: number
-                          positive:
-                            type: number
-                        required[3]: negative,neutral,positive
-                    required[1]: received
-                  vouch:
+                      profile:
+                        type: string
+                        format: uri
+                      scoreBreakdown:
+                        type: string
+                        format: uri
+                    required[2]: profile,scoreBreakdown
+                    additionalProperties: false
+                  stats:
                     type: object
                     properties:
-                      given:
+                      review:
                         type: object
                         properties:
-                          amountWeiTotal:
-                            type: integer
-                            format: int64
-                          count:
-                            type: number
-                        required[2]: amountWeiTotal,count
-                      received:
+                          received:
+                            type: object
+                            properties:
+                              negative:
+                                type: number
+                              neutral:
+                                type: number
+                              positive:
+                                type: number
+                            required[3]: negative,neutral,positive
+                            additionalProperties: false
+                        required[1]: received
+                        additionalProperties: false
+                      vouch:
                         type: object
                         properties:
-                          amountWeiTotal:
-                            type: integer
-                            format: int64
-                          count:
-                            type: number
-                        required[2]: amountWeiTotal,count
-                    required[2]: given,received
-                required[2]: review,vouch
-            required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+                          given:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                            additionalProperties: false
+                          received:
+                            type: object
+                            properties:
+                              amountWeiTotal:
+                                type: integer
+                                format: int64
+                              count:
+                                type: number
+                            required[2]: amountWeiTotal,count
+                            additionalProperties: false
+                        required[2]: given,received
+                        additionalProperties: false
+                    required[2]: review,vouch
+                    additionalProperties: false
+                required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+                additionalProperties: false
+              - type: "null"
         required[2]: invitation,invitedUser
+        additionalProperties: false
     total:
       type: number
     limit:
@@ -155,24 +169,28 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false
 "invitations-check":
   anyOf[2]:
     - type: object
       properties:
         canInvite:
           type: boolean
-          enum[1]: true
+          const: true
         address:
           type: string
+          description: "Ethereum address (0x-prefixed, 20 bytes)"
       required[2]: canInvite,address
+      additionalProperties: false
     - type: object
       properties:
         canInvite:
           type: boolean
-          enum[1]: false
+          const: false
         error:
           type: string
       required[2]: canInvite,error
+      additionalProperties: false
 "invitations-pending":
   type: array
   items:
@@ -180,8 +198,7 @@
     properties:
       id:
         type: integer
-        minimum: 0
-        exclusiveMinimum: true
+        exclusiveMinimum: 0
         maximum: 2147483647
       impact:
         type: object
@@ -196,152 +213,30 @@
           adjustedRecipientScore:
             type: number
         required[4]: value,relativeValue,impact,adjustedRecipientScore
+        additionalProperties: false
       inviterUser:
-        type: object
-        nullable: true
-        properties:
-          id:
-            type: number
-          profileId:
-            type: number
-            nullable: true
-          displayName:
-            type: string
-          username:
-            type: string
-            nullable: true
-          avatarUrl:
-            type: string
-            format: uri
-          description:
-            type: string
-            nullable: true
-          score:
-            type: number
-          status:
-            type: string
-            enum[3]: ACTIVE,INACTIVE,MERGED
-          userkeys:
-            type: array
-            items:
-              type: string
-          xpTotal:
-            type: number
-          xpStreakDays:
-            type: number
-          xpRemovedDueToAbuse:
-            type: boolean
-          influenceFactor:
-            type: number
-          influenceFactorPercentile:
-            type: number
-          humanVerificationStatus:
-            type: string
-            nullable: true
-            enum[4]: REQUESTED,VERIFIED,REVOKED,null
-          mommyPawnshopBingo:
-            type: string
-            nullable: true
-            enum[4]: REQUESTED,VERIFIED,REVOKED,null
-          validatorNftCount:
-            type: number
-          links:
-            type: object
-            properties:
-              profile:
-                type: string
-                format: uri
-              scoreBreakdown:
-                type: string
-                format: uri
-            required[2]: profile,scoreBreakdown
-          stats:
-            type: object
-            properties:
-              review:
-                type: object
-                properties:
-                  received:
-                    type: object
-                    properties:
-                      negative:
-                        type: number
-                      neutral:
-                        type: number
-                      positive:
-                        type: number
-                    required[3]: negative,neutral,positive
-                required[1]: received
-              vouch:
-                type: object
-                properties:
-                  given:
-                    type: object
-                    properties:
-                      amountWeiTotal:
-                        type: integer
-                        format: int64
-                      count:
-                        type: number
-                    required[2]: amountWeiTotal,count
-                  received:
-                    type: object
-                    properties:
-                      amountWeiTotal:
-                        type: integer
-                        format: int64
-                      count:
-                        type: number
-                    required[2]: amountWeiTotal,count
-                required[2]: given,received
-            required[2]: review,vouch
-        required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
-    required[3]: id,impact,inviterUser
-"invitations-tree":
-  type: object
-  properties:
-    values:
-      type: array
-      items:
-        type: object
-        properties:
-          id:
-            type: integer
-            minimum: 0
-            exclusiveMinimum: true
-          senderProfileId:
-            type: integer
-            minimum: 0
-            exclusiveMinimum: true
-            maximum: 2147483647
-          acceptedProfileId:
-            type: integer
-            minimum: 0
-            exclusiveMinimum: true
-            maximum: 2147483647
-          level:
-            type: integer
-            minimum: 0
-            exclusiveMinimum: true
-          user:
-            type: object
+        anyOf[2]:
+          - type: object
             properties:
               id:
                 type: number
               profileId:
-                type: number
-                nullable: true
+                anyOf[2]{type}:
+                  number
+                  "null"
               displayName:
                 type: string
               username:
-                type: string
-                nullable: true
+                anyOf[2]{type}:
+                  string
+                  "null"
               avatarUrl:
                 type: string
                 format: uri
               description:
-                type: string
-                nullable: true
+                anyOf[2]{type}:
+                  string
+                  "null"
               score:
                 type: number
               status:
@@ -362,13 +257,10 @@
               influenceFactorPercentile:
                 type: number
               humanVerificationStatus:
-                type: string
-                nullable: true
-                enum[4]: REQUESTED,VERIFIED,REVOKED,null
-              mommyPawnshopBingo:
-                type: string
-                nullable: true
-                enum[4]: REQUESTED,VERIFIED,REVOKED,null
+                anyOf[2]:
+                  - type: string
+                    enum[3]: REQUESTED,VERIFIED,REVOKED
+                  - type: "null"
               validatorNftCount:
                 type: number
               links:
@@ -381,6 +273,7 @@
                     type: string
                     format: uri
                 required[2]: profile,scoreBreakdown
+                additionalProperties: false
               stats:
                 type: object
                 properties:
@@ -397,7 +290,9 @@
                           positive:
                             type: number
                         required[3]: negative,neutral,positive
+                        additionalProperties: false
                     required[1]: received
+                    additionalProperties: false
                   vouch:
                     type: object
                     properties:
@@ -410,6 +305,7 @@
                           count:
                             type: number
                         required[2]: amountWeiTotal,count
+                        additionalProperties: false
                       received:
                         type: object
                         properties:
@@ -419,10 +315,149 @@
                           count:
                             type: number
                         required[2]: amountWeiTotal,count
+                        additionalProperties: false
                     required[2]: given,received
+                    additionalProperties: false
                 required[2]: review,vouch
+                additionalProperties: false
             required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+            additionalProperties: false
+          - type: "null"
+    required[3]: id,impact,inviterUser
+    additionalProperties: false
+"invitations-tree":
+  type: object
+  properties:
+    values:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            exclusiveMinimum: 0
+            maximum: 9007199254740991
+          senderProfileId:
+            type: integer
+            exclusiveMinimum: 0
+            maximum: 2147483647
+          acceptedProfileId:
+            type: integer
+            exclusiveMinimum: 0
+            maximum: 2147483647
+          level:
+            type: integer
+            exclusiveMinimum: 0
+            maximum: 9007199254740991
+          user:
+            type: object
+            properties:
+              id:
+                type: number
+              profileId:
+                anyOf[2]{type}:
+                  number
+                  "null"
+              displayName:
+                type: string
+              username:
+                anyOf[2]{type}:
+                  string
+                  "null"
+              avatarUrl:
+                type: string
+                format: uri
+              description:
+                anyOf[2]{type}:
+                  string
+                  "null"
+              score:
+                type: number
+              status:
+                type: string
+                enum[3]: ACTIVE,INACTIVE,MERGED
+              userkeys:
+                type: array
+                items:
+                  type: string
+              xpTotal:
+                type: number
+              xpStreakDays:
+                type: number
+              xpRemovedDueToAbuse:
+                type: boolean
+              influenceFactor:
+                type: number
+              influenceFactorPercentile:
+                type: number
+              humanVerificationStatus:
+                anyOf[2]:
+                  - type: string
+                    enum[3]: REQUESTED,VERIFIED,REVOKED
+                  - type: "null"
+              validatorNftCount:
+                type: number
+              links:
+                type: object
+                properties:
+                  profile:
+                    type: string
+                    format: uri
+                  scoreBreakdown:
+                    type: string
+                    format: uri
+                required[2]: profile,scoreBreakdown
+                additionalProperties: false
+              stats:
+                type: object
+                properties:
+                  review:
+                    type: object
+                    properties:
+                      received:
+                        type: object
+                        properties:
+                          negative:
+                            type: number
+                          neutral:
+                            type: number
+                          positive:
+                            type: number
+                        required[3]: negative,neutral,positive
+                        additionalProperties: false
+                    required[1]: received
+                    additionalProperties: false
+                  vouch:
+                    type: object
+                    properties:
+                      given:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                        additionalProperties: false
+                      received:
+                        type: object
+                        properties:
+                          amountWeiTotal:
+                            type: integer
+                            format: int64
+                          count:
+                            type: number
+                        required[2]: amountWeiTotal,count
+                        additionalProperties: false
+                    required[2]: given,received
+                    additionalProperties: false
+                required[2]: review,vouch
+                additionalProperties: false
+            required[17]: id,profileId,displayName,username,avatarUrl,description,score,status,userkeys,xpTotal,xpStreakDays,xpRemovedDueToAbuse,influenceFactor,influenceFactorPercentile,validatorNftCount,links,stats
+            additionalProperties: false
         required[5]: id,senderProfileId,acceptedProfileId,level,user
+        additionalProperties: false
     total:
       type: number
     limit:
@@ -430,3 +465,4 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false

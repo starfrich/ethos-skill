@@ -1,56 +1,68 @@
 "auctions-getActiveAuction":
-  type: object
-  nullable: true
-  properties:
-    id:
-      type: number
-    creatorAddress:
-      type: string
-    nftContract:
-      type: string
-    nftTokenId:
-      type: number
-    tokenURI:
-      type: string
-      nullable: true
-    startPrice:
-      type: integer
-      format: int64
-    reservePrice:
-      type: integer
-      format: int64
-    duration:
-      type: number
-    paymentRecipient:
-      type: string
-    paymentToken:
-      type: string
-    startTime:
-      type: string
-    status:
-      type: string
-      enum[3]: DISABLED,ENABLED,SOLD
-    buyerAddress:
-      type: string
-      nullable: true
-    pricePaid:
-      type: integer
-      nullable: true
-      format: int64
-    soldTime:
-      type: string
-      nullable: true
-    createdAt:
-      type: string
-    updatedAt:
-      type: string
-    prevId:
-      type: number
-      nullable: true
-    nextId:
-      type: number
-      nullable: true
-  required[17]: id,creatorAddress,nftContract,nftTokenId,tokenURI,startPrice,reservePrice,duration,paymentRecipient,paymentToken,startTime,status,buyerAddress,pricePaid,soldTime,createdAt,updatedAt
+  anyOf[2]:
+    - type: object
+      properties:
+        id:
+          type: number
+        creatorAddress:
+          type: string
+          description: "Ethereum address (0x-prefixed, 20 bytes)"
+        nftContract:
+          type: string
+          description: "Ethereum address (0x-prefixed, 20 bytes)"
+        nftTokenId:
+          type: number
+        tokenURI:
+          anyOf[2]{type}:
+            string
+            "null"
+        startPrice:
+          type: integer
+          format: int64
+        reservePrice:
+          type: integer
+          format: int64
+        duration:
+          type: number
+        paymentRecipient:
+          type: string
+          description: "Ethereum address (0x-prefixed, 20 bytes)"
+        paymentToken:
+          type: string
+        startTime:
+          type: string
+        status:
+          type: string
+          enum[3]: DISABLED,ENABLED,SOLD
+        buyerAddress:
+          anyOf[2]:
+            - type: string
+              description: "Ethereum address (0x-prefixed, 20 bytes)"
+            - type: "null"
+        pricePaid:
+          anyOf[2]:
+            - type: integer
+              format: int64
+            - type: "null"
+        soldTime:
+          anyOf[2]{type}:
+            string
+            "null"
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        prevId:
+          anyOf[2]{type}:
+            number
+            "null"
+        nextId:
+          anyOf[2]{type}:
+            number
+            "null"
+      required[17]: id,creatorAddress,nftContract,nftTokenId,tokenURI,startPrice,reservePrice,duration,paymentRecipient,paymentToken,startTime,status,buyerAddress,pricePaid,soldTime,createdAt,updatedAt
+      additionalProperties: false
+    - type: "null"
 "auctions-getAuction":
   type: object
   properties:
@@ -58,13 +70,16 @@
       type: number
     creatorAddress:
       type: string
+      description: "Ethereum address (0x-prefixed, 20 bytes)"
     nftContract:
       type: string
+      description: "Ethereum address (0x-prefixed, 20 bytes)"
     nftTokenId:
       type: number
     tokenURI:
-      type: string
-      nullable: true
+      anyOf[2]{type}:
+        string
+        "null"
     startPrice:
       type: integer
       format: int64
@@ -75,6 +90,7 @@
       type: number
     paymentRecipient:
       type: string
+      description: "Ethereum address (0x-prefixed, 20 bytes)"
     paymentToken:
       type: string
     startTime:
@@ -83,26 +99,33 @@
       type: string
       enum[3]: DISABLED,ENABLED,SOLD
     buyerAddress:
-      type: string
-      nullable: true
+      anyOf[2]:
+        - type: string
+          description: "Ethereum address (0x-prefixed, 20 bytes)"
+        - type: "null"
     pricePaid:
-      type: integer
-      nullable: true
-      format: int64
+      anyOf[2]:
+        - type: integer
+          format: int64
+        - type: "null"
     soldTime:
-      type: string
-      nullable: true
+      anyOf[2]{type}:
+        string
+        "null"
     createdAt:
       type: string
     updatedAt:
       type: string
     prevId:
-      type: number
-      nullable: true
+      anyOf[2]{type}:
+        number
+        "null"
     nextId:
-      type: number
-      nullable: true
+      anyOf[2]{type}:
+        number
+        "null"
   required[17]: id,creatorAddress,nftContract,nftTokenId,tokenURI,startPrice,reservePrice,duration,paymentRecipient,paymentToken,startTime,status,buyerAddress,pricePaid,soldTime,createdAt,updatedAt
+  additionalProperties: false
 "auctions-listAuctions":
   type: object
   properties:
@@ -115,13 +138,16 @@
             type: number
           creatorAddress:
             type: string
+            description: "Ethereum address (0x-prefixed, 20 bytes)"
           nftContract:
             type: string
+            description: "Ethereum address (0x-prefixed, 20 bytes)"
           nftTokenId:
             type: number
           tokenURI:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           startPrice:
             type: integer
             format: int64
@@ -132,6 +158,7 @@
             type: number
           paymentRecipient:
             type: string
+            description: "Ethereum address (0x-prefixed, 20 bytes)"
           paymentToken:
             type: string
           startTime:
@@ -140,26 +167,33 @@
             type: string
             enum[3]: DISABLED,ENABLED,SOLD
           buyerAddress:
-            type: string
-            nullable: true
+            anyOf[2]:
+              - type: string
+                description: "Ethereum address (0x-prefixed, 20 bytes)"
+              - type: "null"
           pricePaid:
-            type: integer
-            nullable: true
-            format: int64
+            anyOf[2]:
+              - type: integer
+                format: int64
+              - type: "null"
           soldTime:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           createdAt:
             type: string
           updatedAt:
             type: string
           prevId:
-            type: number
-            nullable: true
+            anyOf[2]{type}:
+              number
+              "null"
           nextId:
-            type: number
-            nullable: true
+            anyOf[2]{type}:
+              number
+              "null"
         required[17]: id,creatorAddress,nftContract,nftTokenId,tokenURI,startPrice,reservePrice,duration,paymentRecipient,paymentToken,startTime,status,buyerAddress,pricePaid,soldTime,createdAt,updatedAt
+        additionalProperties: false
     total:
       type: number
     limit:
@@ -167,3 +201,4 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false

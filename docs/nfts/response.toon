@@ -8,37 +8,49 @@
       tokenId:
         type: string
       name:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       description:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       imageUrl:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       thumbnailUrl:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       animationUrl:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       animationMime:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       tokenUri:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       attributesJson:
-        nullable: true
+        anyOf[2]:
+          -
+          - type: "null"
       mintedAt:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       acquiredAt:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       lastActivityAt:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       createdAt:
         type: string
       updatedAt:
@@ -51,14 +63,18 @@
             ownerAddress:
               type: string
           required[1]: ownerAddress
+          additionalProperties: false
       collection:
         type: object
         properties:
           slug:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
         required[1]: slug
-    required[16]: contractAddress,tokenId,name,description,imageUrl,thumbnailUrl,animationUrl,animationMime,tokenUri,mintedAt,acquiredAt,lastActivityAt,createdAt,updatedAt,NftOwners,collection
+        additionalProperties: false
+    required[17]: contractAddress,tokenId,name,description,imageUrl,thumbnailUrl,animationUrl,animationMime,tokenUri,attributesJson,mintedAt,acquiredAt,lastActivityAt,createdAt,updatedAt,NftOwners,collection
+    additionalProperties: false
 "nft-getNftsForUser":
   type: object
   properties:
@@ -72,37 +88,49 @@
           tokenId:
             type: string
           name:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           description:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           imageUrl:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           thumbnailUrl:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           animationUrl:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           animationMime:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           tokenUri:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           attributesJson:
-            nullable: true
+            anyOf[2]:
+              -
+              - type: "null"
           mintedAt:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           acquiredAt:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           lastActivityAt:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           createdAt:
             type: string
           updatedAt:
@@ -115,14 +143,18 @@
                 ownerAddress:
                   type: string
               required[1]: ownerAddress
+              additionalProperties: false
           collection:
             type: object
             properties:
               slug:
-                type: string
-                nullable: true
+                anyOf[2]{type}:
+                  string
+                  "null"
             required[1]: slug
-        required[16]: contractAddress,tokenId,name,description,imageUrl,thumbnailUrl,animationUrl,animationMime,tokenUri,mintedAt,acquiredAt,lastActivityAt,createdAt,updatedAt,NftOwners,collection
+            additionalProperties: false
+        required[17]: contractAddress,tokenId,name,description,imageUrl,thumbnailUrl,animationUrl,animationMime,tokenUri,attributesJson,mintedAt,acquiredAt,lastActivityAt,createdAt,updatedAt,NftOwners,collection
+        additionalProperties: false
     total:
       type: number
     limit:
@@ -130,6 +162,7 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false
 "nft-trackNftCollection":
 "nft-getValidatorListings":
   type: object
@@ -144,11 +177,13 @@
           tokenId:
             type: string
           name:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           imageUrl:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           priceWei:
             type: string
           priceEth:
@@ -160,6 +195,7 @@
           openseaUrl:
             type: string
         required[9]: orderHash,tokenId,name,imageUrl,priceWei,priceEth,currency,seller,openseaUrl
+        additionalProperties: false
     total:
       type: number
     limit:
@@ -167,3 +203,4 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false

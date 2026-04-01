@@ -13,9 +13,11 @@
         type: string
       reason:
         type: string
-        enum[2]: vouch,review
+        enum[3]: vouch,review,verification
       slash:
-    required[5]: id,slashId,penaltyAmount,createdAt,reason
+        type: object
+    required[6]: id,slashId,penaltyAmount,createdAt,reason,slash
+    additionalProperties: false
 "slash-adminList":
   type: object
   properties:
@@ -25,59 +27,73 @@
         type: object
         properties:
           account:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           amount:
             type: string
           authorAvatar:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           authorName:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           authorProfileId:
             type: number
           cancelledAt:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           comment:
             type: string
           createdAt:
             type: string
           defendVotes:
-            type: number
-            nullable: true
+            anyOf[2]{type}:
+              number
+              "null"
           duration:
             type: number
           id:
             type: number
           outcome:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           processedAt:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           selectedImageUrl:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           service:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           slashType:
             type: string
           slashVotes:
-            type: number
-            nullable: true
+            anyOf[2]{type}:
+              number
+              "null"
           subjectAddress:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           subjectAvatar:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
           subjectName:
-            type: string
-            nullable: true
+            anyOf[2]{type}:
+              string
+              "null"
         required[20]: account,amount,authorAvatar,authorName,authorProfileId,cancelledAt,comment,createdAt,defendVotes,duration,id,outcome,processedAt,selectedImageUrl,service,slashType,slashVotes,subjectAddress,subjectAvatar,subjectName
+        additionalProperties: false
     total:
       type: number
     limit:
@@ -85,3 +101,4 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false

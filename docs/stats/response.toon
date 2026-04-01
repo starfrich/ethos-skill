@@ -14,6 +14,7 @@
           nonProfileCount:
             type: number
         required[3]: level,profileCount,nonProfileCount
+        additionalProperties: false
     totals:
       type: object
       properties:
@@ -24,4 +25,57 @@
         totalNonProfiles:
           type: number
       required[3]: totalUsers,totalProfiles,totalNonProfiles
+      additionalProperties: false
   required[2]: distribution,totals
+  additionalProperties: false
+"stats-humanVerification":
+  type: object
+  properties:
+    summary:
+      type: object
+      properties:
+        verifiedCount:
+          type: number
+        qualifiedValidatorCount:
+          type: number
+        pendingCount:
+          type: number
+      required[3]: verifiedCount,qualifiedValidatorCount,pendingCount
+      additionalProperties: false
+    progressDistribution:
+      type: array
+      items:
+        type: object
+        properties:
+          bonds:
+            type: number
+          userCount:
+            type: number
+        required[2]: bonds,userCount
+        additionalProperties: false
+    verifiedByScoreLevel:
+      type: array
+      items:
+        type: object
+        properties:
+          level:
+            type: string
+            enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
+          count:
+            type: number
+        required[2]: level,count
+        additionalProperties: false
+    methodBreakdown:
+      type: array
+      items:
+        type: object
+        properties:
+          method:
+            type: string
+            enum[3]: IRL,VOICE,VIDEO
+          count:
+            type: number
+        required[2]: method,count
+        additionalProperties: false
+  required[4]: summary,progressDistribution,verifiedByScoreLevel,methodBreakdown
+  additionalProperties: false

@@ -11,15 +11,19 @@
           name:
             type: string
           url:
-            type: string
-            nullable: true
-            format: uri
+            anyOf[2]:
+              - type: string
+                format: uri
+              - type: "null"
           iconUrl:
-            type: string
-            nullable: true
-            format: uri
+            anyOf[2]:
+              - type: string
+                format: uri
+              - type: "null"
         required[4]: id,name,url,iconUrl
+        additionalProperties: false
   required[1]: chains
+  additionalProperties: false
 "chains-add":
   type: object
   properties:
@@ -31,15 +35,19 @@
         name:
           type: string
         url:
-          type: string
-          nullable: true
-          format: uri
+          anyOf[2]:
+            - type: string
+              format: uri
+            - type: "null"
         iconUrl:
-          type: string
-          nullable: true
-          format: uri
+          anyOf[2]:
+            - type: string
+              format: uri
+            - type: "null"
       required[4]: id,name,url,iconUrl
+      additionalProperties: false
   required[1]: chain
+  additionalProperties: false
 "chains-edit":
   type: object
   properties:
@@ -51,15 +59,19 @@
         name:
           type: string
         url:
-          type: string
-          nullable: true
-          format: uri
+          anyOf[2]:
+            - type: string
+              format: uri
+            - type: "null"
         iconUrl:
-          type: string
-          nullable: true
-          format: uri
+          anyOf[2]:
+            - type: string
+              format: uri
+            - type: "null"
       required[4]: id,name,url,iconUrl
+      additionalProperties: false
   required[1]: chain
+  additionalProperties: false
 "chains-delete":
 "chains-baseGasPrice":
   type: object
@@ -73,3 +85,4 @@
     updatedAt:
       type: string
   required[3]: wei,level,updatedAt
+  additionalProperties: false

@@ -1,0 +1,46 @@
+"apiKeys-create":
+  type: object
+  properties:
+    expiresAt:
+      type: string
+      format: date-time
+      pattern: "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$"
+    id:
+      type: string
+    name:
+      type: string
+    token:
+      type: string
+  required[4]: expiresAt,id,name,token
+  additionalProperties: false
+"apiKeys-list":
+  type: array
+  items:
+    type: object
+    properties:
+      address:
+        type: string
+      createdAt:
+        type: string
+      expiresAt:
+        type: string
+      id:
+        type: string
+      lastUsedAt:
+        anyOf[2]{type}:
+          string
+          "null"
+      name:
+        type: string
+      profileId:
+        type: number
+    required[7]: address,createdAt,expiresAt,id,lastUsedAt,name,profileId
+    additionalProperties: false
+"apiKeys-revoke":
+  type: object
+  properties:
+    ok:
+      type: boolean
+      const: true
+  required[1]: ok
+  additionalProperties: false

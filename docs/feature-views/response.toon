@@ -4,10 +4,12 @@
     viewed:
       type: boolean
   required[1]: viewed
+  additionalProperties: false
 "featureViews-markAsViewed":
   type: object
   properties:
     ok:
       type: boolean
-      enum[1]: true
+      const: true
   required[1]: ok
+  additionalProperties: false

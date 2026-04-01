@@ -22,7 +22,7 @@ Create review for a Twitter account by ID or username.
 
 Edit an existing review via wallet.
 
-### POST `/wallets/privy/archive/review`
+### POST `/wallets/activity/review/{id}/archive` 🔒
 
 Archive a review via wallet.
 
@@ -32,7 +32,7 @@ Archive a review via wallet.
 
 ### POST `/wallets/activity/{activityType}/{id}/vote`
 
-Vote on activity. Types: `review|vouch|attestation|slash|broker-post|project|reputation-market|reply`
+Vote on activity. Types: `attestation|bond|broker-post|human-verification|invitation-accepted|market|market-vote|open-slash|closed-slash|project|reply|review|slash|unvouch|vouch|vote|xp-tip`
 
 ```json
 { "isUpvote": true }
@@ -50,11 +50,11 @@ Reply to activity.
 
 ## Invitations
 
-### POST `/wallets/privy/invite`
+### POST `/wallets/privy/invite/address` 🔒
 
-Invite an address.
+Invite an Ethereum address.
 
-### POST `/wallets/privy/cancel-invite`
+### POST `/wallets/privy/invite/cancel` 🔒
 
 Cancel a pending invite.
 
@@ -62,10 +62,10 @@ Cancel a pending invite.
 
 ## Bonds
 
-### POST `/wallets/privy/bond`
+### POST `/wallets/privy/bonds` 🔒
 
-Create a bond.
+Create a bond. Requires signature from `POST /signatures/humanity-bond` first.
 
-### POST `/wallets/privy/archive/bond`
+### POST `/wallets/activity/bond/{bondId}/archive` 🔒
 
 Archive a bond.

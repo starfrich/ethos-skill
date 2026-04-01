@@ -11,6 +11,7 @@
           lastUpdatedAt:
             type: string
         required[2]: userkey,lastUpdatedAt
+        additionalProperties: false
     total:
       type: number
     limit:
@@ -18,6 +19,7 @@
     offset:
       type: number
   required[4]: values,total,limit,offset
+  additionalProperties: false
 "score-byAddress":
   type: object
   properties:
@@ -29,8 +31,11 @@
       type: string
       enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
   required[1]: level
+  additionalProperties: false
 "score-bulkByAddresses":
   type: object
+  propertyNames:
+    type: string
   additionalProperties:
     type: object
     properties:
@@ -42,6 +47,7 @@
         type: string
         enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
     required[1]: level
+    additionalProperties: false
 "score-byUserId":
   type: object
   properties:
@@ -53,8 +59,11 @@
       type: string
       enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
   required[1]: level
+  additionalProperties: false
 "score-bulkByUserIds":
   type: object
+  propertyNames:
+    type: string
   additionalProperties:
     type: object
     properties:
@@ -66,6 +75,7 @@
         type: string
         enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
     required[1]: level
+    additionalProperties: false
 "score-byUserKey":
   type: object
   properties:
@@ -77,8 +87,11 @@
       type: string
       enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
   required[1]: level
+  additionalProperties: false
 "score-bulkByUserKeys":
   type: object
+  propertyNames:
+    type: string
   additionalProperties:
     type: object
     properties:
@@ -90,6 +103,7 @@
         type: string
         enum[10]: untrusted,questionable,neutral,known,established,reputable,exemplary,distinguished,revered,renowned
     required[1]: level
+    additionalProperties: false
 "score-status":
   type: object
   properties:
@@ -103,3 +117,15 @@
     isPending:
       type: boolean
   required[4]: status,isQueued,isCalculating,isPending
+  additionalProperties: false
+"score-history":
+  type: array
+  items:
+    type: object
+    properties:
+      date:
+        type: string
+      score:
+        type: number
+    required[2]: date,score
+    additionalProperties: false

@@ -44,3 +44,25 @@ Paginated replies for a parent activity.
 | `offset`         | integer | no       | 0            |
 
 `orderBy` options: `score | createdAt | votes`
+
+---
+
+## GET `/replies/{replyId}/deep-link-info`
+
+Get ancestor chain and root activity for a reply (for deep linking).
+
+Response: `{ ancestorIds: number[] }`
+
+---
+
+## GET `/replies/{replyId}/offset`
+
+Get the 0-based position of a reply within its parent list (for pagination deep-linking).
+
+| Param              | Type    | Required |
+| ------------------ | ------- | -------- |
+| `contractType`     | string  | yes      |
+| `parentId`         | integer | yes      |
+| `orderBy`          | enum    | no       |
+| `orderDirection`   | enum    | no       |
+| `excludeUnverified`| boolean | no       |

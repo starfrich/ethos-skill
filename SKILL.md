@@ -20,7 +20,7 @@ Read the relevant file(s) from `docs/` based on the question context:
 
 ### Core APIs
 
-- `docs/score/lookup.md` — all `/score` endpoints (by address, userId, userkey — single & bulk, updates, status)
+- `docs/score/lookup.md` — all `/score` endpoints (by address, userId, userkey — single & bulk, updates, status, history)
 - `docs/score/concepts.md` — score levels, credibility mechanics, slash supporter penalties
 - `docs/users/lookup.md` — all `/users` and `/user` bulk & single lookup endpoints
 - `docs/users/search.md` — user search, categories, refresh endpoints
@@ -51,7 +51,7 @@ Read the relevant file(s) from `docs/` based on the question context:
 
 - `docs/notifications/feed.md` — notification feed, stats, mark-as-read, notification types enum
 - `docs/notifications/settings.md` — notification settings get/update
-- `docs/replies/query.md` — reply schema, fetch by id, fetch by parent
+- `docs/replies/query.md` — reply schema, fetch by id, fetch by parent, deep-link-info, offset
 - `docs/replies/pin.md` — pin/unpin reply
 - `docs/slash/admin.md` — slash concepts, supporter penalties, admin list
 
@@ -69,20 +69,21 @@ Read the relevant file(s) from `docs/` based on the question context:
 - `docs/exchange-rates/query.md` — ETH price in USD
 - `docs/feature-views/manage.md` — check and mark feature views per user
 - `docs/internal/endpoints.md` — internal endpoints (unstable, not recommended)
-- `docs/llm/endpoints.md` — LLM translate and quality check
+- `docs/llm/endpoints.md` — LLM translate, quality check, activity summary, tags
 - `docs/nfts/query.md` — NFT ownership check, user NFTs, validator listings
 - `docs/profiles/query.md` — paginated profiles list, recent profiles, stats
 - `docs/projects/query.md` — list, suggested, by id, by username, team members
 - `docs/projects/manage.md` — update project, team/chains CRUD (admin or owner)
 - `docs/project-votes/votes.md` — cast votes, balance, voters, bulk-totals, chart (with time scope system)
-- `docs/signatures/query.md` — signature for registering an address, humanity bond signature
-- `docs/stats/query.md` — score distribution by level
+- `docs/signatures/query.md` — signature for registering an address, humanity bond, self-declared humanity bond
+- `docs/stats/query.md` — score distribution, human verification statistics
 - `docs/system/healthcheck.md` — healthcheck endpoints, wait for transaction
 - `docs/votes/query.md` — get votes, single/bulk vote stats for activities
 - `docs/apps/apps.md` — apps CRUD endpoints
 - `docs/announcements/query.md` — active announcements, mark as viewed
 - `docs/ai-images/manage.md` — AI image jobs (admin): list, by entity, regenerate, activate, retry
-- `docs/broker/posts.md` — broker posts CRUD, report, AI image preview
+- `docs/broker/posts.md` — broker posts CRUD, report, AI image preview, watch, completed-summary
+- `docs/api-keys/manage.md` — API key create, list, revoke
 - `docs/auctions/query.md` — active, by id, list auctions
 - `docs/categories/manage.md` — categories CRUD, category users, requests
 - `docs/benefits/list.md` — limited-time benefits, score-based benefits, admin CRUD

@@ -105,3 +105,14 @@ Check score calculation status.
 ```
 
 `status` enum: `idle | queued | calculating`
+
+---
+
+## GET `/score/history`
+
+Aggregated score history for a user.
+
+| Param      | Type   | Required | Notes                                             |
+| ---------- | ------ | -------- | ------------------------------------------------- |
+| `userkey`  | string | yes      |                                                   |
+| `duration` | enum   | no       | `1d | 7d | 30d` (default) `| 90d | 6m | 1y | all` |

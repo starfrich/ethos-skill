@@ -10,14 +10,17 @@
       description:
         type: string
       imageUrl:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       actionButtonLabel:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       actionButtonUrl:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
       startDateTime:
         type: string
       endDateTime:
@@ -30,13 +33,16 @@
       updatedAt:
         type: string
       authorAvatarUrl:
-        type: string
-        nullable: true
+        anyOf[2]{type}:
+          string
+          "null"
     required[12]: id,title,description,imageUrl,actionButtonLabel,actionButtonUrl,startDateTime,endDateTime,status,createdAt,updatedAt,authorAvatarUrl
+    additionalProperties: false
 "announcements-markAsViewed":
   type: object
   properties:
     ok:
       type: boolean
-      enum[1]: true
+      const: true
   required[1]: ok
+  additionalProperties: false
