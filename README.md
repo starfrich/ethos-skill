@@ -60,10 +60,11 @@ ethos-skill/
 | `activities`         | feed, profile (given/received/all/project), lookup by id/tx/userkey, slash impacted supporters                                          |
 | `ai-images`          | list, get, by-entity, selected, regenerate, activate, retry (admin)                                                                     |
 | `announcements`      | active announcements, mark as viewed                                                                                                    |
+| `api-keys`           | create, list, revoke                                                                                                                    |
 | `apps`               | list, get, get by type, create, update, delete                                                                                          |
 | `auctions`           | active, by id, list with filters                                                                                                        |
-| `benefits`           | limited-time, score-based, all (admin), categories CRUD, benefit CRUD, code management                                                  |
-| `broker`             | list, get, by tx hash, by author, update status, archive, report, AI image preview                                                      |
+| `benefits`           | limited-time, score-based, all (admin), categories CRUD, benefit CRUD, codes (info/claim/add/delete unclaimed)                          |
+| `broker`             | list, get, by tx hash, by author, update status, archive, report, AI image preview, watch, completed-summary                            |
 | `categories`         | categories CRUD, users, bulk import, requests                                                                                           |
 | `chains`             | list, add, edit, delete (admin), gas price                                                                                              |
 | `contributions`      | history, dailies, latest missed day, forgive self, forgive any user (admin)                                                             |
@@ -74,24 +75,24 @@ ethos-skill/
 | `human-verification` | search, my verifications, all verifications, balance, by profile, verifiers, request                                                    |
 | `internal`           | users, listings, trending (unstable)                                                                                                    |
 | `invitations`        | list, check, pending, tree                                                                                                              |
-| `llm`                | translate, quality check                                                                                                                |
+| `llm`                | translate, quality check, activity summary, tags                                                                                        |
 | `markets`            | list, featured, info, holders, price history, change, bulk info, simulate buy, user lookups, configs                                    |
 | `notifications`      | pending feed, stats, mark as read, settings                                                                                             |
 | `nfts`               | owns validator, user NFTs, track collection (admin), validator listings                                                                 |
 | `profiles`           | list, recent, stats                                                                                                                     |
 | `project-votes`      | cast vote, balance, voters, reallocate (admin), bulk totals, chart                                                                      |
 | `projects`           | list, suggested, get, details, details by username, team, chains, confirm creation                                                      |
-| `replies`            | by id, by parent, pin                                                                                                                   |
+| `replies`            | by id, by parent, deep-link-info, offset, pin                                                                                           |
 | `reviews`            | count between users, latest between users                                                                                               |
-| `score`              | by address/userId/userkey (single and bulk), updates, status                                                                            |
-| `signatures`         | register address, humanity bond                                                                                                         |
+| `score`              | by address/userId/userkey (single and bulk), updates, status, history                                                                   |
+| `signatures`         | register address, humanity bond, self-declared humanity bond                                                                            |
 | `slash`              | supporter penalties, admin list                                                                                                         |
-| `stats`              | score distribution                                                                                                                      |
+| `stats`              | score distribution, human verification statistics                                                                                       |
 | `system`             | healthcheck (public/auth/always-fail), wait for transaction                                                                             |
 | `users`              | bulk lookup (ids/address/profile/twitter/discord/farcaster/telegram), single lookup, search, categories, refresh                        |
 | `votes`              | get votes, stats (single and bulk)                                                                                                      |
 | `vouches`            | query, mutual vouchers, fees                                                                                                            |
-| `wallets`            | auth exchange/logout, auth check, funds check, review actions, vote, reply, invitations, bonds                                          |
+| `wallets`            | auth exchange/logout, auth check, funds check, review actions (create/edit/archive), vote, reply, invitations, bonds (create/archive)   |
 | `xp`                 | user XP (total/season/weekly/timeline), leaderboard rank, seasons, weeks, tips, send details, decision, metadata, validators, dashboard |
 
 </details>
@@ -127,6 +128,31 @@ Each domain includes a `response.toon` file with response schemas in [TOON](http
 ## Changelog
 
 <details>
+
+### 2026-04-01
+
+Synced to OpenAPI v226 (215 → 226 paths).
+
+**New domain**
+
+- `api-keys`: create, list, revoke API keys
+
+**New endpoints**
+
+- `broker`: `GET /broker/author/{profileId}/completed-summary`, watch/unwatch/get-watch-status
+- `llm`: `GET/POST /llm/activity-summary`, `POST /llm/tags`
+- `replies`: `GET /replies/{replyId}/deep-link-info`, `GET /replies/{replyId}/offset`
+- `score`: `GET /score/history`
+- `signatures`: `POST /signatures/self-declared-humanity-bond`
+- `stats`: `GET /stats/human-verification`
+
+**Fixes**
+
+- `wallets`: corrected archive paths (`/wallets/privy/archive/review` → `/wallets/activity/review/{id}/archive`, same for bond); corrected invitation paths (`/wallets/privy/invite` → `/wallets/privy/invite/address`, `/wallets/privy/cancel-invite` → `/wallets/privy/invite/cancel`); corrected bond path (`/wallets/privy/bond` → `/wallets/privy/bonds`)
+- `broker`: corrected `GET /broker/posts/me` → `GET /broker/me/posts`; corrected `GET /broker/posts/by-author/{userkey}` → `GET /broker/author/{profileId}/posts`; corrected `PUT /broker/posts/{id}` → `PUT /broker/posts/{id}/status`; corrected AI image preview path
+- `benefits`: added missing codes endpoints (`/codes/info`, `/codes/claim`, `/codes`, `/codes/unclaimed`)
+
+---
 
 ### 2026-03-04
 
